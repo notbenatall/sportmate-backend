@@ -1,0 +1,48 @@
+import sys
+import nose
+from nose.tools import *
+from nose.plugins.attrib import attr
+import logging
+from datetime import datetime
+from google.appengine.api import memcache
+from google.appengine.ext import ndb
+from google.appengine.ext import testbed
+from google.appengine.ext.db import BadValueError
+from testtools import DatastoreTest, HRDatastoreTest
+
+import users.models as usermodels
+import sports.models as models
+import sports.actions as actions
+import sports.messages as messages
+
+def test_nothing():
+    assert True == True
+
+def TestGetAllSports(DatastoreTest):
+    def test(self):
+
+        cat1 = models.SportCategory(name='Ball')
+        cat1.put()
+
+        cat2 = models.SportCategory(name='Archery')
+        cat2.put()
+
+        models.Sport(name='Basket Ball', parent = cat1.key).put()
+        models.Sport(name='Netball', parent = cat1.key).put()
+        models.Sport(name='Archery', parent = cat2.key).put()
+
+        everything = actions.get_all_sports()
+
+        assert type(everything) == messages.AllSports
+        assert len(everything.categories) == 2
+
+        assert everything.categories[0].name == 'Archery'
+        assert len(everything.categories[0].sports) == 1
+        assert everything.categories[0].sports[0].name == 'Archery'
+
+        assert everything.categories[1].name == 'Ball'
+        assert len(everything.categories[1].sports) == 2
+        assert everything.categories[1].sports[0].name == 'Basket Ball'
+        assert everything.categories[1].sports[1].name == 'Netball'
+ 
+

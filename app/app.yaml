@@ -1,0 +1,23 @@
+application: sportmate-api
+# Also need to update the version number in app.py
+version: 1-1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+
+  
+handlers:
+# Endpoints handler
+ - url: /_ah/spi/.*
+   script: service.APPLICATION
+
+libraries:
+#- name: webapp2
+#  version: latest
+- name: pycrypto
+  version: latest
+- name: endpoints
+  version: 1.0
+- name: ssl
+  version: latest
