@@ -41,7 +41,7 @@ class Users(remote.Service):
 		http_method='GET', name='friendlist')
 	def get_friends_list(self, request):
 		"""Return a list of friends for the specified user."""
-		me = actions.verify_and_get_user(token=request.token)
+		actions.verify_and_get_user(token=request.token)
 
 		friends_list = actions.get_friends_list(request.user)
 
@@ -56,9 +56,9 @@ class Users(remote.Service):
 		"""
 		Remove the specified user as a friend of the authenticating user.
 		"""
-		me = actions.verify_and_get_user(token=request.token)
+		auth_user = actions.verify_and_get_user(token=request.token)
 
-		relationship = actions.unfriend(me.key.id(), request.user)
+		relationship = actions.unfriend(auth_user.key.id(), request.user)
 
 		msg = mmglue.message_from_model(relationship, Relationship)
 		msg.users = [k.id() for k in relationship.users]
@@ -72,7 +72,7 @@ class Users(remote.Service):
 		"""
 		Returns the relationship between two users.
 		"""
-		me = actions.verify_and_get_user(token=request.token)
+		actions.verify_and_get_user(token=request.token)
 
 		relationship = actions.get_relationship(request.userA, request.userB)
 
@@ -89,9 +89,10 @@ class Users(remote.Service):
 		"""
 		Answer a friend request from a user to the authenticating user.
 		"""
-		me = actions.verify_and_get_user(token=request.token)
+		auth_user = actions.verify_and_get_user(token=request.token)
 
-		relationship = actions.respond_to_friend_request(me, request.user, request.accept)
+		relationship = actions.respond_to_friend_request(auth_user,
+			request.user, request.accept)
 
 		msg = mmglue.message_from_model(relationship, Relationship)
 		msg.users = [k.id() for k in relationship.users]
