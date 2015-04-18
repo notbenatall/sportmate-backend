@@ -4,16 +4,16 @@ Sportmate API v1
 Author: Dr. Adrian Letchford
 Author URL: http:www.DrAdrian.com
 
-This file holds all the actions for the backend system. The system runs on 
+This file holds all the actions for the backend system. The system runs on
 Google App Engine using the NoSQL DataStore for scalability.
 """
 
-import endpoints
 import sports.models as models
 import sports.messages as messages
 import mmglue
 
 def get_all_categories():
+	"""Returns a list of all sports categories."""
 
 	categories = models.SportCategory.get_all()
 
