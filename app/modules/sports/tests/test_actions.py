@@ -18,7 +18,7 @@ import sports.messages as messages
 def test_nothing():
     assert True == True
 
-def TestGetAllSports(DatastoreTest):
+class TestGetAllSports(DatastoreTest):
     def test(self):
 
         cat1 = models.SportCategory(name='Ball')
@@ -27,22 +27,18 @@ def TestGetAllSports(DatastoreTest):
         cat2 = models.SportCategory(name='Archery')
         cat2.put()
 
-        models.Sport(name='Basket Ball', parent = cat1.key).put()
-        models.Sport(name='Netball', parent = cat1.key).put()
-        models.Sport(name='Archery', parent = cat2.key).put()
+        cat3 = models.SportCategory(name='Football')
+        cat3.add_parent(cat1)
+        cat3.put()
 
-        everything = actions.get_all_sports()
+        everything = actions.get_all_categories()
 
-        assert type(everything) == messages.AllSports
-        assert len(everything.categories) == 2
+        assert type(everything) == messages.AllCategories
+        assert len(everything.categories) == 3
 
         assert everything.categories[0].name == 'Archery'
-        assert len(everything.categories[0].sports) == 1
-        assert everything.categories[0].sports[0].name == 'Archery'
-
-        assert everything.categories[1].name == 'Ball'
-        assert len(everything.categories[1].sports) == 2
-        assert everything.categories[1].sports[0].name == 'Basket Ball'
-        assert everything.categories[1].sports[1].name == 'Netball'
+        assert everything.categories[2].name == 'Football'
+        assert len(everything.categories[2].parent_ids) == 1
+        assert everything.categories[2].parent_ids[0] == cat1.key.id()
  
 

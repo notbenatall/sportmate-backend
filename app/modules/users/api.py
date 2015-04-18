@@ -6,39 +6,41 @@ Module: users
 Author: Dr. Adrian Letchford
 Author URL: http:www.DrAdrian.com
 """
+# pylint: disable=no-self-use, no-init
 
 import endpoints
-import logging
 from protorpc import remote
-from google.appengine.ext import ndb
-from google.appengine.api import memcache
-from misc import TextMessage
 import mmglue
 
-import actions
-from messages import UserId, Relationship, FriendList, TwoUserIds, FriendRequestResponse
+import users.actions as actions
+from users.messages import UserId, Relationship, FriendList
+from users.messages import TwoUserIds, FriendRequestResponse
 
 # Package name
 API = endpoints.api(name='users', version='v1.0')
 
 @API.api_class(resource_name='users')
 class Users(remote.Service):
-      
-	@endpoints.method(UserId, Relationship, path='friend/request', http_method='POST', name='friendrequest')
+	"""
+	Endpoint class for accessing and modifying information about users.
+	"""
+	@endpoints.method(UserId, Relationship, path='friend/request',
+		http_method='POST', name='friendrequest')
 	def friend_request(self, request):
+		"""Send a friend request."""
+		auth_user = actions.verify_and_get_user(token=request.token)
 
-		me = actions.verify_and_get_user(token=request.token)
-
-		relationship = actions.friend_request(me.key.id(), request.user)
+		relationship = actions.friend_request(auth_user.key.id(), request.user)
 
 		msg = mmglue.message_from_model(relationship, Relationship)
 		msg.users = [k.id() for k in relationship.users]
 
 		return msg
 
-
-	@endpoints.method(UserId, FriendList, path='friend/list', http_method='GET', name='friendlist')
+	@endpoints.method(UserId, FriendList, path='friend/list',
+		http_method='GET', name='friendlist')
 	def get_friends_list(self, request):
+		"""Return a list of friends for the specified user."""
 		me = actions.verify_and_get_user(token=request.token)
 
 		friends_list = actions.get_friends_list(request.user)
@@ -48,8 +50,12 @@ class Users(remote.Service):
 
 		return msg
 
-	@endpoints.method(UserId, Relationship, path='friend/unfriend', http_method='POST', name='friendunfriend')
+	@endpoints.method(UserId, Relationship, path='friend/unfriend',
+		http_method='POST', name='friendunfriend')
 	def unfriend(self, request):
+		"""
+		Remove the specified user as a friend of the authenticating user.
+		"""
 		me = actions.verify_and_get_user(token=request.token)
 
 		relationship = actions.unfriend(me.key.id(), request.user)
@@ -60,8 +66,12 @@ class Users(remote.Service):
 		return msg
 
 
-	@endpoints.method(TwoUserIds, Relationship, path='user/relationship', http_method='GET', name='userrelationship')
+	@endpoints.method(TwoUserIds, Relationship, path='user/relationship',
+		http_method='GET', name='userrelationship')
 	def get_relationship(self, request):
+		"""
+		Returns the relationship between two users.
+		"""
 		me = actions.verify_and_get_user(token=request.token)
 
 		relationship = actions.get_relationship(request.userA, request.userB)
@@ -72,8 +82,13 @@ class Users(remote.Service):
 		return msg
 
 
-	@endpoints.method(FriendRequestResponse, Relationship, path='friend/request/response', http_method='POST', name='requestresponse')
+	@endpoints.method(FriendRequestResponse, Relationship,
+		path='friend/request/response', http_method='POST',
+		name='requestresponse')
 	def respond_to_friend_request(self, request):
+		"""
+		Answer a friend request from a user to the authenticating user.
+		"""
 		me = actions.verify_and_get_user(token=request.token)
 
 		relationship = actions.respond_to_friend_request(me, request.user, request.accept)

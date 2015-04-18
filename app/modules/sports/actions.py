@@ -13,21 +13,16 @@ import sports.models as models
 import sports.messages as messages
 import mmglue
 
-def get_all_sports():
+def get_all_categories():
 
-	sports = models.Sport.get_all()
-	categories = models.SportCategories.get_all()
+	categories = models.SportCategory.get_all()
 
-	sports.sort(key=lambda x: x.name)
-	categories.sort(key=lambda x: x.name)
+	everything = messages.AllCategories()
 
-	everything = messages.AllSports
-	everything.categories = [mmglue.message_from_model(cat, messages.SportCategory) for cat in categories]
-
-	for sport in sports:
-		for i, cat in enumerate(categories):
-			if sports.key.parent() == cat.key:
-				everything.categories[i].sports.append(mmglue.message_from_model(sport, messages.Sport))
+	for cat in categories:
+		cat_msg = mmglue.message_from_model(cat, messages.SportCategory)
+		cat_msg.parent_ids = [parent_key.id() for parent_key in cat.parents]
+		everything.categories.append(cat_msg)
 
 	return everything
 

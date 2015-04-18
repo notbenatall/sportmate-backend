@@ -8,12 +8,7 @@ This file holds all the models.
 """
 
 from google.appengine.ext import ndb
-import geo.geomodel
 from google.appengine.ext.db import BadValueError
-from Crypto.Hash import SHA
-import string
-import random
-import logging
 from misc import validate_parent
 from users.models import User
 import Geohash
@@ -22,6 +17,8 @@ import Geohash
 class SportCategory(ndb.Model):
 
     name = ndb.StringProperty(indexed=False, required=True)
+    paths = ndb.KeyProperty(indexed=True, repeated=True)
+    parents = ndb.KeyProperty(indexed=False, repeated=True)
 
     def __init__(self, **kwargs):
 
@@ -34,8 +31,37 @@ class SportCategory(ndb.Model):
             key = ndb.Key(SportCategory, self.name.lower())
             self.key = key
 
-    def put(self):
-        super(SportCategory, self).put()
+    def add_parent(self, parent):
+
+        if type(parent) is not SportCategory:
+            raise BadValueError
+
+        if len(parent.key.pairs()) != 1:
+            raise BadValueError
+
+        parent_pair = parent.key.pairs()[0]
+
+        # Add parent's paths to self's paths
+        if parent.paths is None or len(parent.paths) == 0:
+            self.paths.append(ndb.Key(pairs=[parent_pair]))
+        else:
+            for path in parent.paths:
+                new_path = list(path.pairs())
+                new_path.append(parent_pair)
+                new_path_key = ndb.Key(pairs=new_path)
+
+                if new_path_key in self.paths:
+                    continue
+
+                self.paths.append(new_path_key)
+
+        self.parents.append(parent.key)
+
+
+
+    @staticmethod
+    def get_by_path(path):
+        pass
 
     @staticmethod
     def get_by_name(name):
@@ -50,53 +76,13 @@ class SportCategory(ndb.Model):
         return categories
 
 
-class Sport(ndb.Model):
-    """
-    Parent: SportCategory
-    """
-
-    name = ndb.StringProperty(indexed=False, required=True)
-
-    def __init__(self, **kwargs):
-
-        if 'key' in kwargs:
-            raise BadValueError
-
-        super(Sport, self).__init__(**kwargs)
-
-        if 'name' in kwargs:
-            pairs = list(kwargs['parent'].pairs())
-            pairs.append((Sport, self.name.lower()))
-            key = ndb.Key(pairs=pairs)
-            self.key = key
-
-    def validate(self):
-        """Validates this model."""
-        validate_parent(self, SportCategory)
-
-    def put(self):
-        self.validate()
-        super(Sport, self).put()
-
-    @staticmethod
-    def get_by_category_and_name(category, name):
-        key = ndb.Key(SportCategory, category.lower(), Sport, name)
-        sport = key.get()
-        return sport
-
-    @staticmethod
-    def get_all():
-        query = Sport.query()
-        sports = query.fetch()
-        return sports
-
 
 class Game(ndb.Model):
     """
     Parent: User
     """
 
-    sport = ndb.KeyProperty(kind=Sport, indexed=True, required=True)  
+    category = ndb.KeyProperty(kind=SportCategory, repeated=True, indexed=True)  
     players_full = ndb.BooleanProperty(indexed=True, default=False) 
     level = ndb.IntegerProperty(indexed=True, default=0)
     time = ndb.DateTimeProperty(indexed=True, required=True)
@@ -109,9 +95,16 @@ class Game(ndb.Model):
     def update_geohash(self):
         self.geohash = Geohash.encode(self.geo.lat, self.geo.lon, precision=20)
 
-    def put(self):
+    def validate(self):
         validate_parent(self, User)
+
+        if self.category is None or len(self.category) == 0:
+            raise BadValueError
+
         self.update_geohash()
+
+    def put(self):
+        self.validate()
         super(Game, self).put()
 
 
@@ -122,6 +115,6 @@ class SportProfile(ndb.Model):
     Parent: User
     """
 
-    sport = ndb.KeyProperty(kind=Sport, indexed=True, required=True)  
+    sport = ndb.KeyProperty(kind=SportCategory, indexed=True, required=True)  
     level = ndb.IntegerProperty(indexed=True, default=0)
 

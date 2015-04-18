@@ -47,36 +47,20 @@ class TestSportCategoryModel(BasicModelTest):
         retrieved_cat = models.SportCategory.get_by_name('Basket Ball')
         assert retrieved_cat == cat
 
-class TestSportModel(BasicModelTest):
+    def test_add_parent(self):
+        cat1 = models.SportCategory(name='Ball')
 
-    @raises(BadValueError)
-    def testValidateModelFailure(self):
-        sport = models.Sport()
-        sport.validate()
+        cat2 = models.SportCategory(name='Basket Ball')
+        cat2.add_parent(cat1)
 
-    @raises(BadValueError)
-    def testEmptyPut(self):
-        sport = models.Sport()
-        sport.put()
+        cat3 = models.SportCategory(name='Extreme Basket Ball')
+        cat3.add_parent(cat2)
 
-    def testBasicPut(self):
-        cat = models.SportCategory(name='Basket Ball')
-        cat.put()
+        assert cat2.paths[0] == cat1.key
+        assert cat1.key in cat2.parents
+        assert cat3.paths[0] == ndb.Key(pairs=[cat1.key.pairs()[0], cat2.key.pairs()[0]])
+        assert cat2.key in cat3.parents
 
-        sport = models.Sport(name='Basket Ball', parent = cat.key)
-        sport.put()
-
-    def test_get_by_category_and_name(self):
-
-        cat = models.SportCategory(name='Cycling')
-        cat.put()
-
-        sport = models.Sport(name='Unicyling', parent = cat.key)
-        sport.put()
-
-        retrieved_sport = models.Sport.get_by_category_and_name('cycling', 'unicyling')
-
-        assert retrieved_sport == sport
 
 class TestSportCategoryModelGetAll(BasicModelTest):
     def test(self):
@@ -89,21 +73,6 @@ class TestSportCategoryModelGetAll(BasicModelTest):
         assert len(categories) == 1
         assert categories[0].name == 'Cycling'
 
-class TestSportModelGetAll(BasicModelTest):
-    def test(self):
-
-        cat = models.SportCategory(name='Cycling')
-        cat.put()
-
-        sport = models.Sport(name='Unicyling', parent = cat.key)
-        sport.put()
-
-        sports = models.Sport.get_all()
-
-        assert len(sports) == 1
-        assert sports[0].name == 'Unicyling'
-
-
 
 class TestGameModel(BasicModelTest):
 
@@ -114,12 +83,23 @@ class TestGameModel(BasicModelTest):
         cat = models.SportCategory(name='category')
         cat.put()
 
-        sport = models.Sport(name='a sport', parent = cat.key)
-        sport.put()
+        game = models.Game(
+            name='Basket Ball',
+            category = [cat.key],
+            players_needed=5,
+            geo=ndb.GeoPt(37, -122),
+            time = datetime.now(),
+            parent = user.key
+            )
+        game.put()
+
+    @raises(BadValueError)
+    def test_missing_category(self):
+        user = usermodels.User(full_name = 'Rowan Atkinson')
+        user.put()
 
         game = models.Game(
             name='Basket Ball',
-            sport = sport.key,
             players_needed=5,
             geo=ndb.GeoPt(37, -122),
             time = datetime.now(),

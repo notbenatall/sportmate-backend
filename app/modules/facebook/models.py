@@ -8,12 +8,6 @@ Author URL: http:www.DrAdrian.com
 """
 
 from google.appengine.ext import ndb
-import geo.geomodel
-from google.appengine.ext.db import BadValueError
-from Crypto.Hash import SHA
-import string
-import random
-import logging
 import misc # sportmate's misc module
 from users.models import User
 

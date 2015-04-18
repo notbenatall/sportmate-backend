@@ -4,12 +4,12 @@
         {
             "name": "Sportmate Module Quick Tests",
             "cmd": ["python", "runtests.py", "-a !slow"],
-			"working_dir": "$project_path/modules"
+			"working_dir": "$project_path"
         },
         {
             "name": "Sportmate Module All Tests",
             "cmd": ["python", "runtests.py"],
-			"working_dir": "$project_path/modules"
+			"working_dir": "$project_path"
         }
     ]
 }

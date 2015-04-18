@@ -11,12 +11,11 @@ from protorpc import messages
 from protorpc import message_types
 
 
-class AllSports(messages.Message):
-    categories = messages.MessageField(SportCategory, 1, repeated=True)
-
 class SportCategory(messages.Message):
     name = messages.StringField(1)
-    sports = messages.MessageField(Sport, 2, repeated=True)
+    id = messages.StringField(2)
+    parent_ids = messages.StringField(3, repeated=True)
 
-class Sport(messages.Message):
-    name = messages.StringField(1)
+
+class AllCategories(messages.Message):
+    categories = messages.MessageField(SportCategory, 1, repeated=True)
