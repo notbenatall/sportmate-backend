@@ -1,8 +1,17 @@
+"""
+Sportmate API v1
+
+Module: facebook
+
+Author: Dr. Adrian Letchford
+Author URL: http:www.DrAdrian.com
+
+Runs all the tests for all the modules.
+"""
+# pylint: disable=line-too-long, invalid-name
 import sys
 import os
 import nose
-from nose.tools import *
-from nose.plugins.attrib import attr
 import logging
 
 # Turn off logging. Google App Engine spits out all kinds of junk which we
@@ -22,10 +31,10 @@ sys.path.append('include')
 sys.path.append('modules')
 
 if __name__ == '__main__':
-    # Run all the tests in this file
-    module_name = os.path.dirname(sys.modules[__name__].__file__)
+	# Run all the tests in this file
+	module_name = os.path.dirname(sys.modules[__name__].__file__)
 
-    argv = [sys.argv[0], module_name, '--nocapture', '--exclude-dir=lib'] + sys.argv[1:]
-    result = nose.run(argv=argv)
-    #result = nose.run(argv=[sys.argv[0], module_name, '-v', "-a !slow"])
-    #result = nose.run(argv=[sys.argv[0], module_name, '-v', "-a slow"])
+	argv = [sys.argv[0], module_name, '--nocapture', '--exclude-dir=lib'] + sys.argv[1:]
+	result = nose.run(argv=argv)
+	#result = nose.run(argv=[sys.argv[0], module_name, '-v', "-a !slow"])
+	#result = nose.run(argv=[sys.argv[0], module_name, '-v', "-a slow"])
