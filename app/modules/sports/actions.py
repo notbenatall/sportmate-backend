@@ -17,7 +17,7 @@ def get_all_categories():
 
 	categories = models.SportCategory.get_all()
 
-	everything = messages.AllCategories()
+	everything = messages.CategoryList()
 
 	for cat in categories:
 		cat_msg = mmglue.message_from_model(cat, messages.SportCategory)

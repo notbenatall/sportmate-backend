@@ -33,7 +33,7 @@ class TestGetAllSports(DatastoreTest):
 
         everything = actions.get_all_categories()
 
-        assert type(everything) == messages.AllCategories
+        assert type(everything) == messages.CategoryList
         assert len(everything.categories) == 3
 
         assert everything.categories[0].name == 'Archery'
