@@ -8,33 +8,34 @@ Author URL: http:www.DrAdrian.com
 """
 import endpoints
 from facebooklogin import FacebookLogin
-import models
-import users.models
+import modules.facebook.models as models
+import modules.users.models
 
 FACEBOOK_APP_ID = '1581671678743146'
 FACEBOOK_APP_SECRET = 'a6202756c8e6174ec30d3956ea4a76c9'
 
 def get_login_url(redirect_url):
+	"""Returns the Facebook login URL."""
 	login = FacebookLogin(FACEBOOK_APP_ID, FACEBOOK_APP_SECRET, redirect_url)
 	login_url = login.make_user_login_url()
 	return login_url
 
 def _create_new_user(profile, access_token):
+	"""Create a new Sportmate user from a Facebook Access Token."""
 
-	user = users.models.User(
-		full_name = profile['name'],
-		email = profile['email'])
+	user = modules.users.models.User(
+		full_name=profile['name'],
+		email=profile['email'])
 	user.initialise_new_token()
 	user.put()
 
 	account = models.FacebookAccount(
-		facebook_id = long(profile['id']),
-		access_token = access_token,
-		parent = user.key)
+		facebook_id=long(profile['id']),
+		access_token=access_token,
+		parent=user.key)
 
 	if 'expires' in profile:
 		account.expires = profile['expires']
-		
 	account.put()
 
 	return account

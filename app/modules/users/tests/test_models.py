@@ -10,7 +10,7 @@ from google.appengine.ext import testbed
 from google.appengine.ext.db import BadValueError
 import testtools
 
-import users.models as models
+import modules.users.models as models
 
 def test_nothing():
     assert True == True

@@ -8,27 +8,11 @@ from google.appengine.api import memcache
 from google.appengine.ext import ndb
 from google.appengine.ext import testbed
 from google.appengine.ext.db import BadValueError
+from testtools import DatastoreTest
 
-import facebook.models as models
-import facebook.actions as actions
-import users.models
-
-def test_nothing():
-    assert True == True
-
-class DatastoreTest(object):
-    def setup(self):
-        # First, create an instance of the Testbed class.
-        self.testbed = testbed.Testbed()
-        # Then activate the testbed, which prepares the service stubs for use.
-        self.testbed.activate()
-        # Next, declare which service stubs you want to use.
-        self.testbed.init_datastore_v3_stub()
-        self.testbed.init_memcache_stub()
- 
-    def teardown(self):
-        self.testbed.deactivate()
-
+import modules.facebook.models as models
+import modules.facebook.actions as actions
+import modules.users.models as usermodels
 
 def testGetLoginUrl():
 	url = actions.get_login_url('some_redirect')
@@ -51,5 +35,5 @@ class testWithDatastore(DatastoreTest):
 		account_parent = account.key.parent().get()
 
 		assert type(account) is models.FacebookAccount
-		assert type(account_parent) is users.models.User
+		assert type(account_parent) is usermodels.User
 		assert_equals(account_parent.full_name, 'John Clease')

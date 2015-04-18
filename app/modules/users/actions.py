@@ -10,7 +10,7 @@ This file defines the actions for the user module.
 """
 from endpoints import UnauthorizedException, NotFoundException
 from google.appengine.ext import ndb
-import users.models as models
+import modules.users.models as models
 
 
 def verify_and_get_user(**kwargs):

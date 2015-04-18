@@ -12,8 +12,8 @@ import testtools
 from google.appengine.ext.db import BadValueError
 from endpoints import UnauthorizedException, NotFoundException
 
-import users.models as models
-import users.actions as actions
+import modules.users.models as models
+import modules.users.actions as actions
 
 def test_nothing():
     assert True == True
