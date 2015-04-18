@@ -38,7 +38,7 @@ load-plugins=
 # --enable=similarities". If you want to run only the classes checker, but have
 # no Warning level messages displayed, use"--disable=all --enable=classes
 # --disable=W"
-disable=missing-final-newline, import-error, locally-disabled
+disable=locally-disabled, missing-final-newline, super-on-old-class, import-error, no-member, no-init
 
 
 [REPORTS]
@@ -100,6 +100,8 @@ function-rgx=[a-z_][a-z0-9_]{2,30}$
 
 # Regular expression which should only match correct method names
 method-rgx=[a-z_][a-z0-9_]{2,30}$
+# Allow methods starting with 'get_'
+method-rgx=(([a-z_][a-z0-9_]{2,30})|(get_[a-z_][a-z0-9_]{2,30}))$
 
 # Regular expression which should only match correct instance attribute names
 attr-rgx=[a-z_][a-z0-9_]{2,30}$
