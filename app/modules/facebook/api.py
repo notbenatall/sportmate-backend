@@ -25,13 +25,13 @@ API = endpoints.api(name='facebook', version='v1.0')
 class FacebookLogin(remote.Service):
 	"""Endpoints api for loging in with Facebook."""
 
-	@endpoints.method(message_types.VoidMessage, fbmsgs.UrlMessage,
+	@endpoints.method(message_types.VoidMessage, fbmsgs.Url,
 		path='geturl', http_method='GET', name='geturl')
 	def get_login_url(self, request):
 		"""Returns the Facebook login URL."""
 		return fbmsgs.Url(url=actions.get_login_url(REDIRECT_URL))
 
-	@endpoints.method(fbmsgs.CodeMessage, fbmsgs.FacebookAccountWithUser,
+	@endpoints.method(fbmsgs.Code, fbmsgs.FacebookAccountWithUser,
 		path='code', http_method='GET')
 	def recieve_code(self, request):
 		"""Uses the login code provided by Facebook and logs in the user."""

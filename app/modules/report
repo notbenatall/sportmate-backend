@@ -1,0 +1,5 @@
+#!/bin/bash
+
+pylint modules --rcfile=modules/pylintrc --disable=fixme --report=yes
+python modules/runtests.py -a \!slow --with-coverage --cover-package=modules --cover-inclusive
+
