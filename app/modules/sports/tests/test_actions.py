@@ -10,35 +10,59 @@ from google.appengine.ext import testbed
 from google.appengine.ext.db import BadValueError
 from testtools import DatastoreTest, HRDatastoreTest
 
-import users.models as usermodels
-import sports.models as models
-import sports.actions as actions
-import sports.messages as messages
+import modules.users.models as usermodels
+import modules.sports.models as models
+import modules.sports.actions as actions
+import modules.sports.messages as messages
 
 def test_nothing():
-    assert True == True
+	assert True == True
 
-class TestGetAllSports(DatastoreTest):
-    def test(self):
+class TestGeneral(DatastoreTest):
 
-        cat1 = models.SportCategory(name='Ball')
-        cat1.put()
+	def test_get_all_sports(self):
 
-        cat2 = models.SportCategory(name='Archery')
-        cat2.put()
+		cat1 = models.SportCategory(name='Ball')
+		cat1.put()
 
-        cat3 = models.SportCategory(name='Football')
-        cat3.add_parent(cat1)
-        cat3.put()
+		cat2 = models.SportCategory(name='Archery')
+		cat2.put()
 
-        everything = actions.get_all_categories()
+		cat3 = models.SportCategory(name='Football')
+		cat3.add_parent(cat1)
+		cat3.put()
 
-        assert type(everything) == messages.CategoryList
-        assert len(everything.categories) == 3
+		everything = actions.get_all_categories()
 
-        assert everything.categories[0].name == 'Archery'
-        assert everything.categories[2].name == 'Football'
-        assert len(everything.categories[2].parent_ids) == 1
-        assert everything.categories[2].parent_ids[0] == cat1.key.id()
- 
+		assert type(everything) == messages.CategoryList
+		assert len(everything.categories) == 3
 
+		assert everything.categories[0].name == 'Archery'
+		assert everything.categories[2].name == 'Football'
+		assert len(everything.categories[2].parent_ids) == 1
+		assert everything.categories[2].parent_ids[0] == cat1.key.id()
+
+
+	def test_create_new_game(self):
+
+		user = usermodels.User(full_name="Adrian")
+		user.put()
+
+		msg = messages.NewGame(
+			categories = ["American Football"],
+			level = 1,
+			time = datetime.now(),
+			name = "Adrian's big play off",
+			players_needed = 2,
+			lat = 34.0,
+			lon = 89.0)
+
+		game = actions.create_new_game(user, msg)
+
+		game = game.key.get()
+
+		assert game.key.parent() == user.key
+		assert game.players_needed == 2
+		assert game.category[0].id() == "american football"
+		assert game.geo.lat == 34
+		assert game.geo.lon == 89

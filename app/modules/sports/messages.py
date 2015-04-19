@@ -9,6 +9,7 @@ Author URL: http:www.DrAdrian.com
 # pylint: disable=invalid-name,too-few-public-methods
 
 from protorpc import messages
+from protorpc import message_types
 
 
 class SportCategory(messages.Message):
@@ -21,3 +22,27 @@ class SportCategory(messages.Message):
 class CategoryList(messages.Message):
 	"""Message containing a list of categories."""
 	categories = messages.MessageField(SportCategory, 1, repeated=True)
+
+class Game(messages.Message):
+	"""Message containing a game."""
+	categories = messages.StringField(1, repeated=True)
+	players_full = messages.BooleanField(2, required=True)
+	level = messages.IntegerField(3, required=True)
+	time = message_types.DateTimeField(4, required=True)
+	name = messages.StringField(5, required=True)
+	players_needed = messages.IntegerField(6, required=True)
+	players_joined = messages.IntegerField(7, required=True)
+	lat = messages.FloatField(8, required=True)
+	lon = messages.FloatField(9, required=True)
+
+class NewGame(messages.Message):
+	"""Message containing a brand new game to add to the system."""
+	categories = messages.StringField(1, repeated=True)
+	level = messages.IntegerField(2, required=True)
+	time = message_types.DateTimeField(3, required=True)
+	name = messages.StringField(4, required=True)
+	players_needed = messages.IntegerField(5, required=True)
+	lat = messages.FloatField(6, required=True)
+	lon = messages.FloatField(7, required=True)
+
+	token = messages.StringField(8, required=True)

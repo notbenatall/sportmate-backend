@@ -8,9 +8,14 @@ This file holds all the actions for the backend system. The system runs on
 Google App Engine using the NoSQL DataStore for scalability.
 """
 
-import sports.models as models
-import sports.messages as messages
+from google.appengine.ext import ndb
+from endpoints import NotFoundException
+import modules.sports.models as models
+import modules.sports.messages as messages
+import modules.users.models as usermodels
 import mmglue
+
+TIME_FORMAT = "%Y-%m-%d %H:%M:%S"
 
 def get_all_categories():
 	"""Returns a list of all sports categories."""
@@ -26,7 +31,33 @@ def get_all_categories():
 
 	return everything
 
-# Create a game
+def create_new_game(auth_user, details):
+	"""Creates a new sport game."""
+
+	if type(details) is not messages.NewGame:
+		raise NotFoundException("Can only create a game with a NewGame message.")
+
+	if type(auth_user) is not usermodels.User:
+		raise NotFoundException("I require a user to create a game.")
+
+	category_keys = [models.SportCategory.key_from_name(cat)
+		for cat in details.categories]
+
+	game = models.Game(
+		parent=auth_user.key,
+		category=category_keys,
+		players_full=False,
+		level=details.level,
+		time=details.time,
+		name=details.name,
+		players_needed=details.players_needed,
+		players_joined=1,
+		geo=ndb.GeoPt(details.lat, details.lon))
+
+	game.put()
+
+	return game
+
 
 # Modify a game
 

@@ -11,7 +11,7 @@ Author URL: http:www.DrAdrian.com
 from protorpc import messages
 from protorpc import message_types
 
-import users.messages
+import modules.users.messages
 
 
 class Url(messages.Message):
@@ -30,4 +30,4 @@ class FacebookAccountWithUser(messages.Message):
 	facebook_id = messages.IntegerField(1)
 	access_token = messages.StringField(2)
 	expires = message_types.DateTimeField(3)
-	user = messages.MessageField(users.messages.UserMe, 4)
+	user = messages.MessageField(modules.users.messages.UserMe, 4)

@@ -30,8 +30,7 @@ class SportCategory(ndb.Model):
 		super(SportCategory, self).__init__(**kwargs)
 
 		if 'name' in kwargs:
-			key = ndb.Key(SportCategory, self.name.lower())
-			self.key = key
+			self.key = self.key_from_name(self.name)
 
 	def add_parent(self, parent):
 		"""
@@ -76,6 +75,11 @@ class SportCategory(ndb.Model):
 		query = SportCategory.query()
 		categories = query.fetch()
 		return categories
+
+	@staticmethod
+	def key_from_name(name):
+		"""Turns a sport name into a key associated with its object."""
+		return ndb.Key(SportCategory, name.lower())
 
 
 
