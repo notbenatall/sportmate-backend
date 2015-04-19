@@ -22,7 +22,7 @@ API = endpoints.api(name='users', version='v1.0')
 @API.api_class(resource_name='users')
 class Users(remote.Service):
 	"""
-	Endpoint class for accessing and modifying information about users.
+	Access and modify information about users.
 	"""
 	@endpoints.method(UserId, Relationship, path='friend/request',
 		http_method='POST', name='friendrequest')

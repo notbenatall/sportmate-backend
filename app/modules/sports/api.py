@@ -24,7 +24,7 @@ API = endpoints.api(name='sports', version='v1.0')
 @API.api_class(resource_name='sports')
 class Sports(remote.Service):
 	"""
-	Endpoint class for accessing and modifying information about sports.
+	Access and Modify information about sports.
 	"""
 
 	@endpoints.method(messages.NewGame, messages.Game, path='create',

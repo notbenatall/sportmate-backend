@@ -23,7 +23,7 @@ API = endpoints.api(name='facebook', version='v1.0')
 
 @API.api_class(resource_name='login')
 class FacebookLogin(remote.Service):
-	"""Endpoints api for loging in with Facebook."""
+	"""Login in with Facebook."""
 
 	@endpoints.method(message_types.VoidMessage, fbmsgs.Url,
 		path='geturl', http_method='GET', name='geturl')
