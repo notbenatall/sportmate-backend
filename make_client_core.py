@@ -93,7 +93,6 @@ def run_file(file_path, globals_):
   # SET UP YOUR ENVIRONMENT
   #------------------------------
   import appengine_config
-  import service
   
   # END SET UP YOUR ENVIRONMENT
 	

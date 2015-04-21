@@ -12,38 +12,6 @@
 	"buffers":
 	[
 		{
-			"file": "appengine_config.py",
-			"settings":
-			{
-				"buffer_size": 1182,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app.yaml",
-			"settings":
-			{
-				"buffer_size": 373,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "README.md",
-			"settings":
-			{
-				"buffer_size": 72,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "modules/report",
-			"settings":
-			{
-				"buffer_size": 0,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "service.py",
 			"settings":
 			{
@@ -52,10 +20,18 @@
 			}
 		},
 		{
-			"file": "modules/runtests.py",
+			"file": "/home/adrian/Dropbox/My Products/Sportmate/backend/.gitignore",
 			"settings":
 			{
-				"buffer_size": 1219,
+				"buffer_size": 709,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/adrian/Dropbox/My Products/Sportmate/backend/mkclient",
+			"settings":
+			{
+				"buffer_size": 536,
 				"line_ending": "Unix"
 			}
 		}
@@ -84,9 +60,14 @@
 	},
 	"file_history":
 	[
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/app.yaml",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/appengine_config.py",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/runtests.py",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/report",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/README.md",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/client_library/make_client_core.py",
 		"/home/adrian/Development/google_appengine/lib/fancy_urllib/__init__.py",
 		"/home/adrian/Development/google_appengine/lib/fancy_urllib/fancy_urllib/__init__.py",
-		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/README.md",
 		"/home/adrian/Dropbox/My Research/My Papers/Submitted Papers/The Advantage of Short Paper Titles/Submission (3) to Royal Society Open Science/diff/makediff",
 		"/home/adrian/Dropbox/My Research/My Papers/Working Papers/Birth Rate and Mortality Rates/paper/paper/lpm2014EPJDS.tex",
 		"/home/adrian/Dropbox/My Research/My Papers/Working Papers/The Advantage of Simple Paper Abstracts/code/data analysis/text output/journals full model.txt",
@@ -100,8 +81,6 @@
 		"/home/adrian/Dropbox/My Products/Loud News/Backend/v2/app/models.py",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/sportmate/models.py",
 		"/home/adrian/Dropbox/My Research/Code/funcache/tests/tests.py",
-		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/appengine_config.py",
-		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/app.yaml",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/sportmate/actions.py",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/sportmate/api.py",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/messages.py",
@@ -172,18 +151,18 @@
 			[
 				{
 					"buffer": 0,
-					"file": "appengine_config.py",
+					"file": "service.py",
 					"settings":
 					{
-						"buffer_size": 1182,
+						"buffer_size": 194,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								259,
-								259
+								60,
+								60
 							]
 						],
 						"settings":
@@ -198,70 +177,44 @@
 				},
 				{
 					"buffer": 1,
-					"file": "app.yaml",
+					"file": "/home/adrian/Dropbox/My Products/Sportmate/backend/.gitignore",
 					"settings":
 					{
-						"buffer_size": 373,
+						"buffer_size": 709,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								709,
+								709
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/YAML/YAML.tmLanguage"
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 510.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "README.md",
+					"file": "/home/adrian/Dropbox/My Products/Sportmate/backend/mkclient",
 					"settings":
 					{
-						"buffer_size": 72,
+						"buffer_size": 536,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								72,
-								72
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Markdown/Markdown.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "modules/report",
-					"settings":
-					{
-						"buffer_size": 0,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
+								481,
+								481
 							]
 						],
 						"settings":
@@ -270,58 +223,6 @@
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "service.py",
-					"settings":
-					{
-						"buffer_size": 194,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "modules/runtests.py",
-					"settings":
-					{
-						"buffer_size": 1219,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 408.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

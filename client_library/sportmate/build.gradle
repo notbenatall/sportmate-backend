@@ -2,7 +2,7 @@ apply plugin: 'java'
 apply plugin: 'maven'
 
 
-group = 'com.appspot.sportmate_api'
+group = 'com.appspot.sportmateapi'
 archivesBaseName = 'sportmate'
 version = 'v1.0-1.20.0-SNAPSHOT'
 

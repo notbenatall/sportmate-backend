@@ -1,4 +1,4 @@
-application: sportmate_api
+application: sportmateapi
 # Also need to update the version number in app.py
 version: 1-0
 runtime: python27
