@@ -37,11 +37,28 @@ class User(ndb.Model):
 		self.dumb_token = self.generate_token(str(self.key))
 		return self.dumb_token
 
+	def get_token(self):
+		"""Returns the token for this user."""
+		return self.key.urlsafe() + "::" + self.dumb_token
+
 	@staticmethod
-	def get_from_dumb_token(token):
-		"""Returns the user whose dumb_token equals the given token."""
-		query = User.query(User.dumb_token == token)
-		user = query.get()
+	def get_from_token(token):
+		"""Gets the user associated with the given token."""
+		urlsafe, dumb_token = token.split("::")
+
+		key = ndb.Key(urlsafe=urlsafe)
+
+		try:
+			user = key.get()
+		except ValueError:
+			return None
+
+		if user is None:
+			return None
+
+		if user.dumb_token != dumb_token:
+			return None
+
 		return user
 
 	def put(self):

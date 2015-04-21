@@ -12,7 +12,6 @@ from google.appengine.ext import ndb
 from endpoints import NotFoundException
 import modules.sports.models as models
 import modules.sports.messages as messages
-import modules.users.models as usermodels
 import mmglue
 
 TIME_FORMAT = "%Y-%m-%d %H:%M:%S"
@@ -37,7 +36,7 @@ def create_new_game(auth_user, details):
 	if type(details) is not messages.NewGame:
 		raise NotFoundException("Can only create a game with a NewGame message.")
 
-	if type(auth_user) is not usermodels.User:
+	if not hasattr(auth_user, 'key') or auth_user.key.kind() != 'User':
 		raise NotFoundException("I require a user to create a game.")
 
 	category_keys = [models.SportCategory.key_from_name(cat)

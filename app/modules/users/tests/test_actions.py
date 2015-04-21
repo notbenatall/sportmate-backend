@@ -24,12 +24,12 @@ class TestSimpleStuff(testtools.DatastoreTest):
     def testVerifyAndGetUserFail(self):
         actions.verify_and_get_user(token='nothing')
 
-    def testVerifyAndGetUser(self):
+    def test_verify_and_get_user(self):
         user = models.User(full_name='hello')
         user.initialise_new_token()
         user.put()
 
-        result = actions.verify_and_get_user(token=user.dumb_token)
+        result = actions.verify_and_get_user(token=user.get_token())
 
         assert user == result
 

@@ -21,7 +21,10 @@ def verify_and_get_user(**kwargs):
 		token - the token that represents the validated user.
 	"""
 
-	user = models.User.get_from_dumb_token(kwargs['token'])
+	try:
+		user = models.User.get_from_token(kwargs['token'])
+	except:
+		raise UnauthorizedException("User is invalid.")
 
 	if user is None:
 		raise UnauthorizedException("User is invalid.")
@@ -31,7 +34,7 @@ def verify_and_get_user(**kwargs):
 
 def user_key_id_to_user(uinput):
 	"""
-	Takes a user or ueser's key or user's id as an input and returns the user.
+	Takes a user or user's key or user's id as an input and returns the user.
 	"""
 
 	if type(uinput) is models.User:

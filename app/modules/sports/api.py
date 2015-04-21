@@ -18,10 +18,9 @@ from modules.users.actions import verify_and_get_user
 import modules.sports.actions as actions
 import modules.sports.messages as messages
 
-# Package name
-API = endpoints.api(name='sports', version='v1.0')
+import modules.api
 
-@API.api_class(resource_name='sports')
+@modules.api.API.api_class(resource_name='sports')
 class Sports(remote.Service):
 	"""
 	Access and Modify information about sports.

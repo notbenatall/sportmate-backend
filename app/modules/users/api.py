@@ -16,10 +16,9 @@ import users.actions as actions
 from users.messages import UserId, Relationship, FriendList
 from users.messages import TwoUserIds, FriendRequestResponse
 
-# Package name
-API = endpoints.api(name='users', version='v1.0')
+import modules.api
 
-@API.api_class(resource_name='users')
+@modules.api.API.api_class(resource_name='users')
 class Users(remote.Service):
 	"""
 	Access and modify information about users.

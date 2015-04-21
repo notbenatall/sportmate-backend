@@ -1,6 +1,6 @@
-application: sportmate-api
+application: sportmate_api
 # Also need to update the version number in app.py
-version: 1-1
+version: 1-0
 runtime: python27
 api_version: 1
 threadsafe: true

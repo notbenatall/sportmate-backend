@@ -29,14 +29,14 @@ class TestAPI(HRDatastoreTest):
 		self.me.put()
 		u = None
 		while u is None:
-			u = models.User.get_from_dumb_token(self.me.dumb_token)
+			u = models.User.get_from_token(self.me.get_token())
 
 		self.other_user = models.User(full_name = "Buck Billy")
 		self.other_user.initialise_new_token()
 		self.other_user.put()
 		u = None
 		while u is None:
-			u = models.User.get_from_dumb_token(self.other_user.dumb_token)
+			u = models.User.get_from_token(self.other_user.get_token())
 
 
 class TestUserNotAuthenticating(TestAPI):
@@ -50,7 +50,7 @@ class TestUserNotAuthenticating(TestAPI):
 class TestFriendRequestNormal(TestAPI):
 	def test_friend_request(self):
 
-		send = messages.UserId(token=self.me.dumb_token, user= self.other_user.key.id())
+		send = messages.UserId(token=self.me.get_token(), user= self.other_user.key.id())
 		relation = self.api.friend_request(send)
 
 		assert type(relation) is messages.Relationship
@@ -64,10 +64,10 @@ class TestFriendRequestNormal(TestAPI):
 class TestFriendRequestDouble(TestAPI):
 	def test_double_friend_request(self):
 
-		send = messages.UserId(token=self.me.dumb_token, user= self.other_user.key.id())
+		send = messages.UserId(token=self.me.get_token(), user= self.other_user.key.id())
 		relation1 = self.api.friend_request(send)
 
-		send = messages.UserId(token=self.other_user.dumb_token, user= self.me.key.id())
+		send = messages.UserId(token=self.other_user.get_token(), user= self.me.key.id())
 		relation2 = self.api.friend_request(send)
 
 		assert type(relation1) is messages.Relationship
@@ -91,7 +91,7 @@ class TestGetFriendList(TestAPI):
 
 		actions._add_to_friends_list(self.me, self.other_user)
 
-		send = messages.UserId(token=self.me.dumb_token, user= self.other_user.key.id())
+		send = messages.UserId(token=self.me.get_token(), user= self.other_user.key.id())
 
 		friends_list = self.api.get_friends_list(send)
 
@@ -104,14 +104,14 @@ class TestUnFriend(TestAPI):
 
 	def test_unfriend(self):
 
-		send = messages.UserId(token=self.me.dumb_token, user= self.other_user.key.id())
+		send = messages.UserId(token=self.me.get_token(), user= self.other_user.key.id())
 		self.api.friend_request(send)
 
-		send = messages.UserId(token=self.other_user.dumb_token, user= self.me.key.id())
+		send = messages.UserId(token=self.other_user.get_token(), user= self.me.key.id())
 		self.api.friend_request(send)
 
 		relation = self.api.unfriend(messages.UserId(
-						token=self.me.dumb_token,
+						token=self.me.get_token(),
 						user= self.other_user.key.id()))
 
 
@@ -129,15 +129,15 @@ class TestGetRelationship(TestAPI):
 	def test_get_relationship(self):
 
 		self.api.friend_request(messages.UserId(
-			token=self.me.dumb_token, 
+			token=self.me.get_token(), 
 			user= self.other_user.key.id()))
 
 		self.api.friend_request(messages.UserId(
-			token=self.other_user.dumb_token, 
+			token=self.other_user.get_token(), 
 			user= self.me.key.id()))
 
 		relation = self.api.get_relationship(messages.TwoUserIds(
-			token = self.other_user.dumb_token, 
+			token = self.other_user.get_token(), 
 			userA = self.me.key.id(),
 			userB = self.other_user.key.id()))
 
@@ -153,11 +153,11 @@ class TestRespondToFriendRequestAccept(TestAPI):
 	def test(self):
 
 		self.api.friend_request(messages.UserId(
-			token=self.me.dumb_token, 
+			token=self.me.get_token(), 
 			user= self.other_user.key.id()))
 
 		relation = self.api.respond_to_friend_request(messages.FriendRequestResponse(
-			token = self.other_user.dumb_token, 
+			token = self.other_user.get_token(), 
 			user = self.me.key.id(),
 			accept = True))
 
@@ -173,11 +173,11 @@ class TestRespondToFriendRequestDecline(TestAPI):
 	def test(self):
 
 		self.api.friend_request(messages.UserId(
-			token=self.me.dumb_token, 
+			token=self.me.get_token(), 
 			user= self.other_user.key.id()))
 
 		relation = self.api.respond_to_friend_request(messages.FriendRequestResponse(
-			token = self.other_user.dumb_token, 
+			token = self.other_user.get_token(), 
 			user = self.me.key.id(),
 			accept = False))
 

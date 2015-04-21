@@ -17,11 +17,11 @@ import modules.facebook.messages as fbmsgs
 import modules.users.messages as usrmessages
 import modules.facebook.actions as actions
 
-REDIRECT_URL = "http://127.0.0.1:8080/_ah/api/facebook/v1.0/code"
+import modules.api
 
-API = endpoints.api(name='facebook', version='v1.0')
+REDIRECT_URL = "http://127.0.0.1:8080/_ah/api/sportmate/v1.0/code"
 
-@API.api_class(resource_name='login')
+@modules.api.API.api_class(resource_name='facebook.login')
 class FacebookLogin(remote.Service):
 	"""Login in with Facebook."""
 
@@ -42,5 +42,6 @@ class FacebookLogin(remote.Service):
 		return_msg = mmglue.message_from_model(account,
 			fbmsgs.FacebookAccountWithUser)
 		return_msg.user = mmglue.message_from_model(user, usrmessages.UserMe)
+		return_msg.user.token = user.get_token()
 
 		return return_msg

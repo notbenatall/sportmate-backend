@@ -1,8 +1,9 @@
 # This starts the app.
 
 import endpoints
-import modules.facebook.api as facebook
-import modules.users.api as users
-import modules.sports.api as sports
+import modules.api
+import modules.facebook.api
+import modules.users.api
+import modules.sports.api
 
-APPLICATION = endpoints.api_server([users.API, facebook.API, sports.API])
+APPLICATION = endpoints.api_server([modules.api.API])

@@ -21,9 +21,9 @@ class User(messages.Message):
 class UserMe(messages.Message):
 	"""Message containing the authenticated user."""
 	full_name = messages.StringField(1)
-	dumb_token = messages.StringField(2)
-	email = messages.StringField(3)
-	id = messages.IntegerField(4)
+	email = messages.StringField(2)
+	id = messages.IntegerField(3)
+	token = messages.StringField(4)
 
 class UserId(messages.Message):
 	"""

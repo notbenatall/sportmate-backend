@@ -8,20 +8,18 @@ python client_library/make_client_core.py get_client_lib java \
 	--application ./app \
 	--output ./client_library \
 	-bs gradle \
-	app.User \
-	app.Friend \
-	app.Post \
-	app.Notification \
-	app.Emotion
+	 modules.facebook.api.FacebookLogin \
+	 modules.users.api.Users \
+	 modules.sports.api.Sports
 
 echo "Extracting"
 
 cd ./client_library
 
-rm -rf loudnews
-unzip loudnews-v1.0.zip
+rm -rf sportmate
+unzip sportmate-v1.0.zip
 
-cd ./loudnews
+cd ./sportmate
 
 echo "Running gradle"
 

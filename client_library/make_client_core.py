@@ -58,6 +58,8 @@ appdir = "./app"
 import os
 import sys
 
+os.environ['MAKE_CLIENT_API'] = 'ACTIVE'
+
 # Add the endpointscfg directory to the system path
 sys.path.append(os.path.dirname(fname))
 
@@ -90,6 +92,7 @@ def run_file(file_path, globals_):
   #------------------------------
   # SET UP YOUR ENVIRONMENT
   #------------------------------
+  import appengine_config
   import service
   
   # END SET UP YOUR ENVIRONMENT

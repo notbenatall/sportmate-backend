@@ -23,14 +23,10 @@ class APITest(HRDatastoreTest):
 		# Expose the api
 		self.api = modules.sports.api.Sports()
 
-		# Put users in the database and make
-		# sure they are definitely accessable
+		# Put users in the database
 		self.a_user = models.User(full_name = "Dicky Johnson")
 		self.a_user.initialise_new_token()
 		self.a_user.put()
-		u = None
-		while u is None:
-			u = usermodels.User.get_from_dumb_token(self.a_user.dumb_token)
 
 
 
@@ -39,7 +35,7 @@ class TestGeneral(APITest):
 	def test_create_new_game(self):
 
 		send_msg = messages.NewGame(
-			token = self.a_user.dumb_token,
+			token = self.a_user.get_token(),
 			categories = ["American Football"],
 			level = 1,
 			time = datetime.now(),
