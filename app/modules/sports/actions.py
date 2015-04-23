@@ -16,6 +16,21 @@ import mmglue
 
 TIME_FORMAT = "%Y-%m-%d %H:%M:%S"
 
+def game_model_to_message(game):
+	"""Convert a game model into a message."""
+	msg = mmglue.message_from_model(game, messages.Game)
+	msg.lat = game.geo.lat
+	msg.lon = game.geo.lon
+
+	categories = [cat_key.get() for cat_key in game.category]
+
+	msg.categories_full = [mmglue.message_from_model(category,
+										messages.SportCategory)
+			for category in categories]
+
+	return msg
+
+
 def get_all_categories():
 	"""Returns a list of all sports categories."""
 
@@ -64,19 +79,7 @@ def list_games():
 
 	# Turn into messages
 	games_msg = messages.GameList()
-	games_msg.games = [mmglue.message_from_model(game, messages.Game)
-		for game in games]
-
-	# Turn game categories into messages
-	for i, game_msg in enumerate(games_msg.games):
-
-		game = games[i]
-
-		categories = [cat_key.get() for cat_key in game.category]
-
-		game_msg.categories_full = [mmglue.message_from_model(category,
-										messages.SportCategory)
-			for category in categories]
+	games_msg.games = [game_model_to_message(game) for game in games]
 
 	return games_msg
 

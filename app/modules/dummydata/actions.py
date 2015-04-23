@@ -13,6 +13,7 @@ import modules.sports as sports
 import modules.sports.models  # pylint: disable=unused-import
 import modules.sports.actions
 import modules.sports.messages
+
 import modules.users as users
 import modules.users.models  # pylint: disable=unused-import
 
