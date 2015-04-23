@@ -33,7 +33,7 @@ class HRDatastoreTest(object):
         # Then activate the testbed, which prepares the service stubs for use.
         self.testbed.activate()
         # Create a consistency policy that will simulate the High Replication consistency model.
-        self.policy = datastore_stub_util.PseudoRandomHRConsistencyPolicy(probability=0.5)
+        self.policy = datastore_stub_util.PseudoRandomHRConsistencyPolicy(probability=0.25)
         # Initialize the datastore stub with this policy.
         self.testbed.init_datastore_v3_stub(consistency_policy=self.policy)
         self.testbed.init_memcache_stub()

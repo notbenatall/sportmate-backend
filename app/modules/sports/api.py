@@ -8,7 +8,7 @@ Author URL: http:www.DrAdrian.com
 
 Holds the endpoints for the sports module.
 """
-# pylint: disable=no-self-use, no-init
+# pylint: disable=no-self-use, no-init, unused-argument
 
 import endpoints
 from protorpc import remote
@@ -40,3 +40,11 @@ class Sports(remote.Service):
 		msg.lon = game.geo.lon
 
 		return msg
+
+
+	@endpoints.method(messages.GamesRequest, messages.GameList, path='games',
+		http_method='GET', name='listgames')
+	def list_games(self, request):
+		"""Returns a list of all the games."""
+		games_msg = actions.list_games()
+		return games_msg

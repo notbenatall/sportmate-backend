@@ -10,6 +10,10 @@ Helpful messages stuff.
 
 from protorpc import messages
 
+class VoidMessage(messages.Message):
+	"""Empty Message"""
+	pass
+
 class TextMessage(messages.Message):
 	"""Simple generic message for arbitrary text."""
 	text = messages.StringField(1)

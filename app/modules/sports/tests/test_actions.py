@@ -66,3 +66,45 @@ class TestGeneral(DatastoreTest):
 		assert game.category[0].id() == "american football"
 		assert game.geo.lat == 34
 		assert game.geo.lon == 89
+
+
+class TestListGames(DatastoreTest):
+
+	def setup(self):
+		super(TestListGames, self).setup()
+
+		# Put some data into the database
+
+		cat = models.SportCategory(name='Ball games')
+		cat.put()
+
+		cat1 = models.SportCategory(name='Basket Ball')
+		cat1.add_parent(cat)
+		cat1.put()
+
+		cat2 = models.SportCategory(name='Football')
+		cat2.add_parent(cat)
+		cat2.put()
+
+		user = usermodels.User(full_name="Adrian Letchford")
+		user.put()
+
+		msg = messages.NewGame(
+			categories = ["Basket Ball"],
+			level = 1,
+			time = datetime.now(),
+			name = "Adrian's big play off",
+			players_needed = 2,
+			lat = 34.0,
+			lon = 89.0)
+
+		game = actions.create_new_game(user, msg)
+
+	def test(self):
+		games = actions.list_games().games
+
+		assert len(games) == 1
+		assert games[0].name == "Adrian's big play off"
+		assert games[0].categories_full[0].name == "Basket Ball"
+
+

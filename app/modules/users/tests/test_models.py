@@ -55,13 +55,13 @@ class TestUserModel(testtools.DatastoreTest):
 		user = models.User()
 		assert type(user) is models.User
 
-	def testGetByDumbToken(self):
+	def test_no_token(self):
 		user = models.User(full_name = 'a name')
-		user.initialise_new_token()
 		user.put()
-		result = models.User.get_from_token(user.get_token())
-		assert result == user
 
+		token = user.get_token()
+
+		assert token is None
 
 	def test_get_from_token(self):
 		user = models.User(full_name = 'a name')

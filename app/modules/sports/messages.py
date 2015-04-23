@@ -18,7 +18,6 @@ class SportCategory(messages.Message):
 	id = messages.StringField(2)
 	parent_ids = messages.StringField(3, repeated=True)
 
-
 class CategoryList(messages.Message):
 	"""Message containing a list of categories."""
 	categories = messages.MessageField(SportCategory, 1, repeated=True)
@@ -34,6 +33,7 @@ class Game(messages.Message):
 	players_joined = messages.IntegerField(7, required=True)
 	lat = messages.FloatField(8, required=True)
 	lon = messages.FloatField(9, required=True)
+	categories_full = messages.MessageField(SportCategory, 10, repeated=True)
 
 class NewGame(messages.Message):
 	"""Message containing a brand new game to add to the system."""
@@ -46,3 +46,13 @@ class NewGame(messages.Message):
 	lon = messages.FloatField(7, required=True)
 
 	token = messages.StringField(8, required=True)
+
+
+class GameList(messages.Message):
+	"""Message containing a list of games."""
+	games = messages.MessageField(Game, 1, repeated=True)
+
+
+class GamesRequest(messages.Message):
+	"""Message containing a request for a list of games."""
+	pass

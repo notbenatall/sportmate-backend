@@ -57,6 +57,29 @@ def create_new_game(auth_user, details):
 
 	return game
 
+def list_games():
+	"""Return a list of all the games."""
+	query = models.Game.query()
+	games = query.fetch()
+
+	# Turn into messages
+	games_msg = messages.GameList()
+	games_msg.games = [mmglue.message_from_model(game, messages.Game)
+		for game in games]
+
+	# Turn game categories into messages
+	for i, game_msg in enumerate(games_msg.games):
+
+		game = games[i]
+
+		categories = [cat_key.get() for cat_key in game.category]
+
+		game_msg.categories_full = [mmglue.message_from_model(category,
+										messages.SportCategory)
+			for category in categories]
+
+	return games_msg
+
 
 # Modify a game
 

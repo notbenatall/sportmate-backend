@@ -2,4 +2,4 @@
 # Run a deveopment version of the app
 
 # Run the development server
-~/Development/google_appengine/dev_appserver.py ./app/ --host=0.0.0.0 --log_level=debug
+~/Development/google_appengine/dev_appserver.py ./app/ --host=0.0.0.0 --log_level=debug --clear_datastore=yes

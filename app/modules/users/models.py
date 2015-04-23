@@ -39,6 +39,9 @@ class User(ndb.Model):
 
 	def get_token(self):
 		"""Returns the token for this user."""
+		if self.dumb_token is None:
+			return None
+
 		return self.key.urlsafe() + "::" + self.dumb_token
 
 	@staticmethod
