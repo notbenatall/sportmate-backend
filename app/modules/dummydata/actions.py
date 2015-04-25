@@ -79,7 +79,7 @@ def dummy_data_create_games(categories, user_list):
 	for _ in range(20):
 
 		# Get a random cateogory
-		category = random.choice(categories)
+		category = random.choice([cat for cat in categories if len(cat.paths) > 0])
 
 		# University of Warwick boundaries
 		north = 52.391688
@@ -92,15 +92,20 @@ def dummy_data_create_games(categories, user_list):
 
 		# Random time
 		time = datetime.now() + timedelta(seconds=random.uniform(0, 7*24*60*60))
+		end_time = time + timedelta(seconds=random.uniform(1*60*60, 3*60*60))
 
 		new_game_msg = sports.messages.NewGame(
 			categories=[category.name],
 			level=random.choice(range(1, 5)),
 			time=time,
+			end_time=end_time,
 			name='Random name',
-			players_needed=random.choice(range(1, 5)),
+			players_needed=random.choice(range(2, 5)),
 			lat=random.uniform(south, north),
 			lon=random.uniform(east, west))
+
+		#if random.randint(0, 1):
+		new_game_msg.location_name = "University of Warwick"
 
 		sports.actions.create_new_game(user, new_game_msg)
 

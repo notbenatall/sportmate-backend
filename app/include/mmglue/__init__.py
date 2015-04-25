@@ -134,14 +134,14 @@ def message_from_model(modeli, messageType):
     
     
     
-def model_from_message(messagei, modelType): 
+def model_from_message(messagei, modelType, **kwargs): 
     """
     Skips any fields that end with '_id'.
     Skips the id field/attribute. Setting this on a model seems to load
     the original model from the database.
     """
     
-    new_model = modelType()
+    new_model = modelType(**kwargs)
     
     message_fields = message_instance_attrs(messagei)
     #model_attrs = model_attrs(modelType)
@@ -154,9 +154,9 @@ def model_from_message(messagei, modelType):
         if field == "id" or field.endswith("_id"):
             continue
         
-        easy_types = [int, str, long, unicode, datetime.datetime]
+        easy_types = [int, str, long, float, unicode, datetime.datetime]
         if type(value) in easy_types:
-            print field, value
+            #print field, value
             setattr(new_model, field, value)
             #print "set atrribute", field
            # print new_model
@@ -166,9 +166,9 @@ def model_from_message(messagei, modelType):
         else:
             m = ("Unknown field type for %s (%s) :" % (field, str(type(value)))), value
             
-            print '-'*80
-            print m
-            print '-'*80     
+            #print '-'*80
+            #print m
+            #print '-'*80     
     
     
     return new_model

@@ -35,6 +35,8 @@ class Game(messages.Message):
 	lat = messages.FloatField(8, required=True)
 	lon = messages.FloatField(9, required=True)
 	categories_full = messages.MessageField(SportCategory, 10, repeated=True)
+	end_time = message_types.DateTimeField(11, required=False)
+	location_name = messages.StringField(12, required=False)
 
 class NewGame(messages.Message):
 	"""Message containing a brand new game to add to the system."""
@@ -47,6 +49,9 @@ class NewGame(messages.Message):
 	lon = messages.FloatField(7, required=True)
 
 	token = messages.StringField(8, required=True)
+
+	end_time = message_types.DateTimeField(9, required=False)
+	location_name = messages.StringField(10, required=False)
 
 
 class GameList(messages.Message):

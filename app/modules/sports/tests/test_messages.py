@@ -16,20 +16,3 @@ import modules.sports.models as models
 import modules.sports.messages as messages
 import modules.sports.actions as actions
 
-
-class TestModelToMessageConvert(object):
-
-	def test_sport_category(self):
-
-		cat1 = models.SportCategory(name='Ball')
-
-		cat2 = models.SportCategory(name='Basket Ball')
-		cat2.add_parent(cat1)
-
-		cat3 = models.SportCategory(name='Extreme Basket Ball')
-		cat3.add_parent(cat2)
-
-		msg = actions.sport_category_to_message(cat3)
-
-		assert msg.name == 'Extreme Basket Ball'
-		assert msg.paths[0] == 'ball/basket ball'

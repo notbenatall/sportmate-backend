@@ -54,6 +54,7 @@ class TestGeneral(DatastoreTest):
 			time = datetime.now(),
 			name = "Adrian's big play off",
 			players_needed = 2,
+			location_name = "Some place",
 			lat = 34.0,
 			lon = 89.0)
 
@@ -66,6 +67,7 @@ class TestGeneral(DatastoreTest):
 		assert game.category[0].id() == "american football"
 		assert game.geo.lat == 34
 		assert game.geo.lon == 89
+		assert game.location_name == "Some place"
 
 
 class TestListGames(DatastoreTest):
@@ -108,3 +110,39 @@ class TestListGames(DatastoreTest):
 		assert games[0].categories_full[0].name == "Basket Ball"
 
 
+
+class TestModelToMessageConvert(object):
+
+	def test_sport_category(self):
+
+		cat1 = models.SportCategory(name='Ball')
+
+		cat2 = models.SportCategory(name='Basket Ball')
+		cat2.add_parent(cat1)
+
+		cat3 = models.SportCategory(name='Extreme Basket Ball')
+		cat3.add_parent(cat2)
+
+		msg = actions.sport_category_to_message(cat3)
+
+		assert msg.name == 'Extreme Basket Ball'
+		assert msg.paths[0] == 'ball/basket ball'
+
+
+	def test_game(self):
+
+		start = datetime.now()
+		end = datetime.now()
+
+		game = models.Game(
+			time = start,
+			end_time = end,
+			location_name = "Some location",
+			geo=ndb.GeoPt(0, 0),
+			)
+
+		msg = actions.game_model_to_message(game)
+
+		assert msg.time == game.time
+		assert msg.end_time == game.end_time
+		assert msg.location_name == game.location_name

@@ -61,16 +61,23 @@ def create_new_game(auth_user, details):
 	category_keys = [models.SportCategory.key_from_name(cat)
 		for cat in details.categories]
 
-	game = models.Game(
+	game = mmglue.model_from_message(details, models.Game,
 		parent=auth_user.key,
 		category=category_keys,
 		players_full=False,
-		level=details.level,
-		time=details.time,
-		name=details.name,
-		players_needed=details.players_needed,
 		players_joined=1,
 		geo=ndb.GeoPt(details.lat, details.lon))
+
+	# game = models.Game(
+	# 	parent=auth_user.key,
+	# 	category=category_keys,
+	# 	players_full=False,
+	# 	level=details.level,
+	# 	time=details.time,
+	# 	name=details.name,
+	# 	players_needed=details.players_needed,
+	# 	players_joined=1,
+	# 	geo=ndb.GeoPt(details.lat, details.lon))
 
 	game.put()
 

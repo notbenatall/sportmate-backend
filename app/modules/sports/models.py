@@ -93,11 +93,14 @@ class Game(ndb.Model):
 	players_full = ndb.BooleanProperty(indexed=True, default=False)
 	level = ndb.IntegerProperty(indexed=True, default=0)
 	time = ndb.DateTimeProperty(indexed=True, required=True)
+	end_time = ndb.DateTimeProperty(indexed=False, required=False)
 	name = ndb.StringProperty(indexed=False, required=True)
 	players_needed = ndb.IntegerProperty(indexed=False, required=True)
 	players_joined = ndb.IntegerProperty(indexed=False, default=1)
 	geo = ndb.GeoPtProperty(indexed=False, required=True)
 	geohash = ndb.StringProperty(indexed=True, required=True)
+	location_name = ndb.StringProperty(indexed=False)
+
 
 	def update_geohash(self):
 		"""
