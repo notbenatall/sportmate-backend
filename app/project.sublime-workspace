@@ -24,6 +24,22 @@
 			}
 		},
 		{
+			"file": "modules/sports/messages.py",
+			"settings":
+			{
+				"buffer_size": 1919,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "modules/sports/models.py",
+			"settings":
+			{
+				"buffer_size": 3274,
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "modules/dummydata/tests/test_actions.py",
 			"settings":
 			{
@@ -181,7 +197,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -212,6 +228,58 @@
 				},
 				{
 					"buffer": 1,
+					"file": "modules/sports/messages.py",
+					"settings":
+					{
+						"buffer_size": 1919,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								223,
+								223
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 51.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "modules/sports/models.py",
+					"settings":
+					{
+						"buffer_size": 3274,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 561.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
 					"file": "modules/dummydata/tests/test_actions.py",
 					"settings":
 					{
@@ -237,7 +305,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 4,
 					"file": "modules/dummydata/tests/test_api.py",
 					"settings":
 					{
