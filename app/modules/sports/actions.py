@@ -30,6 +30,12 @@ def game_model_to_message(game):
 
 	return msg
 
+def sport_category_mome(category):
+	"""Convert a sport category model into a message."""
+	msg = mmglue.message_from_model(category, messages.SportCategory)
+	msg.paths = category.paths
+	return category
+
 
 def get_all_categories():
 	"""Returns a list of all sports categories."""

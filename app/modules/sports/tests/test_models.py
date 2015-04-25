@@ -56,9 +56,9 @@ class TestSportCategoryModel(BasicModelTest):
         cat3 = models.SportCategory(name='Extreme Basket Ball')
         cat3.add_parent(cat2)
 
-        assert cat2.paths[0] == cat1.key
+        assert cat2.paths[0] == 'ball'
         assert cat1.key in cat2.parents
-        assert cat3.paths[0] == ndb.Key(pairs=[cat1.key.pairs()[0], cat2.key.pairs()[0]])
+        assert cat3.paths[0] == 'ball/basket ball'
         assert cat2.key in cat3.parents
 
 

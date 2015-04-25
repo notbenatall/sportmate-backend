@@ -19,7 +19,10 @@ class SportCategory(ndb.Model):
 	"""Models a sports category."""
 
 	name = ndb.StringProperty(indexed=False, required=True)
-	paths = ndb.KeyProperty(indexed=True, repeated=True)
+
+	# These properties are internally managed and do not need to be set outside
+	# of this class.
+	paths = ndb.StringProperty(indexed=True, repeated=True)
 	parents = ndb.KeyProperty(indexed=False, repeated=True)
 
 	def __init__(self, **kwargs):
@@ -44,21 +47,19 @@ class SportCategory(ndb.Model):
 		if len(parent.key.pairs()) != 1:
 			raise BadValueError
 
-		parent_pair = parent.key.pairs()[0]
+		parent_id = parent.key.id()
 
 		# Add parent's paths to self's paths
 		if parent.paths is None or len(parent.paths) == 0:
-			self.paths.append(ndb.Key(pairs=[parent_pair]))
+			self.paths.append(parent_id)
 		else:
 			for path in parent.paths:
-				new_path = list(path.pairs())
-				new_path.append(parent_pair)
-				new_path_key = ndb.Key(pairs=new_path)
+				new_path = path.strip("/") + "/" + parent_id
 
-				if new_path_key in self.paths:
+				if new_path in self.paths:
 					continue
 
-				self.paths.append(new_path_key)
+				self.paths.append(new_path)
 
 		self.parents.append(parent.key)
 

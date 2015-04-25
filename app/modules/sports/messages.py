@@ -17,6 +17,7 @@ class SportCategory(messages.Message):
 	name = messages.StringField(1)
 	id = messages.StringField(2)
 	parent_ids = messages.StringField(3, repeated=True)
+	paths = messages.StringField(4, repeated=True)
 
 class CategoryList(messages.Message):
 	"""Message containing a list of categories."""
