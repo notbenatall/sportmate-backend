@@ -1,0 +1,10 @@
+{
+	"build_systems":
+    [
+        {
+            "name": "mmglue build system",
+            "cmd": ["python", "tests/runtests.py"],
+			"working_dir": "$project_path"
+        }
+    ]
+}

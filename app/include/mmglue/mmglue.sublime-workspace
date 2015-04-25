@@ -16,31 +16,24 @@
 	"buffers":
 	[
 		{
-			"file": "modules/sports/messages.py",
+			"file": "__init__.py",
 			"settings":
 			{
-				"buffer_size": 1967,
+				"buffer_size": 4128,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "modules/sports/tests/test_messages.py",
+			"file": "tests/tests.py",
 			"settings":
 			{
-				"buffer_size": 900,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "modules/dummydata/tests/test_api.py",
-			"settings":
-			{
-				"buffer_size": 851,
-				"line_ending": "Unix"
+				"buffer_size": 550,
+				"line_ending": "Unix",
+				"name": "def test():"
 			}
 		}
 	],
-	"build_system": "Sportmate Module Quick Tests",
+	"build_system": "mmglue build system",
 	"command_palette":
 	{
 		"height": 0.0,
@@ -64,17 +57,22 @@
 	},
 	"file_history":
 	[
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/include/mmglue/tests/runtests.py",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/include/mmglue/mmglue.sublime-project",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/sports/models.py",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/sports/messages.py",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/runtests.py",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/project.sublime-project",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/build",
 		"/home/adrian/Dropbox/My Research/Code/funcache/tests/tests.py",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/dummydata/tests/test_actions.py",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/sports/tests/test_models.py",
-		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/sports/models.py",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/sports/actions.py",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/include/mmglue.py",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/include/mmglue.pyc",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/dummydata/actions.py",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/service.py",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/dummydata/api.py",
-		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/sports/messages.py",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/admin/tests/test_actions.py",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/admin/actions.py",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/admin/api.py",
@@ -90,8 +88,6 @@
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/admin/__init__.py",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/sports/__init__.py",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/pylintrc",
-		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/build",
-		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/runtests.py",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/sports/tests/test_actions.py",
 		"/home/adrian/Dropbox/My Products/Loud News/Android App/app/src/main/res/layout/framgent_conversation.xml",
 		"/home/adrian/Dropbox/My Products/Loud News/Android App/app/src/main/java/com/loudnews/loudnewsapp/HomeActivity.java",
@@ -162,6 +158,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"ndb",
 			".\n",
 			"random_string",
 			"random_token",
@@ -189,44 +186,18 @@
 			[
 				{
 					"buffer": 0,
-					"file": "modules/sports/messages.py",
+					"file": "__init__.py",
 					"settings":
 					{
-						"buffer_size": 1967,
+						"buffer_size": 4128,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								223,
-								223
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 51.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "modules/sports/tests/test_messages.py",
-					"settings":
-					{
-						"buffer_size": 900,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								811,
-								811
+								1999,
+								1999
 							]
 						],
 						"settings":
@@ -235,29 +206,30 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 238.0,
+						"translation.y": 1250.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "modules/dummydata/tests/test_api.py",
+					"buffer": 1,
+					"file": "tests/tests.py",
 					"settings":
 					{
-						"buffer_size": 851,
+						"buffer_size": 550,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								596,
-								596
+								514,
+								514
 							]
 						],
 						"settings":
 						{
+							"auto_name": "def test():",
 							"syntax": "Packages/Python/Python.tmLanguage"
 						},
 						"translation.x": 0.0,
@@ -302,7 +274,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 244.0
+		"height": 316.0
 	},
 	"replace":
 	{
