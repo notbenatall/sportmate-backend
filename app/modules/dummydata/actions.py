@@ -21,11 +21,12 @@ def dummy_data_create_categories():
 	"""Creates some dummy cateogories for building the front end."""
 
 	categories = [
-		('Ball games', []),
-		('Basket Ball', ['Ball games']),
-		('Football', ['Ball games']),
-		('Cycling', []),
-		('Unicyling', ['Cycling']),
+		('Ball Games', []),
+		('Racket Games', []),
+		('Basket Ball', ['Ball Games']),
+		('Tennis', ['Ball Games', 'Racket Games']),
+		('Football', ['Ball Games']),
+		('Badminton', ['Racket Games']),
 	]
 
 	entities = []
