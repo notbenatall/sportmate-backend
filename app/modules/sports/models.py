@@ -101,6 +101,7 @@ class Game(ndb.Model):
 	geohash = ndb.StringProperty(indexed=True, required=True)
 	location_name = ndb.StringProperty(indexed=False)
 	players = ndb.KeyProperty(kind=User, indexed=False, repeated=True)
+	creator = ndb.KeyProperty(kind=User, required=True)
 
 
 	def update_geohash(self):
@@ -112,6 +113,8 @@ class Game(ndb.Model):
 	def validate(self):
 		"""Validates this model."""
 		validate_parent(self, User)
+
+		self.creator = self.key.parent()
 
 		if self.category is None or len(self.category) == 0:
 			raise BadValueError

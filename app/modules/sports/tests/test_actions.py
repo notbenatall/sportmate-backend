@@ -69,6 +69,7 @@ class TestGeneral(DatastoreTest):
 		assert game.geo.lat == 34
 		assert game.geo.lon == 89
 		assert game.location_name == "Some place"
+		assert game.creator == user.key
 
 
 class TestListGames(DatastoreTest):
@@ -135,11 +136,14 @@ class TestModelToMessageConvert(object):
 		start = datetime.now()
 		end = datetime.now()
 
+		user = usermodels.User(full_name="Adrian Letchford", key=ndb.Key(usermodels.User, 123456))
+
 		game = models.Game(
 			time = start,
 			end_time = end,
 			location_name = "Some location",
 			geo=ndb.GeoPt(0, 0),
+			creator=user.key
 			)
 
 		msg = actions.game_model_to_message(game)
@@ -147,6 +151,7 @@ class TestModelToMessageConvert(object):
 		assert msg.time == game.time
 		assert msg.end_time == game.end_time
 		assert msg.location_name == game.location_name
+		assert msg.creator_id == user.key.id()
 
 
 class TestJoinGame(HRDatastoreTest):

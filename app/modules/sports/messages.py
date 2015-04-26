@@ -37,6 +37,7 @@ class Game(messages.Message):
 	categories_full = messages.MessageField(SportCategory, 10, repeated=True)
 	end_time = message_types.DateTimeField(11, required=False)
 	location_name = messages.StringField(12, required=False)
+	creator_id = messages.IntegerField(13, required=True)
 
 class NewGame(messages.Message):
 	"""Message containing a brand new game to add to the system."""

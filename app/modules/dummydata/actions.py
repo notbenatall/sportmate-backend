@@ -116,7 +116,6 @@ def dummy_data_create_games(categories, user_list):
 			lat=random.uniform(south, north),
 			lon=random.uniform(east, west))
 
-		#if random.randint(0, 1):
 		new_game_msg.location_name = "University of Warwick"
 
 		game = sports.actions.create_new_game(user, new_game_msg)
