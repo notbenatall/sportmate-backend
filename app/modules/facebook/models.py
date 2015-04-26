@@ -49,6 +49,7 @@ class FacebookAccount(ndb.Model):
 
 	@staticmethod
 	def get_by_user(user):
+		"""Returns a FacebookAccount for a user."""
 		query = FacebookAccount.query(ancestor=user.key)
 		account = query.get()
 		return account
