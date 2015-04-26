@@ -6,6 +6,7 @@ Author URL: http:www.DrAdrian.com
 
 Dummy data functions
 """
+# pylint: disable=protected-access
 import random
 from datetime import datetime, timedelta
 
@@ -14,8 +15,7 @@ import modules.sports.models  # pylint: disable=unused-import
 import modules.sports.actions
 import modules.sports.messages
 
-import modules.users as users
-import modules.users.models  # pylint: disable=unused-import
+import modules.facebook.actions as fbactions
 
 def dummy_data_create_categories():
 	"""Creates some dummy cateogories for building the front end."""
@@ -47,27 +47,35 @@ def dummy_data_create_categories():
 def dummy_data_create_users():
 	"""Creates some dummy users for building the front end."""
 
-	user_list = [
+	profiles = [
 		{
-			'full_name': "Adrian Letchford",
+			'name': "Adrian Letchford",
+			'id': 662369520,
+			'email': 'someone@someplace.com',
 		},
 		{
-			'full_name': "Tom Haleminh",
+			'name': "Tom Haleminh",
+			'id': 1539027955,
+			'email': 'someone@someplace.com',
 		},
 		{
-			'full_name': "Barney",
+			'name': "Barney Yau",
+			'id': 597975737,
+			'email': 'someone@someplace.com',
 		},
 		{
-			'full_name': "Joyce Chan",
+			'name': "Joyce Chan",
+			'id': 679300985,
+			'email': 'someone@someplace.com',
 		},
 	]
 
 	entities = []
 
-	for user in user_list:
-		userm = users.models.User(full_name=user['full_name'])
-		userm.initialise_new_token()
-		userm.put()
+	for profile in profiles:
+
+		fb_account = fbactions._create_new_user(profile, 'some_access_token')
+		userm = fb_account.key.parent().get()
 		entities.append(userm)
 
 	return entities
