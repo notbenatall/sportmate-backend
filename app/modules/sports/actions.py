@@ -68,17 +68,6 @@ def create_new_game(auth_user, details):
 		players_joined=1,
 		geo=ndb.GeoPt(details.lat, details.lon))
 
-	# game = models.Game(
-	# 	parent=auth_user.key,
-	# 	category=category_keys,
-	# 	players_full=False,
-	# 	level=details.level,
-	# 	time=details.time,
-	# 	name=details.name,
-	# 	players_needed=details.players_needed,
-	# 	players_joined=1,
-	# 	geo=ndb.GeoPt(details.lat, details.lon))
-
 	game.put()
 
 	return game
