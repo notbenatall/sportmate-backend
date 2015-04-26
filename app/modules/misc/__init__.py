@@ -31,12 +31,16 @@ def validate_parent(instance, parent_type):
 
 
 def is_development():
-	if 'SERVER_SOFTWARE' in os.environ and os.environ['SERVER_SOFTWARE'].startswith('Development'):
+	"""Checks to see if this is the development sever."""
+
+	if 'SERVER_SOFTWARE' in os.environ and \
+		os.environ['SERVER_SOFTWARE'].startswith('Development'):
 		return True
 
 	return False
 
 def is_test():
+	"""Checks to see if this is a test sever."""
 	appname = get_application_id()
 
 	if "test" in appname:
