@@ -96,7 +96,7 @@ class Game(ndb.Model):
 	end_time = ndb.DateTimeProperty(indexed=False, required=False)
 	name = ndb.StringProperty(indexed=False, required=True)
 	players_needed = ndb.IntegerProperty(indexed=False, required=True)
-	players_joined = ndb.IntegerProperty(indexed=False, default=1)
+	players_joined = ndb.IntegerProperty(indexed=False, default=1, required=True)
 	geo = ndb.GeoPtProperty(indexed=False, required=True)
 	geohash = ndb.StringProperty(indexed=True, required=True)
 	location_name = ndb.StringProperty(indexed=False)
@@ -109,13 +109,20 @@ class Game(ndb.Model):
 		self.geohash = Geohash.encode(self.geo.lat, self.geo.lon, precision=20)
 
 	def validate(self):
-		"""Vaidates this model."""
+		"""Validates this model."""
 		validate_parent(self, User)
 
 		if self.category is None or len(self.category) == 0:
 			raise BadValueError
 
 		self.update_geohash()
+
+		if self.players_joined > self.players_needed:
+			raise BadValueError
+
+		self.players_full = self.players_joined == self.players_needed
+
+
 
 	def put(self):
 		"""Write this model to the database after validating."""
