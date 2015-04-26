@@ -7,8 +7,10 @@ Author URL: http:www.DrAdrian.com
 This file holds various helpful codesnippets
 """
 
+import os
 from google.appengine.ext import ndb
 from google.appengine.ext.db import BadValueError
+from google.appengine.api.app_identity import get_application_id
 import string
 import random
 
@@ -25,3 +27,19 @@ def validate_parent(instance, parent_type):
 	if not hasattr(instance.key, 'parent') or \
 		instance.key.parent().kind() != parent_type.__name__:
 		raise BadValueError
+
+
+
+def is_development():
+	if 'SERVER_SOFTWARE' in os.environ and os.environ['SERVER_SOFTWARE'].startswith('Development'):
+		return True
+
+	return False
+
+def is_test():
+	appname = get_application_id()
+
+	if "test" in appname:
+		return True
+
+	return False
