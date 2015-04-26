@@ -17,16 +17,12 @@ def get_model(obj, model_type):
 
 	if type(obj) is model_type:
 		value = obj
-
 	elif type(obj) is ndb.Key:
 		value = obj.get()
-
 	elif type(obj) is long or type(obj) is str:
 		value = model_type.get_by_id(obj)
-		
 	else:
 		raise TypeError("Unknown type.")
-	
 	if value is None:
 		raise NotFoundException()
 	if type(value) is not model_type:

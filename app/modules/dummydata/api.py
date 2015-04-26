@@ -8,7 +8,7 @@ Author URL: http:www.DrAdrian.com
 
 Holds the endpoints for the dummy data module.
 """
-# pylint: disable=no-self-use, no-init, unused-argument
+# pylint: disable=no-self-use, no-init, unused-argument, too-few-public-methods
 
 import endpoints
 from protorpc import remote

@@ -72,7 +72,7 @@ class TestGeneral(DatastoreTest):
 		assert game.creator == user.key
 
 
-class TestListGames(DatastoreTest):
+class TestListGames(HRDatastoreTest):
 
 	def setup(self):
 		super(TestListGames, self).setup()
@@ -93,6 +93,9 @@ class TestListGames(DatastoreTest):
 		user = usermodels.User(full_name="Adrian Letchford")
 		user.put()
 
+		tom = usermodels.User(full_name="Tom")
+		tom.put()
+
 		msg = messages.NewGame(
 			categories = ["Basket Ball"],
 			level = 1,
@@ -104,16 +107,19 @@ class TestListGames(DatastoreTest):
 
 		game = actions.create_new_game(user, msg)
 
+		actions.join_game(tom, game)
+
 	def test(self):
 		games = actions.list_games().games
 
 		assert len(games) == 1
 		assert games[0].name == "Adrian's big play off"
 		assert games[0].categories_full[0].name == "Basket Ball"
+		assert games[0].players[0].full_name == "Tom"
 
 
 
-class TestModelToMessageConvert(object):
+class TestModelToMessageConvert(DatastoreTest):
 
 	def test_sport_category(self):
 
@@ -136,14 +142,16 @@ class TestModelToMessageConvert(object):
 		start = datetime.now()
 		end = datetime.now()
 
-		user = usermodels.User(full_name="Adrian Letchford", key=ndb.Key(usermodels.User, 123456))
+		user = usermodels.User(full_name="Adrian Letchford")
+		user.put()
 
 		game = models.Game(
 			time = start,
 			end_time = end,
 			location_name = "Some location",
 			geo=ndb.GeoPt(0, 0),
-			creator=user.key
+			creator=user.key,
+			players=[user.key]
 			)
 
 		msg = actions.game_model_to_message(game)
@@ -152,6 +160,7 @@ class TestModelToMessageConvert(object):
 		assert msg.end_time == game.end_time
 		assert msg.location_name == game.location_name
 		assert msg.creator_id == user.key.id()
+		assert msg.players[0].full_name == "Adrian Letchford"
 
 
 class TestJoinGame(HRDatastoreTest):

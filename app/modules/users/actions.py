@@ -11,6 +11,8 @@ This file defines the actions for the user module.
 from endpoints import UnauthorizedException, NotFoundException
 from google.appengine.ext import ndb
 import modules.users.models as models
+import modules.users.messages as messages
+import mmglue
 
 
 def verify_and_get_user(**kwargs):
@@ -53,6 +55,14 @@ def user_key_id_to_user(uinput):
 		return user
 
 	raise TypeError("Unknown type.")
+
+
+def user_to_message(user):
+	"""
+	Takes a user and returns a general user message.
+	"""
+	msg = mmglue.message_from_model(user, messages.User)
+	return msg
 
 @ndb.transactional(xg=True)
 def _add_to_friends_list(user_a, user_b):

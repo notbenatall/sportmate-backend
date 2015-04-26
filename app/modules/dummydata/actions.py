@@ -6,7 +6,7 @@ Author URL: http:www.DrAdrian.com
 
 Dummy data functions
 """
-# pylint: disable=protected-access
+# pylint: disable=protected-access, too-many-locals
 import random
 from datetime import datetime, timedelta
 

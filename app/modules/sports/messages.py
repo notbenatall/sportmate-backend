@@ -11,6 +11,8 @@ Author URL: http:www.DrAdrian.com
 from protorpc import messages
 from protorpc import message_types
 
+from modules.users.messages import User
+
 
 class SportCategory(messages.Message):
 	"""Message containing a sports category."""
@@ -38,6 +40,7 @@ class Game(messages.Message):
 	end_time = message_types.DateTimeField(11, required=False)
 	location_name = messages.StringField(12, required=False)
 	creator_id = messages.IntegerField(13, required=True)
+	players = messages.MessageField(User, 14, repeated=True)
 
 class NewGame(messages.Message):
 	"""Message containing a brand new game to add to the system."""
