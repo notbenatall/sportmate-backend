@@ -14,6 +14,7 @@ import modules.users.models as usermodels
 import modules.sports.models as models
 import modules.sports.actions as actions
 import modules.sports.messages as messages
+import modules.sports.exceptions as exceptions
 
 def test_nothing():
 	assert True == True
@@ -146,3 +147,57 @@ class TestModelToMessageConvert(object):
 		assert msg.time == game.time
 		assert msg.end_time == game.end_time
 		assert msg.location_name == game.location_name
+
+
+class TestJoinGame(HRDatastoreTest):
+
+	def test(self):
+
+		tom = usermodels.User(full_name="Tom")
+		tom.put()
+
+		user = usermodels.User(full_name="Adrian")
+		user.put()
+
+		msg = messages.NewGame(
+			categories = ["Basket Ball"],
+			level = 1,
+			time = datetime.now(),
+			name = "Adrian's big play off",
+			players_needed = 2,
+			lat = 34.0,
+			lon = 89.0)
+
+		game = actions.create_new_game(user, msg)
+
+		actions.join_game(tom, game)
+
+		game_list = models.UserGameList.get_or_create_addable_game_list(tom)
+		game = game.key.get()
+
+		assert game_list.games[0] == game.key
+		assert game.players[0] == tom.key
+		assert game.players_joined == 2
+
+
+	@raises(exceptions.GameIsFullException)
+	def test_join_full_game(self):
+
+		tom = usermodels.User(full_name="Tom")
+		tom.put()
+
+		user = usermodels.User(full_name="Adrian")
+		user.put()
+
+		msg = messages.NewGame(
+			categories = ["Basket Ball"],
+			level = 1,
+			time = datetime.now(),
+			name = "Adrian's big play off",
+			players_needed = 1,
+			lat = 34.0,
+			lon = 89.0)
+
+		game = actions.create_new_game(user, msg)
+
+		actions.join_game(tom, game)

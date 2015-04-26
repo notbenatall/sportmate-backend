@@ -10,8 +10,12 @@ Google App Engine using the NoSQL DataStore for scalability.
 
 from google.appengine.ext import ndb
 from endpoints import NotFoundException
+from google.appengine.ext.db import BadValueError
 import modules.sports.models as models
 import modules.sports.messages as messages
+import modules.sports.exceptions as exceptions
+from modules.misc.models import get_model
+from modules.users.models import User
 import mmglue
 
 TIME_FORMAT = "%Y-%m-%d %H:%M:%S"
@@ -82,6 +86,26 @@ def list_games():
 	games_msg.games = [game_model_to_message(game) for game in games]
 
 	return games_msg
+
+@ndb.transactional(xg=True)
+def join_game(user, game):
+
+	user = get_model(user, User)
+	game = get_model(game, models.Game)
+
+	if game.players_full:
+		raise exceptions.GameIsFullException()
+
+	# Add user to the game
+	game.players.append(user.key)
+	game.players_joined += 1
+
+	# Add game to the user
+	game_list = models.UserGameList.get_or_create_addable_game_list(user)
+	game_list.add_game(game.key)
+
+	game.put()
+	game_list.put()
 
 
 # Modify a game

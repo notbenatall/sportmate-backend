@@ -31,7 +31,7 @@ class TestDummyData(HRDatastoreTest):
 		assert cat.name == 'Basket Ball'
 
 
-class TestDummyData2(DatastoreTest):
+class TestDummyData2(HRDatastoreTest):
 
 	def setup(self):
 		super(TestDummyData2, self).setup()
@@ -41,6 +41,5 @@ class TestDummyData2(DatastoreTest):
 	def test_create_lots_of_games(self):
 
 		games = sports.models.Game.query().fetch()
-
 
 		assert len(games) == 20

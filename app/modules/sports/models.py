@@ -100,6 +100,7 @@ class Game(ndb.Model):
 	geo = ndb.GeoPtProperty(indexed=False, required=True)
 	geohash = ndb.StringProperty(indexed=True, required=True)
 	location_name = ndb.StringProperty(indexed=False)
+	players = ndb.KeyProperty(kind=User, indexed=False, repeated=True)
 
 
 	def update_geohash(self):
@@ -139,3 +140,52 @@ class SportProfile(ndb.Model):
 
 	sport = ndb.KeyProperty(kind=SportCategory, indexed=True, required=True)
 	level = ndb.IntegerProperty(indexed=True, default=0)
+
+
+class UserGameList(ndb.Model):
+	"""
+	Holds a users's games.
+
+	Parent: User
+	"""
+	games = ndb.KeyProperty(kind=Game, indexed=False, repeated=True)
+	full = ndb.BooleanProperty(indexed=True, default=False)
+
+	def validate(self):
+		"""Validates this model."""
+		validate_parent(self, User)
+
+		if len(self.games) > 5000:
+			raise BadValueError
+
+	def put(self):
+		"""Write this model to the database after validating."""
+		self.validate()
+		super(UserGameList, self).put()
+
+	def add_game(self, game):
+		"""Add a game to this games list."""
+		if len(self.games) >= 5000:
+			raise Exception("Full.")
+
+		self.games.append(game)
+
+		if len(self.games) == 5000:
+			self.full = True
+		else:
+			self.full = False
+
+	@staticmethod
+	def get_or_create_addable_game_list(user):
+		"""
+		Given a user, returns a games list that can have at least one more
+		game added to it.
+		"""
+		query = UserGameList.query(ancestor=user.key)
+		query.filter(UserGameList.full == False)
+		game_list = query.get()
+
+		if game_list is None:
+			game_list = UserGameList(parent=user.key)
+
+		return game_list

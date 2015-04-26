@@ -14,7 +14,7 @@ import modules.dummydata.api
 import modules.sports as sports
 import modules.sports.actions
 
-class APITest(DatastoreTest):
+class APITest(HRDatastoreTest):
 	def setup(self):
 
 		super(APITest, self).setup()
@@ -28,9 +28,4 @@ class TestDummyData(APITest):
 	def test_create_dummy_data(self):
 
 		response = self.api.create_dummy_data(VoidMessage())
-
 		assert response.text == "Done!"
-
-		categories = sports.actions.get_all_categories().categories
-
-		assert len(categories) > 0

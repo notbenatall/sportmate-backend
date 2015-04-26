@@ -98,6 +98,10 @@ def dummy_data_create_games(categories, user_list):
 		# Get a random user
 		user = random.choice(user_list)
 
+		# Get a random player
+		available_players = [u for u in user_list if u != user]
+		player = random.choice(available_players)
+
 		# Random time
 		time = datetime.now() + timedelta(seconds=random.uniform(0, 7*24*60*60))
 		end_time = time + timedelta(seconds=random.uniform(1*60*60, 3*60*60))
@@ -115,7 +119,8 @@ def dummy_data_create_games(categories, user_list):
 		#if random.randint(0, 1):
 		new_game_msg.location_name = "University of Warwick"
 
-		sports.actions.create_new_game(user, new_game_msg)
+		game = sports.actions.create_new_game(user, new_game_msg)
+		sports.actions.join_game(player, game)
 
 
 def dummy_data_create():
