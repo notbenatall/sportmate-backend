@@ -77,7 +77,7 @@ class TestSportCategoryModelGetAll(BasicModelTest):
 class TestGameModel(BasicModelTest):
 
 	def testBasicPut(self):
-		user = usermodels.User(full_name = 'Rowan Atkinson')
+		user = usermodels.User(full_name = 'Rowan Atkinson', first_name="Rowan")
 		user.put()
 
 		cat = models.SportCategory(name='category')
@@ -95,7 +95,7 @@ class TestGameModel(BasicModelTest):
 
 	@raises(BadValueError)
 	def test_missing_category(self):
-		user = usermodels.User(full_name = 'Rowan Atkinson')
+		user = usermodels.User(full_name = 'Rowan Atkinson', first_name="Rowan")
 		user.put()
 
 		game = models.Game(
@@ -122,7 +122,7 @@ class TestGameModel(BasicModelTest):
 	@raises(BadValueError)
 	def test_too_many_players(self):
 
-		user = usermodels.User(full_name = 'Rowan Atkinson')
+		user = usermodels.User(full_name = 'Rowan Atkinson', first_name="Rowan")
 		user.put()
 
 		cat = models.SportCategory(name='category')

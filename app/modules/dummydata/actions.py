@@ -50,21 +50,25 @@ def dummy_data_create_users():
 	profiles = [
 		{
 			'name': "Adrian Letchford",
+			'first_name': "Adrian",
 			'id': 662369520,
 			'email': 'someone@someplace.com',
 		},
 		{
 			'name': "Tom Haleminh",
+			'first_name': "Tom",
 			'id': 1539027955,
 			'email': 'someone@someplace.com',
 		},
 		{
 			'name': "Barney Yau",
+			'first_name': "Barney",
 			'id': 597975737,
 			'email': 'someone@someplace.com',
 		},
 		{
 			'name': "Joyce Chan",
+			'first_name': "Joyce",
 			'id': 679300985,
 			'email': 'someone@someplace.com',
 		},
@@ -112,7 +116,7 @@ def dummy_data_create_games(categories, user_list):
 			time=time,
 			end_time=end_time,
 			name='Random name',
-			players_needed=random.choice(range(2, 5)),
+			players_needed=random.choice(range(3, 6)),
 			lat=random.uniform(south, north),
 			lon=random.uniform(east, west))
 

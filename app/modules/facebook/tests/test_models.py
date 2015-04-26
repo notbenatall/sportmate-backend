@@ -34,7 +34,7 @@ class TestFacebookAccountModel(BasicModelTest):
 		super(TestFacebookAccountModel, self).setup()
 
 		# Create a default user to use for these tests
-		self.user = usermodels.User(full_name = 'Silly Person')
+		self.user = usermodels.User(full_name = 'Silly Person', first_name="Silly")
 		self.user.put()
 
 	@raises(BadValueError)

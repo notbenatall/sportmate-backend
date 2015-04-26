@@ -25,6 +25,7 @@ def _create_new_user(profile, access_token):
 
 	user = modules.users.models.User(
 		full_name=profile['name'],
+		first_name=profile['first_name'],
 		email=profile['email'],
 		facebook_id=long(profile['id']))
 	user.initialise_new_token()

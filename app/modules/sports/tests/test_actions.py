@@ -46,7 +46,7 @@ class TestGeneral(DatastoreTest):
 
 	def test_create_new_game(self):
 
-		user = usermodels.User(full_name="Adrian")
+		user = usermodels.User(full_name="Adrian", first_name="Adrian")
 		user.put()
 
 		msg = messages.NewGame(
@@ -70,6 +70,8 @@ class TestGeneral(DatastoreTest):
 		assert game.geo.lon == 89
 		assert game.location_name == "Some place"
 		assert game.creator == user.key
+		assert len(game.players) == 1
+		assert game.players[0] == user.key
 
 
 class TestListGames(HRDatastoreTest):
@@ -90,10 +92,10 @@ class TestListGames(HRDatastoreTest):
 		cat2.add_parent(cat)
 		cat2.put()
 
-		user = usermodels.User(full_name="Adrian Letchford")
+		user = usermodels.User(full_name="Adrian Letchford", first_name="Adrian")
 		user.put()
 
-		tom = usermodels.User(full_name="Tom")
+		tom = usermodels.User(full_name="Tom", first_name="Tom")
 		tom.put()
 
 		msg = messages.NewGame(
@@ -115,7 +117,8 @@ class TestListGames(HRDatastoreTest):
 		assert len(games) == 1
 		assert games[0].name == "Adrian's big play off"
 		assert games[0].categories_full[0].name == "Basket Ball"
-		assert games[0].players[0].full_name == "Tom"
+		assert games[0].players[0].full_name == "Adrian Letchford"
+		assert games[0].players[1].full_name == "Tom"
 
 
 
@@ -142,7 +145,7 @@ class TestModelToMessageConvert(DatastoreTest):
 		start = datetime.now()
 		end = datetime.now()
 
-		user = usermodels.User(full_name="Adrian Letchford")
+		user = usermodels.User(full_name="Adrian Letchford", first_name="Adrian")
 		user.put()
 
 		game = models.Game(
@@ -167,10 +170,10 @@ class TestJoinGame(HRDatastoreTest):
 
 	def test(self):
 
-		tom = usermodels.User(full_name="Tom")
+		tom = usermodels.User(full_name="Tom", first_name="Tom")
 		tom.put()
 
-		user = usermodels.User(full_name="Adrian")
+		user = usermodels.User(full_name="Adrian", first_name="Adrian")
 		user.put()
 
 		msg = messages.NewGame(
@@ -190,17 +193,18 @@ class TestJoinGame(HRDatastoreTest):
 		game = game.key.get()
 
 		assert game_list.games[0] == game.key
-		assert game.players[0] == tom.key
+		assert game.players[0] == user.key
+		assert game.players[1] == tom.key
 		assert game.players_joined == 2
 
 
 	@raises(exceptions.GameIsFullException)
 	def test_join_full_game(self):
 
-		tom = usermodels.User(full_name="Tom")
+		tom = usermodels.User(full_name="Tom", first_name="Tom")
 		tom.put()
 
-		user = usermodels.User(full_name="Adrian")
+		user = usermodels.User(full_name="Adrian", first_name="Adrian")
 		user.put()
 
 		msg = messages.NewGame(

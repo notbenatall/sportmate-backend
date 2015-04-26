@@ -24,7 +24,7 @@ class APITest(HRDatastoreTest):
 		self.api = modules.sports.api.Sports()
 
 		# Put users in the database
-		self.a_user = models.User(full_name = "Dicky Johnson")
+		self.a_user = models.User(full_name = "Dicky Johnson", first_name="Dicky")
 		self.a_user.initialise_new_token()
 		self.a_user.put()
 

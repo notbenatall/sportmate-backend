@@ -25,7 +25,7 @@ class TestSimpleStuff(testtools.DatastoreTest):
         actions.verify_and_get_user(token='nothing')
 
     def test_verify_and_get_user(self):
-        user = models.User(full_name='hello')
+        user = models.User(full_name='hello', first_name="hello")
         user.initialise_new_token()
         user.put()
 
@@ -38,10 +38,10 @@ class TestFriendships(testtools.HRDatastoreTest):
     def setup(self):
         super(TestFriendships, self).setup()
 
-        self.sender = models.User(full_name='hello')
+        self.sender = models.User(full_name='hello', first_name="hello")
         self.sender.put()
 
-        self.reciever = models.User(full_name='hello2')
+        self.reciever = models.User(full_name='hello2', first_name="hello2")
         self.reciever.put()
 
     def assert_in_friends_list(self):
@@ -148,26 +148,27 @@ class TestUnfriend2(TestFriendships):
 
 class TestUserKeyIdToUser(testtools.DatastoreTest):
 
+    def setup(self):
+        super(TestUserKeyIdToUser, self).setup()
+
+        self.user = models.User(full_name='Stephen Fry', first_name="Stephen")
+        self.user.put()
+
     @raises(TypeError)
     def test_user_key_id_to_user_on_bool(self):
         user = actions.user_key_id_to_user(True)
 
     def test_user_key_id_to_user_on_User(self):
-        user = models.User(full_name='Stephen Fry')
-        retrieved_user = actions.user_key_id_to_user(user)
-        assert retrieved_user == user
+        retrieved_user = actions.user_key_id_to_user(self.user)
+        assert retrieved_user == self.user
 
     def test_user_key_id_to_user_on_Key(self):
-        user = models.User(full_name='Stephen Fry')
-        user.put()
-        retrieved_user = actions.user_key_id_to_user(user.key)
-        assert retrieved_user == user
+        retrieved_user = actions.user_key_id_to_user(self.user.key)
+        assert retrieved_user == self.user
 
     def test_user_key_id_to_user_on_Id(self):
-        user = models.User(full_name='Stephen Fry')
-        user.put()
-        retrieved_user = actions.user_key_id_to_user(user.key.id())
-        assert retrieved_user == user
+        retrieved_user = actions.user_key_id_to_user(self.user.key.id())
+        assert retrieved_user == self.user
 
     @raises(NotFoundException)
     def test_user_key_id_to_user_on_Id_not_found(self):

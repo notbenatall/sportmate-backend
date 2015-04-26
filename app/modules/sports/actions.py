@@ -72,9 +72,14 @@ def create_new_game(auth_user, details):
 		category=category_keys,
 		players_full=False,
 		players_joined=1,
+		players=[auth_user.key],
 		geo=ndb.GeoPt(details.lat, details.lon))
-
 	game.put()
+
+	# Add game to the user
+	game_list = models.UserGameList.get_or_create_addable_game_list(auth_user)
+	game_list.add_game(game.key)
+	game_list.put()
 
 	return game
 

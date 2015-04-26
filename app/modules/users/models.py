@@ -21,6 +21,7 @@ class User(ndb.Model):
 	searchable_name = ndb.StringProperty(indexed=True, required=True)
 
 	full_name = ndb.StringProperty(indexed=False, required=True)
+	first_name = ndb.StringProperty(indexed=False, required=True)
 	email = ndb.StringProperty(indexed=False, required=False)
 
 	facebook_id = ndb.IntegerProperty(indexed=False, required=False)

@@ -25,6 +25,7 @@ class testWithDatastore(DatastoreTest):
 
 		profile = {
 			'name': 'John Clease',
+			'first_name': "John",
 			'email': 'john@python.com',
 			'expires': datetime.now(),
 			'id': '572659283'

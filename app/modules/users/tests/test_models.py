@@ -22,19 +22,16 @@ class TestUserModel(testtools.DatastoreTest):
 		models.User().put()
 
 	def testSetName(self):
-		user = models.User()
-		user.full_name = "John Clease"
+		user = models.User(full_name="John Clease", first_name="John")
 		assert_equals('John Clease', user.full_name)
 
 	def testSearchableNameUponUserInsert(self):
-		user = models.User()
-		user.full_name = "Dicky Johnson"
+		user = models.User(full_name="Dicky Johnson", first_name="Dicky")
 		user.put()
 		assert_equals('dicky johnson', user.searchable_name)
 
 	def testInsertUser(self):
-		user = models.User()
-		user.full_name = "John Clease"
+		user = models.User(full_name="John Clease", first_name="John")
 		user.put()
 		result = models.User.query().fetch(2)   
 		assert_equals(1, len(result))
@@ -56,7 +53,7 @@ class TestUserModel(testtools.DatastoreTest):
 		assert type(user) is models.User
 
 	def test_no_token(self):
-		user = models.User(full_name = 'a name')
+		user = models.User(full_name = 'a name', first_name="a")
 		user.put()
 
 		token = user.get_token()
@@ -64,7 +61,7 @@ class TestUserModel(testtools.DatastoreTest):
 		assert token is None
 
 	def test_get_from_token(self):
-		user = models.User(full_name = 'a name')
+		user = models.User(full_name = 'a name', first_name="a")
 		user.initialise_new_token()
 		user.put()
 		token = user.get_token()
@@ -81,10 +78,10 @@ class TestRelationshipModel(testtools.DatastoreTest):
 		super(TestRelationshipModel, self).setup()
 
 		# Create default users to use for these tests
-		self.usera = models.User(full_name = 'Rowan Atkinson')
+		self.usera = models.User(full_name = 'Rowan Atkinson', first_name="Rowan")
 		self.usera.put()
 
-		self.userb = models.User(full_name = 'Stephen Fry')
+		self.userb = models.User(full_name = 'Stephen Fry', first_name="Stephan")
 		self.userb.put()
 
 	@raises(BadValueError)
@@ -136,9 +133,9 @@ class TestRelationshipModel(testtools.DatastoreTest):
 
 
 	def testGetByUsersEmpty(self):
-		usera = models.User(full_name = 'Rowan Atkinson')
+		usera = models.User(full_name = 'Rowan Atkinson', first_name="Rowan")
 		usera.put()
-		userb = models.User(full_name = 'Stephen Fry')
+		userb = models.User(full_name = 'Stephen Fry', first_name="Stephen")
 		userb.put()
 		relationship = models.Relationship.get_by_users(self.usera, self.userb)
 
@@ -169,7 +166,7 @@ class TestFriendListModel(testtools.DatastoreTest):
 		flist.validate()
 
 	def test_get_or_create_first_time(self):
-		user = models.User(full_name = 'Rowan Atkinson')
+		user = models.User(full_name = 'Rowan Atkinson', first_name="Rowan")
 		user.put()
 
 		friend_list = models.FriendList.get_or_create_addable_friend_list(user)

@@ -24,14 +24,14 @@ class TestAPI(HRDatastoreTest):
 
 		# Put two users in the database and make
 		# sure they are definitely accessable
-		self.me = models.User(full_name = "Dicky Johnson")
+		self.me = models.User(full_name = "Dicky Johnson", first_name="Dicky")
 		self.me.initialise_new_token()
 		self.me.put()
 		u = None
 		while u is None:
 			u = models.User.get_from_token(self.me.get_token())
 
-		self.other_user = models.User(full_name = "Buck Billy")
+		self.other_user = models.User(full_name = "Buck Billy", first_name="Buck")
 		self.other_user.initialise_new_token()
 		self.other_user.put()
 		u = None
