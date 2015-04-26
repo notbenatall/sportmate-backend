@@ -23,6 +23,8 @@ class User(ndb.Model):
 	full_name = ndb.StringProperty(indexed=False, required=True)
 	email = ndb.StringProperty(indexed=False, required=False)
 
+	facebook_id = ndb.IntegerProperty(indexed=False, required=False)
+
 	@staticmethod
 	def generate_token(salt):
 		"""Generates a random token."""

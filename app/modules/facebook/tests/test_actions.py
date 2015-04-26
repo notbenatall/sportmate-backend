@@ -36,4 +36,5 @@ class testWithDatastore(DatastoreTest):
 
 		assert type(account) is models.FacebookAccount
 		assert type(account_parent) is usermodels.User
+		assert account_parent.facebook_id == 572659283
 		assert_equals(account_parent.full_name, 'John Clease')

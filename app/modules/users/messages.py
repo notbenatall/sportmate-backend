@@ -17,6 +17,7 @@ class User(messages.Message):
 	full_name = messages.StringField(1)
 	email = messages.StringField(2)
 	id = messages.IntegerField(3)
+	facebook_id = messages.IntegerField(4, required=False)
 
 class UserMe(messages.Message):
 	"""Message containing the authenticated user."""
@@ -24,6 +25,7 @@ class UserMe(messages.Message):
 	email = messages.StringField(2)
 	id = messages.IntegerField(3)
 	token = messages.StringField(4)
+	facebook_id = messages.IntegerField(5, required=False)
 
 class UserId(messages.Message):
 	"""

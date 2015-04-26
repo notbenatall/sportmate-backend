@@ -13,64 +13,79 @@ import facebook.models as models
 import users.models as usermodels
 
 def test_nothing():
-    assert True == True
+	assert True == True
 
 class BasicModelTest(object):
-    def setup(self):
-        # First, create an instance of the Testbed class.
-        self.testbed = testbed.Testbed()
-        # Then activate the testbed, which prepares the service stubs for use.
-        self.testbed.activate()
-        # Next, declare which service stubs you want to use.
-        self.testbed.init_datastore_v3_stub()
-        self.testbed.init_memcache_stub()
+	def setup(self):
+		# First, create an instance of the Testbed class.
+		self.testbed = testbed.Testbed()
+		# Then activate the testbed, which prepares the service stubs for use.
+		self.testbed.activate()
+		# Next, declare which service stubs you want to use.
+		self.testbed.init_datastore_v3_stub()
+		self.testbed.init_memcache_stub()
  
-    def teardown(self):
-        self.testbed.deactivate()
+	def teardown(self):
+		self.testbed.deactivate()
 
 class TestFacebookAccountModel(BasicModelTest):
 
-    def setup(self):
-        super(TestFacebookAccountModel, self).setup()
+	def setup(self):
+		super(TestFacebookAccountModel, self).setup()
 
-        # Create a default user to use for these tests
-        self.user = usermodels.User(full_name = 'Silly Person')
-        self.user.put()
+		# Create a default user to use for these tests
+		self.user = usermodels.User(full_name = 'Silly Person')
+		self.user.put()
 
-    @raises(BadValueError)
-    def testValidateModelFailure(self):
-        account = models.FacebookAccount()
-        account.validate()
+	@raises(BadValueError)
+	def testValidateModelFailure(self):
+		account = models.FacebookAccount()
+		account.validate()
 
-    @raises(BadValueError)
-    def testInsertWithoutValues(self):
-        account = models.FacebookAccount()
-        account.put()
+	@raises(BadValueError)
+	def testInsertWithoutValues(self):
+		account = models.FacebookAccount()
+		account.put()
 
-    def testGetByFacebookId(self):
-        account = models.FacebookAccount(parent = self.user.key)
-        account.access_token = 'a token'
-        account.facebook_id = 464193
-        account.put()
+	def testGetByFacebookId(self):
+		account = models.FacebookAccount(parent = self.user.key)
+		account.access_token = 'a token'
+		account.facebook_id = 464193
+		account.put()
 
-        retreived_account = models.FacebookAccount.get_by_facebook_id(464193)
+		retreived_account = models.FacebookAccount.get_by_facebook_id(464193)
 
-        assert_equals(retreived_account.facebook_id, 464193)
+		assert_equals(retreived_account.facebook_id, 464193)
 
-    def testGetByFacebookIdEmpty(self):
-        retreived_account = models.FacebookAccount.get_by_facebook_id(987532576)
-        assert retreived_account is None
+	def testGetByFacebookIdEmpty(self):
+		retreived_account = models.FacebookAccount.get_by_facebook_id(987532576)
+		assert retreived_account is None
 
-    def testAssignUserAsParent(self):
-        account = models.FacebookAccount(
-            access_token = 'a token', 
-            facebook_id = 1234675,
-            parent = self.user.key)
-        account.put()
+	def testAssignUserAsParent(self):
+		account = models.FacebookAccount(
+			access_token = 'a token', 
+			facebook_id = 1234675,
+			parent = self.user.key)
+		account.put()
 
-        retreived_account = models.FacebookAccount.get_by_facebook_id(1234675)
+		retreived_account = models.FacebookAccount.get_by_facebook_id(1234675)
 
-        retrieved_parent = retreived_account.key.parent().get()
+		retrieved_parent = retreived_account.key.parent().get()
 
-        assert retrieved_parent == self.user
-        assert retrieved_parent.full_name == 'Silly Person'
+		assert retrieved_parent == self.user
+		assert retrieved_parent.full_name == 'Silly Person'
+
+	def test_get_by_user(self):
+		account = models.FacebookAccount(
+			access_token = 'a token', 
+			facebook_id = 1876,
+			parent = self.user.key)
+		account.put()
+
+		retreived_account = models.FacebookAccount.get_by_user(self.user)
+
+		retrieved_parent = retreived_account.key.parent().get()
+
+		assert retreived_account.facebook_id == 1876
+		assert retrieved_parent == self.user
+		assert retrieved_parent.full_name == 'Silly Person'

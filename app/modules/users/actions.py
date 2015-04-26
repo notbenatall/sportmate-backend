@@ -15,7 +15,7 @@ import modules.users.models as models
 
 def verify_and_get_user(**kwargs):
 	"""
-	Returns the user associated with dumb_token or raises an error.
+	Returns the user associated with a token or raises an error.
 
 	Params:
 		token - the token that represents the validated user.
