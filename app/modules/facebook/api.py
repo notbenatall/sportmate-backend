@@ -12,14 +12,24 @@ import endpoints
 from protorpc import message_types
 from protorpc import remote
 import mmglue
+from google.appengine.api.app_identity import get_application_id
 
 import modules.facebook.messages as fbmsgs
 import modules.users.messages as usrmessages
 import modules.facebook.actions as actions
 
+import modules.misc as misc
+
 import modules.api
 
-REDIRECT_URL = "http://127.0.0.1:8080/_ah/api/sportmate/v1.0/code"
+
+
+if misc.is_development_testing() or misc.is_development():
+	REDIRECT_URL = "http://137.205.185.60:8080/_ah/api/sportmate/v1.0/code"
+else:
+	REDIRECT_URL = "https://"+get_application_id()+".appspot.com/_ah/api/sportmate/v1.0/code"
+
+
 
 @modules.api.API.api_class(resource_name='facebook.login')
 class FacebookLogin(remote.Service):
