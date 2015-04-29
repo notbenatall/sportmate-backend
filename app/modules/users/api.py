@@ -13,8 +13,7 @@ from protorpc import remote
 import mmglue
 
 import users.actions as actions
-from users.messages import UserId, Relationship, FriendList
-from users.messages import TwoUserIds, FriendRequestResponse
+import modules.users.messages as messages
 
 import modules.api
 
@@ -23,7 +22,7 @@ class Users(remote.Service):
 	"""
 	Access and modify information about users.
 	"""
-	@endpoints.method(UserId, Relationship, path='friend/request',
+	@endpoints.method(messages.UserId, messages.Relationship, path='friend/request',
 		http_method='POST', name='friendrequest')
 	def friend_request(self, request):
 		"""Send a friend request."""
@@ -31,12 +30,12 @@ class Users(remote.Service):
 
 		relationship = actions.friend_request(auth_user.key.id(), request.user)
 
-		msg = mmglue.message_from_model(relationship, Relationship)
+		msg = mmglue.message_from_model(relationship, messages.Relationship)
 		msg.users = [k.id() for k in relationship.users]
 
 		return msg
 
-	@endpoints.method(UserId, FriendList, path='friend/list',
+	@endpoints.method(messages.UserId, messages.FriendList, path='friend/list',
 		http_method='GET', name='friendlist')
 	def get_friends_list(self, request):
 		"""Return a list of friends for the specified user."""
@@ -44,12 +43,12 @@ class Users(remote.Service):
 
 		friends_list = actions.get_friends_list(request.user)
 
-		msg = FriendList()
+		msg = messages.FriendList()
 		msg.friends = [k.id() for k in friends_list.friends]
 
 		return msg
 
-	@endpoints.method(UserId, Relationship, path='friend/unfriend',
+	@endpoints.method(messages.UserId, messages.Relationship, path='friend/unfriend',
 		http_method='POST', name='friendunfriend')
 	def unfriend(self, request):
 		"""
@@ -59,13 +58,13 @@ class Users(remote.Service):
 
 		relationship = actions.unfriend(auth_user.key.id(), request.user)
 
-		msg = mmglue.message_from_model(relationship, Relationship)
+		msg = mmglue.message_from_model(relationship, messages.Relationship)
 		msg.users = [k.id() for k in relationship.users]
 
 		return msg
 
 
-	@endpoints.method(TwoUserIds, Relationship, path='user/relationship',
+	@endpoints.method(messages.TwoUserIds, messages.Relationship, path='user/relationship',
 		http_method='GET', name='userrelationship')
 	def get_relationship(self, request):
 		"""
@@ -75,13 +74,13 @@ class Users(remote.Service):
 
 		relationship = actions.get_relationship(request.userA, request.userB)
 
-		msg = mmglue.message_from_model(relationship, Relationship)
+		msg = mmglue.message_from_model(relationship, messages.Relationship)
 		msg.users = [k.id() for k in relationship.users]
 
 		return msg
 
 
-	@endpoints.method(FriendRequestResponse, Relationship,
+	@endpoints.method(messages.FriendRequestResponse, messages.Relationship,
 		path='friend/request/response', http_method='POST',
 		name='requestresponse')
 	def respond_to_friend_request(self, request):
@@ -93,7 +92,21 @@ class Users(remote.Service):
 		relationship = actions.respond_to_friend_request(auth_user,
 			request.user, request.accept)
 
-		msg = mmglue.message_from_model(relationship, Relationship)
+		msg = mmglue.message_from_model(relationship, messages.Relationship)
 		msg.users = [k.id() for k in relationship.users]
+
+		return msg
+
+
+	@endpoints.method(messages.UserId, messages.UserMe,
+		path='user', http_method='POST',
+		name='getuser')
+	def get_user(self, request):
+		"""
+		Get information about a user.
+		"""
+		auth_user = actions.verify_and_get_user(token=request.token)
+
+		msg = actions.me_to_message(auth_user)
 
 		return msg

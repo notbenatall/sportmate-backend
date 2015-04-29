@@ -9,9 +9,9 @@ from google.appengine.ext.db import BadValueError
 from endpoints import UnauthorizedException, NotFoundException
 from testtools import DatastoreTest, HRDatastoreTest
 
-import users.models as models
-import users.actions as actions
-import users.messages as messages
+import modules.users.models as models
+import modules.users.actions as actions
+import modules.users.messages as messages
 import users.api
 
 class TestAPI(HRDatastoreTest):
@@ -24,7 +24,7 @@ class TestAPI(HRDatastoreTest):
 
 		# Put two users in the database and make
 		# sure they are definitely accessable
-		self.me = models.User(full_name = "Dicky Johnson", first_name="Dicky")
+		self.me = models.User(full_name = "Dicky Johnson", first_name="Dicky", facebook_id=1234)
 		self.me.initialise_new_token()
 		self.me.put()
 		u = None
@@ -188,3 +188,13 @@ class TestRespondToFriendRequestDecline(TestAPI):
 		assert relation.is_friends == False
 		assert relation.friend_request_sent
 		assert relation.friend_request_rejected
+
+
+class TestGetUser(TestAPI):
+	def test_get_me(self):
+
+		send = messages.UserId(token=self.me.get_token())
+		myself = self.api.get_user(send)
+
+		assert myself.token == self.me.get_token()
+		assert myself.facebook_id == 1234

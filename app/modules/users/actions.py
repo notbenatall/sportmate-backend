@@ -64,6 +64,14 @@ def user_to_message(user):
 	msg = mmglue.message_from_model(user, messages.User)
 	return msg
 
+def me_to_message(user):
+	"""
+	Takes a user and returns a user message containing their credentials.
+	"""
+	msg = mmglue.message_from_model(user, messages.UserMe)
+	msg.token = user.get_token()
+	return msg
+
 @ndb.transactional(xg=True)
 def _add_to_friends_list(user_a, user_b):
 	"""Adds two users to eachother's friends list."""
