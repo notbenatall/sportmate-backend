@@ -17,6 +17,7 @@ from modules.misc.models import get_model
 from modules.users.models import User
 from modules.users.actions import user_to_message
 import mmglue
+from datetime import datetime
 
 TIME_FORMAT = "%Y-%m-%d %H:%M:%S"
 
@@ -39,6 +40,13 @@ def game_model_to_message(game):
 
 	msg.players = [user_to_message(player.get()) for player in game.players[:5]]
 
+	return msg
+
+
+def list_of_games_to_message(games):
+	"""Converts a list of games into a message."""
+	msg = messages.GameList()
+	msg.games = [game_model_to_message(game) for game in games]
 	return msg
 
 def get_all_categories():
@@ -85,14 +93,12 @@ def create_new_game(auth_user, details):
 
 def list_games():
 	"""Return a list of all the games."""
-	query = models.Game.query()
+	query = models.Game.query(models.Game.time > datetime.now())
 	games = query.fetch()
+	
+	games.sort(key=lambda g: g.time)
 
-	# Turn into messages
-	games_msg = messages.GameList()
-	games_msg.games = [game_model_to_message(game) for game in games]
-
-	return games_msg
+	return list_of_games_to_message(games)
 
 @ndb.transactional(xg=True)
 def join_game(user, game):
@@ -116,10 +122,6 @@ def join_game(user, game):
 
 
 # Modify a game
-
-# Join a game
-
-# List games (with filters)
 
 # Add sport profile
 

@@ -3,7 +3,7 @@ import nose
 from nose.tools import *
 from nose.plugins.attrib import attr
 import logging
-from datetime import datetime
+from datetime import datetime, timedelta
 from google.appengine.api import memcache
 from google.appengine.ext import ndb
 from google.appengine.ext import testbed
@@ -101,7 +101,7 @@ class TestListGames(HRDatastoreTest):
 		msg = messages.NewGame(
 			categories = ["Basket Ball"],
 			level = 1,
-			time = datetime.now(),
+			time = datetime.now() + timedelta(days=5),
 			name = "Adrian's big play off",
 			players_needed = 2,
 			lat = 34.0,
