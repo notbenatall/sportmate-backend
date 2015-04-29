@@ -39,6 +39,15 @@ def is_development():
 
 	return False
 
+def is_development_testing():
+	"""Checks to see if this is a testing environment."""
+
+	if 'SERVER_SOFTWARE' in os.environ and \
+		os.environ['SERVER_SOFTWARE'].startswith('Dev test'):
+		return True
+
+	return False
+
 def is_test():
 	"""Checks to see if this is a test sever."""
 	appname = get_application_id()

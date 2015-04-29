@@ -10,10 +10,14 @@ Dummy data functions
 import random
 from datetime import datetime, timedelta
 
+from google.appengine.ext import ndb
+
 import modules.sports as sports
 import modules.sports.models  # pylint: disable=unused-import
 import modules.sports.actions
 import modules.sports.messages
+
+import modules.misc as misc
 
 import modules.facebook.actions as fbactions
 
@@ -107,8 +111,10 @@ def dummy_data_create_games(categories, user_list):
 		player = random.choice(available_players)
 
 		# Random time
-		time = datetime.now() + timedelta(seconds=random.uniform(0, 7*24*60*60))
-		end_time = time + timedelta(seconds=random.uniform(1*60*60, 3*60*60))
+		one_hour = 60*60
+		one_day = 24*one_hour
+		time = datetime.now() + timedelta(seconds=random.uniform(2*one_day, 7*one_day))
+		end_time = time + timedelta(seconds=random.uniform(1*one_hour, 3*one_hour))
 
 		new_game_msg = sports.messages.NewGame(
 			categories=[category.name],
@@ -126,8 +132,15 @@ def dummy_data_create_games(categories, user_list):
 		sports.actions.join_game(player, game)
 
 
+def clear_database():
+	"""Clears the entire datastore."""
+	ndb.delete_multi(ndb.Query().fetch(keys_only=True))
+
+
 def dummy_data_create():
 	"""Run all the create dummy data functions."""
+	if misc.is_development_testing() or misc.is_development():
+		clear_database()
 	categories = dummy_data_create_categories()
 	user_list = dummy_data_create_users()
 	dummy_data_create_games(categories, user_list)

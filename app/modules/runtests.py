@@ -30,6 +30,8 @@ sys.path.append('lib')
 sys.path.append('include')
 sys.path.append('modules')
 
+os.environ['SERVER_SOFTWARE'] = "Dev test"
+
 if __name__ == '__main__':
 	# Run all the tests in this file
 	module_name = os.path.dirname(sys.modules[__name__].__file__)
