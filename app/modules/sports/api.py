@@ -10,6 +10,7 @@ Holds the endpoints for the sports module.
 """
 # pylint: disable=no-self-use, no-init, unused-argument
 
+from google.appengine.ext import ndb
 import endpoints
 from protorpc import remote
 import mmglue
@@ -35,11 +36,7 @@ class Sports(remote.Service):
 
 		game = actions.create_new_game(auth_user, request)
 
-		msg = mmglue.message_from_model(game, messages.Game)
-		msg.lat = game.geo.lat
-		msg.lon = game.geo.lon
-
-		return msg
+		return actions.game_model_to_message(game)
 
 
 	@endpoints.method(messages.GamesRequest, messages.GameList, path='games',
@@ -48,3 +45,14 @@ class Sports(remote.Service):
 		"""Returns a list of all the games."""
 		games_msg = actions.list_games()
 		return games_msg
+
+
+	@endpoints.method(messages.JoinGame, messages.Game, path='game/join',
+		http_method='POST', name='joingame')
+	def join_game(self, request):
+		"""The authenticating user joins a game."""
+		auth_user = verify_and_get_user(token=request.token)
+
+		game = actions.join_game(auth_user, ndb.Key(urlsafe=request.key))
+
+		return actions.game_model_to_message(game)

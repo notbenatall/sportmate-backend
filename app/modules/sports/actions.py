@@ -30,8 +30,12 @@ def sport_category_to_message(category):
 def game_model_to_message(game):
 	"""Convert a game model into a message."""
 	msg = mmglue.message_from_model(game, messages.Game)
-	msg.lat = game.geo.lat
-	msg.lon = game.geo.lon
+
+	msg.key = game.key.urlsafe()
+
+	if game.geo:
+		msg.lat = game.geo.lat
+		msg.lon = game.geo.lon
 
 	categories = [cat_key.get() for cat_key in game.category]
 
@@ -75,13 +79,21 @@ def create_new_game(auth_user, details):
 	category_keys = [models.SportCategory.key_from_name(cat)
 		for cat in details.categories]
 
+	# Make sure the dates are in UTC time
+	if details.time.tzinfo is not None and details.time.utcoffset() is not None:
+		details.time =  details.time.replace(tzinfo=None) - details.time.utcoffset()
+
 	game = mmglue.model_from_message(details, models.Game,
 		parent=auth_user.key,
 		category=category_keys,
 		players_full=False,
 		players_joined=1,
-		players=[auth_user.key],
-		geo=ndb.GeoPt(details.lat, details.lon))
+		players=[auth_user.key])
+	
+
+	if(details.lat and details.lon):
+		game.geo=ndb.GeoPt(details.lat, details.lon)
+
 	game.put()
 
 	# Add game to the user
@@ -119,6 +131,8 @@ def join_game(user, game):
 
 	game.put()
 	game_list.put()
+
+	return game
 
 
 # Modify a game

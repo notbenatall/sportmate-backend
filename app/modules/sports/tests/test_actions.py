@@ -73,6 +73,30 @@ class TestGeneral(DatastoreTest):
 		assert len(game.players) == 1
 		assert game.players[0] == user.key
 
+	def test_create_new_game_minimum(self):
+
+		user = usermodels.User(full_name="Adrian", first_name="Adrian")
+		user.put()
+
+		msg = messages.NewGame(
+			categories = ["American Football"],
+			time = datetime.now(),
+			players_needed = 2,
+			location_name = "Some place")
+
+		game = actions.create_new_game(user, msg)
+
+		game = game.key.get()
+
+		assert game.key.parent() == user.key
+		assert game.players_needed == 2
+		assert game.category[0].id() == "american football"
+		assert game.location_name == "Some place"
+		assert game.creator == user.key
+		assert len(game.players) == 1
+		assert game.players[0] == user.key
+
+
 
 class TestListGames(HRDatastoreTest):
 
@@ -154,7 +178,8 @@ class TestModelToMessageConvert(DatastoreTest):
 			location_name = "Some location",
 			geo=ndb.GeoPt(0, 0),
 			creator=user.key,
-			players=[user.key]
+			players=[user.key],
+			key=ndb.Key("Game", 'asdrfag')
 			)
 
 		msg = actions.game_model_to_message(game)

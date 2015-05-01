@@ -94,11 +94,11 @@ class Game(ndb.Model):
 	level = ndb.IntegerProperty(indexed=True, default=0)
 	time = ndb.DateTimeProperty(indexed=True, required=True)
 	end_time = ndb.DateTimeProperty(indexed=False, required=False)
-	name = ndb.StringProperty(indexed=False, required=True)
+	name = ndb.StringProperty(indexed=False, required=False)
 	players_needed = ndb.IntegerProperty(indexed=False, required=True)
 	players_joined = ndb.IntegerProperty(indexed=False, default=1, required=True)
-	geo = ndb.GeoPtProperty(indexed=False, required=True)
-	geohash = ndb.StringProperty(indexed=True, required=True)
+	geo = ndb.GeoPtProperty(indexed=False, required=False)
+	geohash = ndb.StringProperty(indexed=True, required=False)
 	location_name = ndb.StringProperty(indexed=False)
 	players = ndb.KeyProperty(kind=User, indexed=False, repeated=True)
 	creator = ndb.KeyProperty(kind=User, required=True)
@@ -108,7 +108,8 @@ class Game(ndb.Model):
 		"""
 		Sets the geohash to correspond to the coordinates stored in self.geo.
 		"""
-		self.geohash = Geohash.encode(self.geo.lat, self.geo.lon, precision=20)
+		if self.geo:
+			self.geohash = Geohash.encode(self.geo.lat, self.geo.lon, precision=20)
 
 	def validate(self):
 		"""Validates this model."""
@@ -125,8 +126,6 @@ class Game(ndb.Model):
 			raise BadValueError
 
 		self.players_full = self.players_joined == self.players_needed
-
-
 
 	def put(self):
 		"""Write this model to the database after validating."""

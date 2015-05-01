@@ -31,26 +31,28 @@ class Game(messages.Message):
 	players_full = messages.BooleanField(2, required=True)
 	level = messages.IntegerField(3, required=True)
 	time = message_types.DateTimeField(4, required=True)
-	name = messages.StringField(5, required=True)
+	name = messages.StringField(5, required=False)
 	players_needed = messages.IntegerField(6, required=True)
 	players_joined = messages.IntegerField(7, required=True)
-	lat = messages.FloatField(8, required=True)
-	lon = messages.FloatField(9, required=True)
+	lat = messages.FloatField(8, required=False)
+	lon = messages.FloatField(9, required=False)
 	categories_full = messages.MessageField(SportCategory, 10, repeated=True)
 	end_time = message_types.DateTimeField(11, required=False)
 	location_name = messages.StringField(12, required=False)
 	creator_id = messages.IntegerField(13, required=True)
 	players = messages.MessageField(User, 14, repeated=True)
 
+	key = messages.StringField(15)
+
 class NewGame(messages.Message):
 	"""Message containing a brand new game to add to the system."""
 	categories = messages.StringField(1, repeated=True)
-	level = messages.IntegerField(2, required=True)
+	level = messages.IntegerField(2, required=False)
 	time = message_types.DateTimeField(3, required=True)
-	name = messages.StringField(4, required=True)
+	name = messages.StringField(4, required=False)
 	players_needed = messages.IntegerField(5, required=True)
-	lat = messages.FloatField(6, required=True)
-	lon = messages.FloatField(7, required=True)
+	lat = messages.FloatField(6, required=False)
+	lon = messages.FloatField(7, required=False)
 
 	token = messages.StringField(8, required=True)
 
@@ -66,3 +68,8 @@ class GameList(messages.Message):
 class GamesRequest(messages.Message):
 	"""Message containing a request for a list of games."""
 	pass
+
+
+class JoinGame(messages.Message):
+	token = messages.StringField(1, required=True)
+	key = messages.StringField(2, required=True)

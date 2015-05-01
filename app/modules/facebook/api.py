@@ -27,7 +27,10 @@ import modules.api
 if misc.is_development_testing() or misc.is_development():
 	REDIRECT_URL = "http://137.205.185.60:8080/_ah/api/sportmate/v1.0/code"
 else:
-	REDIRECT_URL = "https://"+get_application_id()+".appspot.com/_ah/api/sportmate/v1.0/code"
+	try:
+		REDIRECT_URL = "https://"+get_application_id()+".appspot.com/_ah/api/sportmate/v1.0/code"
+	except AttributeError: # THe make client libraries throws this error for some reason.
+		REDIRECT_URL = "http://137.205.185.60:8080/_ah/api/sportmate/v1.0/code"
 
 
 
