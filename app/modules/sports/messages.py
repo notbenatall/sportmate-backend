@@ -41,8 +41,8 @@ class Game(messages.Message):
 	location_name = messages.StringField(12, required=False)
 	creator_id = messages.IntegerField(13, required=True)
 	players = messages.MessageField(User, 14, repeated=True)
-
 	key = messages.StringField(15)
+	player_ids = messages.IntegerField(16, repeated=True)
 
 class NewGame(messages.Message):
 	"""Message containing a brand new game to add to the system."""
@@ -70,6 +70,8 @@ class GamesRequest(messages.Message):
 	pass
 
 
-class JoinGame(messages.Message):
+class GameIdentifier(messages.Message):
+	"""Message containing a request to join a game."""
 	token = messages.StringField(1, required=True)
+	# The game's key
 	key = messages.StringField(2, required=True)

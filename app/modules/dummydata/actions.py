@@ -55,7 +55,7 @@ def dummy_data_create_users():
 		{
 			'name': "Adrian Letchford",
 			'first_name': "Adrian",
-			'id': 662369520,
+			'id': 10153194089974521,
 			'email': 'someone@someplace.com',
 		},
 		{
@@ -113,8 +113,10 @@ def dummy_data_create_games(categories, user_list):
 		# Random time
 		one_hour = 60*60
 		one_day = 24*one_hour
-		time = datetime.now() + timedelta(seconds=random.uniform(2*one_day, 7*one_day))
-		end_time = time + timedelta(seconds=random.uniform(1*one_hour, 3*one_hour))
+		start = timedelta(seconds=random.uniform(2*one_day, 7*one_day))
+		duration = timedelta(seconds=random.uniform(1*one_hour, 3*one_hour))
+		time = datetime.now() + start
+		end_time = time + duration
 
 		new_game_msg = sports.messages.NewGame(
 			categories=[category.name],

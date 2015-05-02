@@ -23,16 +23,18 @@ import modules.misc as misc
 import modules.api
 
 
+REDIRECT_URL_PATH = "/_ah/api/sportmate/v1.0/code"
 
 if misc.is_development_testing() or misc.is_development():
-	REDIRECT_URL = "http://137.205.185.60:8080/_ah/api/sportmate/v1.0/code"
+	REDIRECT_DOMAIN = "http://137.205.185.60:8080"
 else:
 	try:
-		REDIRECT_URL = "https://"+get_application_id()+".appspot.com/_ah/api/sportmate/v1.0/code"
-	except AttributeError: # THe make client libraries throws this error for some reason.
-		REDIRECT_URL = "http://137.205.185.60:8080/_ah/api/sportmate/v1.0/code"
+		REDIRECT_DOMAIN = "https://"+get_application_id()+".appspot.com"
+	except AttributeError:
+		# The make client libraries throws this error for some reason.
+		REDIRECT_DOMAIN = "http://137.205.185.60:8080"
 
-
+REDIRECT_URL = REDIRECT_DOMAIN + REDIRECT_URL_PATH
 
 @modules.api.API.api_class(resource_name='facebook.login')
 class FacebookLogin(remote.Service):

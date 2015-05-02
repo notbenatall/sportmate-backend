@@ -189,6 +189,7 @@ class TestModelToMessageConvert(DatastoreTest):
 		assert msg.location_name == game.location_name
 		assert msg.creator_id == user.key.id()
 		assert msg.players[0].full_name == "Adrian Letchford"
+		assert msg.player_ids[0] == user.key.id()
 
 
 class TestJoinGame(HRDatastoreTest):
@@ -221,6 +222,7 @@ class TestJoinGame(HRDatastoreTest):
 		assert game.players[0] == user.key
 		assert game.players[1] == tom.key
 		assert game.players_joined == 2
+		assert not game.show_in_search
 
 
 	@raises(exceptions.GameIsFullException)
@@ -244,3 +246,79 @@ class TestJoinGame(HRDatastoreTest):
 		game = actions.create_new_game(user, msg)
 
 		actions.join_game(tom, game)
+
+
+
+class TestGetUpcoming(HRDatastoreTest):
+
+	def setup(self):
+		super(TestGetUpcoming, self).setup()
+
+		self.tom = usermodels.User(full_name="Tom", first_name="Tom")
+		self.tom.put()
+
+		self.user = usermodels.User(full_name="Adrian", first_name="Adrian")
+		self.user.put()
+
+		self.cat = models.SportCategory(name='Basketball')
+		self.cat.put()
+
+		msg = messages.NewGame(
+			categories = ["Basketball"],
+			level = 1,
+			time = datetime.now(),
+			name = "Adrian's big play off",
+			players_needed = 2,
+			lat = 34.0,
+			lon = 89.0)
+
+		self.game = actions.create_new_game(self.user, msg)
+
+		actions.join_game(self.tom, self.game)
+
+	def test(self):
+
+		games_msg = actions.get_upcoming(self.tom)
+
+		assert len(games_msg.games) == 1
+		assert games_msg.games[0].name == "Adrian's big play off"
+
+
+
+
+class TestLeaveGame(HRDatastoreTest):
+
+	def setup(self):
+		super(TestLeaveGame, self).setup()
+
+		self.tom = usermodels.User(full_name="Tom", first_name="Tom")
+		self.tom.put()
+
+		self.user = usermodels.User(full_name="Adrian", first_name="Adrian")
+		self.user.put()
+
+		msg = messages.NewGame(
+			categories = ["Basket Ball"],
+			level = 1,
+			time = datetime.now(),
+			name = "Adrian's big play off",
+			players_needed = 2,
+			lat = 34.0,
+			lon = 89.0)
+
+		self.game = actions.create_new_game(self.user, msg)
+
+		actions.join_game(self.tom, self.game)
+
+
+	def test(self):
+
+		assert self.game.players_joined == 2
+
+		game = actions.leave_game(self.tom, self.game.key)
+
+		users_game_list = models.UserGameList.get_or_create_addable_game_list(self.tom)
+		
+		assert self.tom.key not in game.players
+		assert game.players_joined == 1
+		assert self.game.key not in users_game_list.games

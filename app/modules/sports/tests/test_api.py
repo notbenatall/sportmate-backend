@@ -9,6 +9,7 @@ from google.appengine.ext.db import BadValueError
 from endpoints import UnauthorizedException, NotFoundException
 from testtools import DatastoreTest, HRDatastoreTest
 
+import modules.users.messages as usermessages
 import modules.users.models as usermodels
 import modules.sports.models as models
 import modules.sports.actions as actions
@@ -85,7 +86,7 @@ class TestJoinGame(APITest):
 
 	def test(self):
 
-		msg = messages.JoinGame(
+		msg = messages.GameIdentifier(
 			token=self.tom.get_token(),
 			key=self.game.key.urlsafe())
 
@@ -99,3 +100,82 @@ class TestJoinGame(APITest):
 		assert game.players[0] == self.user.key
 		assert game.players[1] == self.tom.key
 		assert game.players_joined == 2
+
+
+
+class TestGetUpcoming(APITest):
+
+	def setup(self):
+		super(TestGetUpcoming, self).setup()
+
+		self.tom = usermodels.User(full_name="Tom", first_name="Tom")
+		self.tom.initialise_new_token()
+		self.tom.put()
+
+		self.user = usermodels.User(full_name="Adrian", first_name="Adrian")
+		self.user.put()
+
+		self.cat = models.SportCategory(name='Basketball')
+		self.cat.put()
+
+		msg = messages.NewGame(
+			categories = ["Basketball"],
+			level = 1,
+			time = datetime.now(),
+			name = "Adrian's big play off",
+			players_needed = 2,
+			lat = 34.0,
+			lon = 89.0)
+
+		self.game = actions.create_new_game(self.user, msg)
+
+		actions.join_game(self.tom, self.game)
+
+	def test(self):
+
+		msg = usermessages.AuthUser(token=self.tom.get_token())
+
+		games_msg = self.api.get_upcoming(msg)
+
+		assert len(games_msg.games) == 1
+		assert games_msg.games[0].name == "Adrian's big play off"
+
+
+class TestLeaveGame(APITest):
+
+	def setup(self):
+		super(TestLeaveGame, self).setup()
+
+		self.tom = usermodels.User(full_name="Tom", first_name="Tom")
+		self.tom.initialise_new_token()
+		self.tom.put()
+
+		self.user = usermodels.User(full_name="Adrian", first_name="Adrian")
+		self.user.put()
+
+		cat = models.SportCategory(name='Basketball')
+		cat.put()
+
+		msg = messages.NewGame(
+			categories = ["Basketball"],
+			time = datetime.now(),
+			players_needed = 2,
+			lat = 34.0,
+			lon = 89.0)
+
+		self.game = actions.create_new_game(self.user, msg)
+		actions.join_game(self.tom, self.game)
+
+
+	def test(self):
+
+		assert self.game.players_joined == 2
+
+		msg = messages.GameIdentifier(token=self.tom.get_token(), key=self.game.key.urlsafe())
+
+		game_msg = self.api.leave_game(msg)
+
+		game_list = models.UserGameList.get_or_create_addable_game_list(self.tom)
+
+		assert self.tom.key.id() not in game_msg.player_ids
+		assert game_msg.players_joined == 1

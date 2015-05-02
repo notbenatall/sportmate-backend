@@ -90,7 +90,7 @@ class Game(ndb.Model):
 	"""
 
 	category = ndb.KeyProperty(kind=SportCategory, repeated=True, indexed=True)
-	players_full = ndb.BooleanProperty(indexed=True, default=False)
+	players_full = ndb.BooleanProperty(indexed=False, default=False)
 	level = ndb.IntegerProperty(indexed=True, default=0)
 	time = ndb.DateTimeProperty(indexed=True, required=True)
 	end_time = ndb.DateTimeProperty(indexed=False, required=False)
@@ -102,6 +102,7 @@ class Game(ndb.Model):
 	location_name = ndb.StringProperty(indexed=False)
 	players = ndb.KeyProperty(kind=User, indexed=False, repeated=True)
 	creator = ndb.KeyProperty(kind=User, required=True)
+	show_in_search = ndb.BooleanProperty(indexed=True, default=True)
 
 
 	def update_geohash(self):
@@ -115,6 +116,10 @@ class Game(ndb.Model):
 		"""Validates this model."""
 		validate_parent(self, User)
 
+		# The game model must have either a geo location or a location name
+		if not self.geo and not self.location_name:
+			raise BadValueError
+
 		self.creator = self.key.parent()
 
 		if self.category is None or len(self.category) == 0:
@@ -124,8 +129,10 @@ class Game(ndb.Model):
 
 		if self.players_joined > self.players_needed:
 			raise BadValueError
-
+			
 		self.players_full = self.players_joined == self.players_needed
+
+		self.show_in_search = not self.players_full
 
 	def put(self):
 		"""Write this model to the database after validating."""
@@ -160,6 +167,12 @@ class UserGameList(ndb.Model):
 		if len(self.games) > 5000:
 			raise BadValueError
 
+	def _set_full(self):
+		if len(self.games) == 5000:
+			self.full = True
+		else:
+			self.full = False
+
 	def put(self):
 		"""Write this model to the database after validating."""
 		self.validate()
@@ -172,10 +185,12 @@ class UserGameList(ndb.Model):
 
 		self.games.append(game)
 
-		if len(self.games) == 5000:
-			self.full = True
-		else:
-			self.full = False
+		self._set_full()
+
+	def remove_game(self, game):
+		self.games.remove(game)
+		self._set_full()
+
 
 	@staticmethod
 	def get_or_create_addable_game_list(user):

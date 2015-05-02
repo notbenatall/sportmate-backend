@@ -4,8 +4,7 @@ Sportmate API v1
 Author: Dr. Adrian Letchford
 Author URL: http:www.DrAdrian.com
 
-This file holds all the actions for the backend system. The system runs on
-Google App Engine using the NoSQL DataStore for scalability.
+This file holds all the actions for the sports module.
 """
 
 from google.appengine.ext import ndb
@@ -37,12 +36,14 @@ def game_model_to_message(game):
 		msg.lat = game.geo.lat
 		msg.lon = game.geo.lon
 
-	categories = [cat_key.get() for cat_key in game.category]
-
+	categories = ndb.get_multi(game.category)
 	msg.categories_full = [sport_category_to_message(category)
 			for category in categories]
 
-	msg.players = [user_to_message(player.get()) for player in game.players[:5]]
+	list_of_players = ndb.get_multi(game.players[:5])
+	msg.players = [user_to_message(player) for player in list_of_players]
+
+	msg.player_ids = [player.id() for player in game.players]
 
 	return msg
 
@@ -81,7 +82,7 @@ def create_new_game(auth_user, details):
 
 	# Make sure the dates are in UTC time
 	if details.time.tzinfo is not None and details.time.utcoffset() is not None:
-		details.time =  details.time.replace(tzinfo=None) - details.time.utcoffset()
+		details.time = details.time.replace(tzinfo=None) - details.time.utcoffset()
 
 	game = mmglue.model_from_message(details, models.Game,
 		parent=auth_user.key,
@@ -89,10 +90,9 @@ def create_new_game(auth_user, details):
 		players_full=False,
 		players_joined=1,
 		players=[auth_user.key])
-	
 
-	if(details.lat and details.lon):
-		game.geo=ndb.GeoPt(details.lat, details.lon)
+	if details.lat and details.lon:
+		game.geo = ndb.GeoPt(details.lat, details.lon)
 
 	game.put()
 
@@ -107,9 +107,7 @@ def list_games():
 	"""Return a list of all the games."""
 	query = models.Game.query(models.Game.time > datetime.now())
 	games = query.fetch()
-	
 	games.sort(key=lambda g: g.time)
-
 	return list_of_games_to_message(games)
 
 @ndb.transactional(xg=True)
@@ -133,6 +131,52 @@ def join_game(user, game):
 	game_list.put()
 
 	return game
+
+@ndb.transactional(xg=True)
+def leave_game(user, game):
+	"""
+	Remove a user from a game.
+
+	TODO: Need to manage the situation of multiple user game lists.
+	"""
+
+	user = get_model(user, User)
+	game = get_model(game, models.Game)	
+
+	users_game_list = models.UserGameList.get_or_create_addable_game_list(user)
+
+	# Check to make sure that the user is in the game
+	if user.key not in game.players:
+		raise NotFoundException
+
+	# Check to make sure that the game is found with the user
+	if game.key not in users_game_list.games:
+		raise NotFoundException
+
+	# Remove user from the game
+	game.players.remove(user.key)
+	game.players_joined -= 1
+
+	# Remove game from the user
+	users_game_list.remove_game(game.key)
+
+	game.put()
+	users_game_list.put()
+
+	return game
+
+
+def get_upcoming(auth_user):
+	"""Gets the upcoming games that a user is attending."""
+	user = get_model(auth_user, User)
+
+	game_list = models.UserGameList.get_or_create_addable_game_list(user)
+	games = ndb.get_multi(game_list.games)
+
+	upcoming_games = [g for g in games if g.time > datetime.now()]
+	upcoming_games.sort(key=lambda g: g.time)
+
+	return list_of_games_to_message(games)
 
 
 # Modify a game

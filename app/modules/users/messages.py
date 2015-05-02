@@ -29,6 +29,12 @@ class UserMe(messages.Message):
 	facebook_id = messages.IntegerField(5, required=False)
 	first_name = messages.StringField(6)
 
+class AuthUser(messages.Message):
+	"""
+	Message identifying the authenticating user.
+	"""
+	token = messages.StringField(1)
+
 class UserId(messages.Message):
 	"""
 	Message from an authenticated user requesting information about another

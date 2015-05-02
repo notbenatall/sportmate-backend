@@ -22,8 +22,8 @@ class Users(remote.Service):
 	"""
 	Access and modify information about users.
 	"""
-	@endpoints.method(messages.UserId, messages.Relationship, path='friend/request',
-		http_method='POST', name='friendrequest')
+	@endpoints.method(messages.UserId, messages.Relationship,
+		path='friend/request', http_method='POST', name='friendrequest')
 	def friend_request(self, request):
 		"""Send a friend request."""
 		auth_user = actions.verify_and_get_user(token=request.token)
@@ -48,8 +48,8 @@ class Users(remote.Service):
 
 		return msg
 
-	@endpoints.method(messages.UserId, messages.Relationship, path='friend/unfriend',
-		http_method='POST', name='friendunfriend')
+	@endpoints.method(messages.UserId, messages.Relationship,
+		path='friend/unfriend', http_method='POST', name='friendunfriend')
 	def unfriend(self, request):
 		"""
 		Remove the specified user as a friend of the authenticating user.
@@ -64,8 +64,8 @@ class Users(remote.Service):
 		return msg
 
 
-	@endpoints.method(messages.TwoUserIds, messages.Relationship, path='user/relationship',
-		http_method='GET', name='userrelationship')
+	@endpoints.method(messages.TwoUserIds, messages.Relationship,
+		path='user/relationship', http_method='GET', name='userrelationship')
 	def get_relationship(self, request):
 		"""
 		Returns the relationship between two users.

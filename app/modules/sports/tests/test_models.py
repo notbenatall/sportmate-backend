@@ -9,28 +9,12 @@ from google.appengine.ext import ndb
 from google.appengine.ext import testbed
 from google.appengine.ext.db import BadValueError
 
+from testtools import DatastoreTest
+
 import users.models as usermodels
 import sports.models as models
 
-def test_nothing():
-	assert True == True
-
-class BasicModelTest(object):
-	def setup(self):
-		# First, create an instance of the Testbed class.
-		self.testbed = testbed.Testbed()
-		# Then activate the testbed, which prepares the service stubs for use.
-		self.testbed.activate()
-		# Next, declare which service stubs you want to use.
-		self.testbed.init_datastore_v3_stub()
-		self.testbed.init_memcache_stub()
- 
-	def teardown(self):
-		self.testbed.deactivate()
-
-
-
-class TestSportCategoryModel(BasicModelTest):
+class TestSportCategoryModel(DatastoreTest):
 
 	@raises(BadValueError)
 	def testEmptyPut(self):
@@ -62,7 +46,7 @@ class TestSportCategoryModel(BasicModelTest):
 		assert cat2.key in cat3.parents
 
 
-class TestSportCategoryModelGetAll(BasicModelTest):
+class TestSportCategoryModelGetAll(DatastoreTest):
 	def test(self):
 
 		cat = models.SportCategory(name='Cycling')
@@ -74,46 +58,42 @@ class TestSportCategoryModelGetAll(BasicModelTest):
 		assert categories[0].name == 'Cycling'
 
 
-class TestGameModel(BasicModelTest):
+class TestGameModel(DatastoreTest):
+
+	def setup(self):
+		super(TestGameModel, self).setup()
+
+		self.user = usermodels.User(full_name = 'Rowan Atkinson', first_name="Rowan")
+		self.user.put()
+
+		self.cat = models.SportCategory(name='Basketball')
+		self.cat.put()
 
 	def testBasicPut(self):
-		user = usermodels.User(full_name = 'Rowan Atkinson', first_name="Rowan")
-		user.put()
-
-		cat = models.SportCategory(name='category')
-		cat.put()
-
 		game = models.Game(
-			name='Basket Ball',
-			category = [cat.key],
+			category = [self.cat.key],
 			players_needed=5,
 			geo=ndb.GeoPt(37, -122),
 			time = datetime.now(),
-			parent = user.key
+			parent = self.user.key
 			)
 		game.put()
 
 	@raises(BadValueError)
 	def test_missing_category(self):
-		user = usermodels.User(full_name = 'Rowan Atkinson', first_name="Rowan")
-		user.put()
-
 		game = models.Game(
-			name='Basket Ball',
 			players_needed=5,
 			geo=ndb.GeoPt(37, -122),
 			time = datetime.now(),
-			parent = user.key
+			parent = self.user.key
 			)
 		game.put()
 
 
 	def test_update_geohash(self):
-
 		game = models.Game(
 			geo=ndb.GeoPt(37, -122),
 			)
-
 		game.update_geohash()
 
 		assert type(game.geohash) is str 
@@ -121,20 +101,12 @@ class TestGameModel(BasicModelTest):
 
 	@raises(BadValueError)
 	def test_too_many_players(self):
-
-		user = usermodels.User(full_name = 'Rowan Atkinson', first_name="Rowan")
-		user.put()
-
-		cat = models.SportCategory(name='category')
-		cat.put()
-
 		game = models.Game(
-			name='Basket Ball',
-			category = [cat.key],
+			category = [self.cat.key],
 			players_needed=5,
 			players_joined=6, # Too many players have joined!
 			geo=ndb.GeoPt(37, -122),
 			time = datetime.now(),
-			parent = user.key
+			parent = self.user.key
 			)
 		game.put()
