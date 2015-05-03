@@ -19,9 +19,9 @@ import modules.sports.exceptions as exceptions
 def test_nothing():
 	assert True == True
 
-class TestGeneral(DatastoreTest):
-
-	def test_get_all_sports(self):
+class TestGetAllCategories(DatastoreTest):
+	
+	def test(self):
 
 		cat1 = models.SportCategory(name='Ball')
 		cat1.put()
@@ -42,6 +42,9 @@ class TestGeneral(DatastoreTest):
 		assert everything.categories[2].name == 'Football'
 		assert len(everything.categories[2].parent_ids) == 1
 		assert everything.categories[2].parent_ids[0] == cat1.key.id()
+
+
+class TestGeneral(HRDatastoreTest):
 
 
 	def test_create_new_game(self):

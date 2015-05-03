@@ -12,7 +12,7 @@ import endpoints
 from protorpc import remote
 import mmglue
 
-import users.actions as actions
+import modules.users.actions as actions
 import modules.users.messages as messages
 
 import modules.api

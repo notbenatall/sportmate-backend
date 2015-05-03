@@ -12,6 +12,9 @@ handlers:
  - url: /_ah/spi/.*
    script: service.APPLICATION
 
+builtins:
+- remote_api: on
+
 libraries:
 #- name: webapp2
 #  version: latest

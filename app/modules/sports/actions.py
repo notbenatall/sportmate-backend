@@ -24,6 +24,7 @@ def sport_category_to_message(category):
 	"""Convert a sport category model into a message."""
 	msg = mmglue.message_from_model(category, messages.SportCategory)
 	msg.paths = category.paths
+	msg.parent_ids = [c.id() for c in category.parents]
 	return msg
 
 def game_model_to_message(game):
@@ -61,13 +62,11 @@ def get_all_categories():
 
 	everything = messages.CategoryList()
 
-	for cat in categories:
-		cat_msg = mmglue.message_from_model(cat, messages.SportCategory)
-		cat_msg.parent_ids = [parent_key.id() for parent_key in cat.parents]
-		everything.categories.append(cat_msg)
+	everything.categories = [sport_category_to_message(c) for c in categories]
 
 	return everything
 
+@ndb.transactional(xg=True)
 def create_new_game(auth_user, details):
 	"""Creates a new sport game."""
 
@@ -99,6 +98,7 @@ def create_new_game(auth_user, details):
 	# Add game to the user
 	game_list = models.UserGameList.get_or_create_addable_game_list(auth_user)
 	game_list.add_game(game.key)
+
 	game_list.put()
 
 	return game
@@ -141,7 +141,7 @@ def leave_game(user, game):
 	"""
 
 	user = get_model(user, User)
-	game = get_model(game, models.Game)	
+	game = get_model(game, models.Game)
 
 	users_game_list = models.UserGameList.get_or_create_addable_game_list(user)
 

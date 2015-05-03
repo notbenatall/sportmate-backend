@@ -25,12 +25,11 @@ def dummy_data_create_categories():
 	"""Creates some dummy cateogories for building the front end."""
 
 	categories = [
-		('Ball Games', []),
-		('Racket Games', []),
-		('Basket Ball', ['Ball Games']),
-		('Tennis', ['Ball Games', 'Racket Games']),
-		('Football', ['Ball Games']),
-		('Badminton', ['Racket Games']),
+		('Basketball', []),
+		('Tennis', []),
+		('Football', []),
+		('Badminton', []),
+		('Unicyling', []),
 	]
 
 	entities = []
@@ -95,7 +94,8 @@ def dummy_data_create_games(categories, user_list):
 	for _ in range(20):
 
 		# Get a random cateogory
-		category = random.choice([cat for cat in categories if len(cat.paths) > 0])
+		#category = random.choice([cat for cat in categories if len(cat.paths) > 0])
+		category = random.choice([cat for cat in categories])
 
 		# University of Warwick boundaries
 		north = 52.391688

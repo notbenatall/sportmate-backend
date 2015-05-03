@@ -42,6 +42,12 @@ def user_key_id_to_user(uinput):
 	if type(uinput) is models.User:
 		return uinput
 
+	try:
+		if uinput.key.kind() == "User":
+			return uinput
+	except Exception as error:
+		pass
+
 	if type(uinput) is ndb.Key:
 		user = uinput.get()
 		if user is None:
@@ -116,8 +122,8 @@ def friend_request(sender_id, receiever_id):
 	sender = models.User.get_by_id(sender_id)
 	reciever = models.User.get_by_id(receiever_id)
 
-	if sender is None or type(sender) is not models.User or \
-		reciever is None or type(reciever) is not models.User:
+	if sender is None or sender.key.kind() is not "User" or \
+		reciever is None or reciever.key.kind() is not "User":
 		raise NotFoundException("Users do not exist.")
 
 	# Get a relationship model in the transaction

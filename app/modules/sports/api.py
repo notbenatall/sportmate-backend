@@ -75,3 +75,12 @@ class Sports(remote.Service):
 		"""Returns a list of all the user's upcoming games."""
 		auth_user = verify_and_get_user(token=request.token)
 		return actions.get_upcoming(auth_user)
+
+
+
+	@endpoints.method(AuthUser, messages.CategoryList, path='categories/all',
+		http_method='POST', name='allcategories')
+	def get_all_categories(self, request):
+		"""Returns a list of all the user's upcoming games."""
+		verify_and_get_user(token=request.token)
+		return actions.get_all_categories()

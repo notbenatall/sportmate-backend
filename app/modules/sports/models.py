@@ -10,8 +10,8 @@ This file holds all the models.
 
 from google.appengine.ext import ndb
 from google.appengine.ext.db import BadValueError
-from misc import validate_parent
-from users.models import User
+from modules.misc import validate_parent
+from modules.users.models import User
 import Geohash
 
 
@@ -129,7 +129,7 @@ class Game(ndb.Model):
 
 		if self.players_joined > self.players_needed:
 			raise BadValueError
-			
+
 		self.players_full = self.players_joined == self.players_needed
 
 		self.show_in_search = not self.players_full
@@ -168,6 +168,7 @@ class UserGameList(ndb.Model):
 			raise BadValueError
 
 	def _set_full(self):
+		"""Set the full property."""
 		if len(self.games) == 5000:
 			self.full = True
 		else:
@@ -188,6 +189,7 @@ class UserGameList(ndb.Model):
 		self._set_full()
 
 	def remove_game(self, game):
+		"""Removes a game from this list."""
 		self.games.remove(game)
 		self._set_full()
 

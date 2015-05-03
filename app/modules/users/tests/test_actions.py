@@ -59,8 +59,6 @@ class TestFriendships(testtools.HRDatastoreTest):
         assert self.sender.key not in friend_list_reciever.friends
 
 
-
-
 class TestFriendRequest(TestFriendships):
 
     @raises(NotFoundException)
@@ -68,7 +66,9 @@ class TestFriendRequest(TestFriendships):
         actions.friend_request(76576533, 8768665)
 
     def test_created_friend_request(self):
+
         actions.friend_request(self.sender.key.id(), self.reciever.key.id())
+
         relation = models.Relationship.get_by_users(self.sender, self.reciever)
 
         assert relation is not None
@@ -141,7 +141,8 @@ class TestUnfriend2(TestFriendships):
         self.assert_in_friends_list()
 
         relationship = actions.unfriend(self.sender.key.id(), self.reciever.key.id())
-        assert type(relationship) is models.Relationship
+        
+        assert relationship.key.kind() == "Relationship"
         self.assert_not_in_friends_list()
         assert relationship.is_friends == False
         assert relationship.friend_unfriender == self.sender.key

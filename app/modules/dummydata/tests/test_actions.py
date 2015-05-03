@@ -25,10 +25,10 @@ class TestDummyData(HRDatastoreTest):
 
 	def test_create_categories(self):
 
-		cat = sports.models.SportCategory.get_by_name("basket ball")
+		cat = sports.models.SportCategory.get_by_name("basketball")
 
 
-		assert cat.name == 'Basket Ball'
+		assert cat.name == 'Basketball'
 
 
 class TestDummyData2(HRDatastoreTest):

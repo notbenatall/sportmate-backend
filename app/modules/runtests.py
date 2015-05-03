@@ -28,7 +28,7 @@ sys.path.append('/home/adrian/Development/google_appengine/lib/protorpc-1.0')
 # Allow access to the modules made available to this app
 sys.path.append('lib')
 sys.path.append('include')
-sys.path.append('modules')
+#sys.path.append('modules')
 
 os.environ['SERVER_SOFTWARE'] = "Dev test"
 

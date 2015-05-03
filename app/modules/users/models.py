@@ -12,7 +12,7 @@ This file holds the models for users.
 from google.appengine.ext import ndb
 from google.appengine.ext.db import BadValueError
 from Crypto.Hash import SHA
-import misc # sportmate's misc module
+import modules.misc as misc # sportmate's misc module
 
 class User(ndb.Model):
 	"""Models a User."""

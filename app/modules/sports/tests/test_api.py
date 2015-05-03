@@ -179,3 +179,34 @@ class TestLeaveGame(APITest):
 
 		assert self.tom.key.id() not in game_msg.player_ids
 		assert game_msg.players_joined == 1
+
+
+class TestGetAllCategories(DatastoreTest):
+
+	def setup(self):
+		super(TestGetAllCategories, self).setup()
+
+		# Expose the api
+		self.api = modules.sports.api.Sports()
+	
+	def test(self):
+
+		cat1 = models.SportCategory(name='Ball')
+		cat1.put()
+
+		cat2 = models.SportCategory(name='Archery')
+		cat2.put()
+
+		cat3 = models.SportCategory(name='Football')
+		cat3.add_parent(cat1)
+		cat3.put()
+
+		everything = actions.get_all_categories()
+
+		assert type(everything) == messages.CategoryList
+		assert len(everything.categories) == 3
+
+		assert everything.categories[0].name == 'Archery'
+		assert everything.categories[2].name == 'Football'
+		assert len(everything.categories[2].parent_ids) == 1
+		assert everything.categories[2].parent_ids[0] == cat1.key.id()
