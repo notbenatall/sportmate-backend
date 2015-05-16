@@ -10,7 +10,8 @@ python make_client_core.py get_client_lib java \
 	-bs gradle \
 	 modules.facebook.api.FacebookLogin \
 	 modules.users.api.Users \
-	 modules.sports.api.Sports
+	 modules.sports.api.Sports \
+	 modules.chat.api.Chat
 
 echo "Extracting"
 

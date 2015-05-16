@@ -6,6 +6,7 @@ import modules.api
 import modules.facebook.api
 import modules.users.api
 import modules.sports.api
+import modules.chat.api
 
 import modules.misc as misc
 

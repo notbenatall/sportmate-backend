@@ -4,20 +4,12 @@
 		"selected_items":
 		[
 			[
-				"in",
-				"initialise_new_token"
+				"se",
+				"sender_id"
 			],
 			[
-				"get",
-				"get_token"
-			],
-			[
-				"players",
-				"players_joined"
-			],
-			[
-				"category",
-				"category_keys"
+				"Sport",
+				"SportCategory"
 			],
 			[
 				"assert",
@@ -28,50 +20,26 @@
 	"buffers":
 	[
 		{
-			"file": "modules/sports/messages.py",
+			"file": "modules/chat/actions.py",
 			"settings":
 			{
-				"buffer_size": 2657,
+				"buffer_size": 2437,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "modules/sports/models.py",
+			"file": "modules/chat/messages.py",
 			"settings":
 			{
-				"buffer_size": 5234,
+				"buffer_size": 1502,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "modules/sports/api.py",
+			"file": "app.yaml",
 			"settings":
 			{
-				"buffer_size": 2251,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "modules/sports/tests/test_actions.py",
-			"settings":
-			{
-				"buffer_size": 7729,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "modules/sports/tests/test_api.py",
-			"settings":
-			{
-				"buffer_size": 4258,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "modules/sports/actions.py",
-			"settings":
-			{
-				"buffer_size": 4898,
+				"buffer_size": 404,
 				"line_ending": "Unix"
 			}
 		}
@@ -87,7 +55,7 @@
 	},
 	"console":
 	{
-		"height": 0.0
+		"height": 139.0
 	},
 	"distraction_free":
 	{
@@ -100,85 +68,84 @@
 	},
 	"file_history":
 	[
-		"/home/adrian/Dropbox/My Products/Loud News/Android App/app/src/main/res/layout/activity_user_news_feed.xml",
-		"/home/adrian/Dropbox/My Products/Loud News/Android App/app/src/main/res/layout/fragment_discovery_feed.xml",
-		"/home/adrian/Dropbox/My Products/Loud News/Android App/app/src/main/java/com/loudnews/loudnewsapp/fragments/DiscoveryFeedFragment.java",
-		"/home/adrian/Dropbox/My Products/Loud News/Android App/app/src/main/java/com/loudnews/loudnewsapp/fragments/GenericNewsTwitterFeedFragment.java",
-		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/sports/actions.py",
-		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/facebook/actions.py",
-		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/dummydata/actions.py",
-		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/misc/models.py",
-		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/sports/tests/test_api.py",
-		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/facebook/api.py",
-		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/sports/api.py",
-		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/sports/tests/test_actions.py",
-		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/sports/models.py",
-		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/runtests.py",
-		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/misc/__init__.py",
-		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/users/messages.py",
-		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/users/actions.py",
-		"/home/adrian/Dropbox/My Products/Loud News/Android App/app/src/main/java/com/loudnews/loudnewsapp/WelcomeActivity.java",
-		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/users/api.py",
-		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/users/tests/test_api.py",
-		"/home/adrian/Dropbox/My Products/Loud News/Android App/app/src/main/java/com/loudnews/loudnewsapp/TwitterLoginActivity.java",
-		"/home/adrian/Dropbox/My Products/Loud News/Android App/app/src/main/java/com/loudnews/loudnewsapp/data/TwitterInterface.java",
+		"/mnt/Storage/Chewyraver/My Documents/Little Red Riding Hood.odt",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/sports/messages.py",
-		"/home/adrian/Dropbox/My Products/Sportmate/landing page/Startup Landing Page/statup landing page app/actions.py",
-		"/home/adrian/Dropbox/My Products/Sportmate/landing page/Startup Landing Page/statup landing page app/main.py",
-		"/home/adrian/Dropbox/My Products/Sportmate/landing page/Startup Landing Page/statup landing page app/static/scripts/form_process.php",
-		"/home/adrian/Dropbox/My Products/Sportmate/landing page/Startup Landing Page/statup landing page app/static/scripts/form-u256.php",
-		"/home/adrian/Dropbox/My Products/Sportmate/Sportmate Shared/Details",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/chat/messages.py",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/chat/models.py",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/chat/api.py",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/mkclient",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/chat/tests/test_api.py",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/chat/tests/test_models.py",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/chat/tests/test_actions.py",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/users/actions.py",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/dummydata/actions.py",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/dummydata/tests/test_actions.py",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/users/api.py",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/chat/actions.py",
+		"/home/adrian/Dropbox/My Products/Loud News/Android App/app/src/main/java/com/loudnews/loudnewsapp/data/TwitterDatabase.java",
+		"/home/adrian/.AndroidStudio/studio.vmoptions",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/client_library/sportmate/src/main/java/com/appspot/testsportmateapi/sportmate/SportmateRequest.java",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/client_library/sportmate/src/main/java/com/appspot/testsportmateapi/sportmate/model/ModulesSportsMessagesGame.java",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/client_library/sportmate/src/main/java/com/appspot/testsportmateapi/sportmate/SportmateScopes.java",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/client_library/sportmate/src/main/java/com/appspot/testsportmateapi/sportmate/Sportmate.java",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/sports/actions.py",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/sports/models.py",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/sports/tests/test_actions.py",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/sports/api.py",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/sports/tests/test_api.py",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/users/messages.py",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/users/messages.pyc",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/sports/tests/test_models.py",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/facebook/api.py",
 		"/home/adrian/Dropbox/My Products/Sportmate/landing page/Startup Landing Page/statup landing page app/templates/index2.html",
-		"/home/adrian/Dropbox/My Products/Sportmate/landing page/Startup Landing Page/statup landing page app/templates/index.html",
-		"/home/adrian/Dropbox/My Products/Sportmate/landing page/Muse 2/index2.html",
-		"/home/adrian/Dropbox/My Research/My Papers/Working Papers/Birth Rate and Mortality Rates/Submission (3) to Royal Society Interface/paper/makediff",
-		"/home/adrian/Dropbox/My Research/My Papers/Submitted Papers/The Advantage of Short Paper Titles/Submission (3) to Royal Society Open Science/diff/makediff",
-		"/home/adrian/Dropbox/My Products/Sportmate/backend/update",
-		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/app.yaml",
-		"/home/adrian/Dropbox/My Products/Loud News/Android App/app/src/main/res/drawable/action_bar_bg.xml",
-		"/home/adrian/Dropbox/My Products/Loud News/Android App/app/src/main/res/values-v21/styles.xml",
-		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/misc/tests/tests.py",
-		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/service.py",
-		"/home/adrian/Dropbox/My Products/Loud News/Android App/app/src/main/res/values-v16/styles.xml",
-		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/appengine_config.py",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/users/models.py",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/misc/models.py",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/misc/tests/test_models.py",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/misc/tests/test_math.py",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/misc/__init__.py",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/misc/math.py",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/facebook/actions.py",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/facebook/models.py",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/facebook/tests/test_actions.py",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/facebook/tests/test_models.py",
-		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/sports/tests/test_models.py",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/users/tests/test_actions.py",
-		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/users/tests/test_models.py",
-		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/sports/tests/test_actions.pyc",
-		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/dummydata/api.py",
-		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/sports/exceptions.py",
-		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/dummydata/tests/test_actions.py",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/dummydata/tests/test_api.py",
-		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/include/mmglue/__init__.py",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/sports/tests/test_messages.py",
-		"/home/adrian/Dropbox/My Products/Loud News/Android App/app/src/main/res/layout/element_news_tweet_tile.xml",
-		"/home/adrian/Development/android-studio/bin/studio.sh",
-		"/home/adrian/Dropbox/My Products/Sportmate/Android App/studio",
-		"/home/adrian/Dropbox/My Products/Loud News/Android App/app/src/main/res/values/dimens.xml",
-		"/home/adrian/Dropbox/My Products/Loud News/Android App/app/src/main/java/com/loudnews/loudnewsapp/data/LoudNewsInterface.java",
-		"/home/adrian/Dropbox/My Products/Loud News/Android App/app/src/main/java/com/loudnews/loudnewsapp/fragments/NotificationFragment.java",
+		"/home/adrian/Dropbox/My Research/Code/funcache/tests/tests.py",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/include/mmglue.py",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/include/mmglue.pyc",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/service.py",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/dummydata/api.py",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/admin/tests/test_actions.py",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/admin/actions.py",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/admin/api.py",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/include/testtools.py",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/users/tests/test_models.py",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/runserver",
-		"/home/adrian/Dropbox/My Products/Loud News/Android App/app/src/main/res/values/strings.xml",
-		"/home/adrian/Dropbox/My Products/Loud News/Android App/app/src/main/java/com/loudnews/loudnewsapp/adapters/NewsTweetAdapter.java",
-		"/home/adrian/Dropbox/My Products/Loud News/Android App/app/src/main/java/com/loudnews/loudnewsapp/models/NewsTweet.java",
-		"/home/adrian/Dropbox/My Products/Loud News/Android App/app/src/main/java/com/loudnews/loudnewsapp/models/Tweet.java",
-		"/home/adrian/Dropbox/My Products/Loud News/Android App/app/src/main/java/com/loudnews/loudnewsapp/adapters/NotificationAdapter.java",
-		"/home/adrian/Dropbox/My Products/Loud News/Android App/app/src/main/java/com/loudnews/loudnewsapp/adapters/HomeActivityPageAdapter.java",
-		"/home/adrian/Dropbox/My Products/Loud News/Android App/app/src/main/AndroidManifest.xml",
-		"/home/adrian/Dropbox/My Products/Loud News/Android App/app/src/main/java/com/loudnews/loudnewsapp/adapters/TwitterUserTileAdapter.java",
-		"/home/adrian/Dropbox/My Products/Loud News/Android App/app/build.gradle",
-		"/home/adrian/Dropbox/My Products/Loud News/Android App/app/src/main/res/layout/activity_single_conversation.xml",
-		"/home/adrian/Dropbox/My Products/Loud News/Android App/app/src/main/java/com/loudnews/loudnewsapp/fragments/BasicPagerFragment.java",
-		"/home/adrian/Dropbox/My Products/Sportmate/backend/mkclient",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/admin/tests/test_api.py",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/appengine_config.py",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/misc/messages.py",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/admin/__init__.py",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/sports/__init__.py",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/pylintrc",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/build",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/runtests.py",
+		"/home/adrian/Dropbox/My Products/Loud News/Android App/app/src/main/res/layout/framgent_conversation.xml",
+		"/home/adrian/Dropbox/My Products/Loud News/Android App/app/src/main/java/com/loudnews/loudnewsapp/HomeActivity.java",
+		"/home/adrian/Dropbox/My Products/Loud News/Android App/app/src/main/res/layout/pager_news.xml",
+		"/home/adrian/Dropbox/My Products/Loud News/Android App/app/src/main/res/layout/pager_search.xml",
+		"/home/adrian/Dropbox/My Products/Loud News/Android App/app/src/main/res/layout/activity_user_news_feed.xml",
+		"/home/adrian/Dropbox/My Products/Loud News/Android App/app/src/main/res/layout/activity_channels.xml",
+		"/home/adrian/Dropbox/My Products/Loud News/Android App/app/src/main/res/layout/fragment_plain_feed.xml",
+		"/home/adrian/Dropbox/My Products/Loud News/Android App/app/src/main/java/com/loudnews/loudnewsapp/WelcomeActivity.java",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/.gitignore",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/app.yaml",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/report",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/README.md",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/client_library/make_client_core.py",
 		"/home/adrian/Development/google_appengine/lib/fancy_urllib/__init__.py",
 		"/home/adrian/Development/google_appengine/lib/fancy_urllib/fancy_urllib/__init__.py",
+		"/home/adrian/Dropbox/My Research/My Papers/Submitted Papers/The Advantage of Short Paper Titles/Submission (3) to Royal Society Open Science/diff/makediff",
 		"/home/adrian/Dropbox/My Research/My Papers/Working Papers/Birth Rate and Mortality Rates/paper/paper/lpm2014EPJDS.tex",
 		"/home/adrian/Dropbox/My Research/My Papers/Working Papers/The Advantage of Simple Paper Abstracts/code/data analysis/text output/journals full model.txt",
 		"/home/adrian/Dropbox/My Research/Collaborating/Adrian and Federico/Bank of England Visualisation Competition/code/data/raw data/READ ME.md",
@@ -190,7 +157,6 @@
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/sportmate/tests/test_models.py",
 		"/home/adrian/Dropbox/My Products/Loud News/Backend/v2/app/models.py",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/sportmate/models.py",
-		"/home/adrian/Dropbox/My Research/Code/funcache/tests/tests.py",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/sportmate/actions.py",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/sportmate/api.py",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/messages.py",
@@ -232,14 +198,6 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"key",
-			"Email",
-			".svg",
-			"href=\"",
-			"src=\"",
-			"action_bar_bg",
-			"first_nam",
-			"msg",
 			".\n",
 			"random_string",
 			"random_token",
@@ -262,23 +220,23 @@
 	"groups":
 	[
 		{
-			"selected": 5,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "modules/sports/messages.py",
+					"file": "modules/chat/actions.py",
 					"settings":
 					{
-						"buffer_size": 2657,
+						"buffer_size": 2437,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1965,
-								1965
+								1703,
+								1703
 							]
 						],
 						"settings":
@@ -287,25 +245,25 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 612.0,
+						"translation.y": 510.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "modules/sports/models.py",
+					"file": "modules/chat/messages.py",
 					"settings":
 					{
-						"buffer_size": 5234,
+						"buffer_size": 1502,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3501,
-								3501
+								792,
+								792
 							]
 						],
 						"settings":
@@ -314,115 +272,33 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1530.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "modules/sports/api.py",
+					"file": "app.yaml",
 					"settings":
 					{
-						"buffer_size": 2251,
+						"buffer_size": 404,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1860,
-								1860
+								17,
+								17
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/YAML/YAML.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 459.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "modules/sports/tests/test_actions.py",
-					"settings":
-					{
-						"buffer_size": 7729,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								6852,
-								6852
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 4780.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "modules/sports/tests/test_api.py",
-					"settings":
-					{
-						"buffer_size": 4258,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3859,
-								3859
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 2247.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "modules/sports/actions.py",
-					"settings":
-					{
-						"buffer_size": 4898,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4266,
-								4266
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 765.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -463,7 +339,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 433.0
+		"height": 452.0
 	},
 	"replace":
 	{
@@ -484,7 +360,7 @@
 		"selected_items":
 		[
 		],
-		"width": 380.0
+		"width": 650.0
 	},
 	"show_minimap": true,
 	"show_open_files": false,

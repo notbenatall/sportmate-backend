@@ -110,3 +110,17 @@ class Users(remote.Service):
 		msg = actions.me_to_message(auth_user)
 
 		return msg
+
+
+
+	@endpoints.method(messages.UserSearch, messages.UserList,
+		path='user/search', http_method='POST',
+		name='usersearch')
+	def user_search(self, request):
+		"""
+		Searchers for users
+		"""
+		actions.verify_and_get_user(token=request.token)
+
+		msg = actions.user_search(request.term)
+		return msg

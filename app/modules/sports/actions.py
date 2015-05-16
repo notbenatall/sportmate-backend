@@ -160,7 +160,11 @@ def leave_game(user, game):
 	# Remove game from the user
 	users_game_list.remove_game(game.key)
 
-	game.put()
+	if len(game.players) == 0:
+		game.key.delete()
+	else:
+		game.put()
+
 	users_game_list.put()
 
 	return game
@@ -176,7 +180,7 @@ def get_upcoming(auth_user):
 	upcoming_games = [g for g in games if g.time > datetime.now()]
 	upcoming_games.sort(key=lambda g: g.time)
 
-	return list_of_games_to_message(games)
+	return list_of_games_to_message(upcoming_games)
 
 
 # Modify a game

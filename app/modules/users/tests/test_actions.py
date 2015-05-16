@@ -203,3 +203,25 @@ class TestGetFriendList(TestFriendships):
 
         flist = actions.get_friends_list(self.sender)
         assert len(flist.friends) == 1
+
+
+
+class TestUserSearch(testtools.DatastoreTest):
+
+    def setup(self):
+        super(TestUserSearch, self).setup()
+
+        self.adrian = models.User(full_name='Adrian Letchford', first_name="Adrian")
+        self.adrian.put()
+
+        self.tom = models.User(full_name='Tom Haleminh', first_name="Tom")
+        self.tom.put()
+
+
+    def test_search_for_adrian(self):
+        
+        result = actions.user_search("ad")
+        users = result.users
+
+        assert len(users) == 1
+        assert users[0].full_name == "Adrian Letchford"

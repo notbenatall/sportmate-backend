@@ -198,3 +198,33 @@ class TestGetUser(TestAPI):
 
 		assert myself.token == self.me.get_token()
 		assert myself.facebook_id == 1234
+
+
+
+
+
+class TestUserSearch(DatastoreTest):
+
+    def setup(self):
+        super(TestUserSearch, self).setup()
+
+        # Expose the api
+        self.api = users.api.Users()
+
+        self.adrian = models.User(full_name='Adrian Letchford', first_name="Adrian")
+        self.adrian.initialise_new_token()
+        self.adrian.put()
+
+        self.tom = models.User(full_name='Tom Haleminh', first_name="Tom")
+        self.tom.put()
+
+
+    def test_search_for_adrian(self):
+        
+        request = messages.UserSearch(token=self.adrian.get_token(), term="ad")
+
+        result = self.api.user_search(request)
+        users = result.users
+
+        assert len(users) == 1
+        assert users[0].full_name == "Adrian Letchford"

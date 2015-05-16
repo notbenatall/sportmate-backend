@@ -42,11 +42,9 @@ def user_key_id_to_user(uinput):
 	if type(uinput) is models.User:
 		return uinput
 
-	try:
-		if uinput.key.kind() == "User":
-			return uinput
-	except Exception as error:
-		pass
+	if hasattr(uinput, 'key') and hasattr(uinput.key, 'kind') and \
+			uinput.key.kind() == "User":
+		return uinput
 
 	if type(uinput) is ndb.Key:
 		user = uinput.get()
@@ -237,3 +235,19 @@ def get_friends_list(user):
 	user = user_key_id_to_user(user)
 	friendlist = models.FriendList.get_or_create_addable_friend_list(user)
 	return friendlist
+
+
+def user_search(term):
+	"""Returns a list of users whose name starts with term."""
+
+	term = term.lower()
+
+	field = "searchable_name"
+	gql = "SELECT * FROM User WHERE {0} >= :1 AND {0} < :2".format(field)
+	query = ndb.gql(gql, term, unicode(term) + u"\ufffd")
+
+	users = query.fetch(20)
+
+	msg = messages.UserList()
+	msg.users = [user_to_message(u) for u in users]
+	return msg

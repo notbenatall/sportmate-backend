@@ -56,8 +56,6 @@ def grant_user_access_from_code(redirect_url, **kwargs):
 
 	profile = login.get_profile()
 
-	print profile
-
 	account = models.FacebookAccount.get_by_facebook_id(profile['id'])
 
 	if account is None:

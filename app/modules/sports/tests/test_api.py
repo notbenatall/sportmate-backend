@@ -3,7 +3,7 @@ import nose
 from nose.tools import *
 from nose.plugins.attrib import attr
 import logging
-from datetime import datetime
+from datetime import datetime, timedelta
 import endpoints
 from google.appengine.ext.db import BadValueError
 from endpoints import UnauthorizedException, NotFoundException
@@ -121,7 +121,7 @@ class TestGetUpcoming(APITest):
 		msg = messages.NewGame(
 			categories = ["Basketball"],
 			level = 1,
-			time = datetime.now(),
+			time = datetime.now()+ timedelta(days=7),
 			name = "Adrian's big play off",
 			players_needed = 2,
 			lat = 34.0,

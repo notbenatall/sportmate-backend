@@ -40,6 +40,7 @@ class TestDummyData2(HRDatastoreTest):
 
 	def test_create_lots_of_games(self):
 
-		games = sports.models.Game.query().fetch()
+		for _ in range(10):
+			games = sports.models.Game.query().fetch(keys_only=True)
 
 		assert len(games) == 20

@@ -29,6 +29,11 @@ class UserMe(messages.Message):
 	facebook_id = messages.IntegerField(5, required=False)
 	first_name = messages.StringField(6)
 
+
+class UserList(messages.Message):
+	"""Message containing a list of users."""
+	users = messages.MessageField(User, 1, repeated=True)
+
 class AuthUser(messages.Message):
 	"""
 	Message identifying the authenticating user.
@@ -80,3 +85,11 @@ class FriendList(messages.Message):
 	Message containing a user's list of friends.
 	"""
 	friends = messages.IntegerField(1, repeated=True)
+
+
+class UserSearch(messages.Message):
+	"""
+	Request message to search for users by name.
+	"""
+	token = messages.StringField(1)
+	term = messages.StringField(2)

@@ -269,7 +269,7 @@ class TestGetUpcoming(HRDatastoreTest):
 		msg = messages.NewGame(
 			categories = ["Basketball"],
 			level = 1,
-			time = datetime.now(),
+			time = datetime.now() + timedelta(days=7),
 			name = "Adrian's big play off",
 			players_needed = 2,
 			lat = 34.0,
@@ -325,3 +325,60 @@ class TestLeaveGame(HRDatastoreTest):
 		assert self.tom.key not in game.players
 		assert game.players_joined == 1
 		assert self.game.key not in users_game_list.games
+
+
+class TestLeaveGameEmpty(HRDatastoreTest):
+
+	def setup(self):
+		super(TestLeaveGameEmpty, self).setup()
+
+		self.user = usermodels.User(full_name="Adrian", first_name="Adrian")
+		self.user.put()
+
+		msg = messages.NewGame(
+			categories = ["Basket Ball"],
+			level = 1,
+			time = datetime.now(),
+			name = "Adrian's big play off",
+			players_needed = 2,
+			lat = 34.0,
+			lon = 89.0)
+
+		self.game = actions.create_new_game(self.user, msg)
+
+	def test(self):
+
+		game = actions.leave_game(self.user, self.game.key)
+
+		retrieved_game = self.game.key.get()
+
+		assert retrieved_game is None
+
+
+class TestGetUpcomingOldGames(HRDatastoreTest):
+
+	def setup(self):
+		super(TestGetUpcomingOldGames, self).setup()
+
+		self.user = usermodels.User(full_name="Adrian", first_name="Adrian")
+		self.user.put()
+
+		self.cat = models.SportCategory(name='Basketball')
+		self.cat.put()
+
+		msg = messages.NewGame(
+			categories = ["Basketball"],
+			level = 1,
+			time = datetime.now() - timedelta(days=2),
+			name = "Adrian's big play off",
+			players_needed = 2,
+			lat = 34.0,
+			lon = 89.0)
+
+		self.game = actions.create_new_game(self.user, msg)
+
+	def test(self):
+
+		games_msg = actions.get_upcoming(self.user)
+
+		assert len(games_msg.games) == 0

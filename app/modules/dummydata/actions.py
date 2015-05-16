@@ -107,8 +107,8 @@ def dummy_data_create_games(categories, user_list):
 		user = random.choice(user_list)
 
 		# Get a random player
-		available_players = [u for u in user_list if u != user]
-		player = random.choice(available_players)
+		#available_players = [u for u in user_list if u != user]
+		#player = random.choice(available_players)
 
 		# Random time
 		one_hour = 60*60
@@ -130,8 +130,9 @@ def dummy_data_create_games(categories, user_list):
 
 		new_game_msg.location_name = "University of Warwick"
 
-		game = sports.actions.create_new_game(user, new_game_msg)
-		sports.actions.join_game(player, game)
+		game = sports.actions.create_new_game(user, new_game_msg) # pylint: disable=unused-variable
+
+		#sports.actions.join_game(player, game)
 
 
 def clear_database():
