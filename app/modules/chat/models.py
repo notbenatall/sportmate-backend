@@ -32,10 +32,9 @@ class ChatMessage(ndb.Model):
 			self.recipients += "," + str(user_id)
 
 
-class ThreadDetails(ndb.Model):
-	"""Keeps track of a thread."""
-	
-	participants = ndb.KeyProperty(User, repeated=True)
+# class ThreadDetails(ndb.Model):
+# 	"""Keeps track of a thread."""
+# 	participants = ndb.KeyProperty(User, repeated=True)
 
 
 class Thread(ndb.Model):
