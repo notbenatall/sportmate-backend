@@ -146,9 +146,37 @@ class SportProfile(ndb.Model):
 
 	Parent: User
 	"""
-
 	sport = ndb.KeyProperty(kind=SportCategory, indexed=True, required=True)
 	level = ndb.IntegerProperty(indexed=True, default=0)
+
+
+	def __init__(self, **kwargs):
+		"""
+		Make the model. Defines the key structure.
+		"""
+
+		if 'key' in kwargs:
+			raise BadValueError
+
+		super(SportProfile, self).__init__(**kwargs)
+
+		# Create the key
+		if 'parent' in kwargs:
+			self.key = self.make_key(kwargs['parent'], self.sport.id())
+
+
+	@staticmethod
+	def get_unique(user_key, sport_category_id):
+		"""Returns a profile from the user and it's name."""
+		key = SportProfile.make_key(user_key, sport_category_id)
+		return key.get()
+
+	@staticmethod
+	def make_key(user_key, sport_category_id):
+		"""Makes a key."""
+		user_pairs = list(user_key.pairs())
+		pairs = user_pairs + [(SportProfile, sport_category_id)]
+		return ndb.Key(pairs=pairs)
 
 
 class UserGameList(ndb.Model):

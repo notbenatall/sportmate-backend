@@ -55,6 +55,14 @@ def list_of_games_to_message(games):
 	msg.games = [game_model_to_message(game) for game in games]
 	return msg
 
+
+def sports_profile_to_message(profile):
+	"""Convert a sport profile to a message."""
+	msg = messages.SportProfile()
+	msg.level = profile.level
+	msg.sport = sport_category_to_message(profile.sport.get())
+	return msg
+
 def get_all_categories():
 	"""Returns a list of all sports categories."""
 
@@ -183,10 +191,59 @@ def get_upcoming(auth_user):
 	return list_of_games_to_message(upcoming_games)
 
 
+def get_user_sport_profiles(user):
+	"""
+	Returns a list of all a user's profiles.
+	"""
+
+	user = get_model(user, User)
+
+	query = models.SportProfile.query(ancestor=user.key)
+	profiles = query.fetch()
+
+	msg = messages.SportProfileList()
+	msg.profiles = [sports_profile_to_message(p) for p in profiles]
+
+	return msg
+
+
+def add_sport_profile(auth_user, msg):
+	"""
+	Creates a new sport profile.
+
+	Param:
+		msg - messages.SportProfileRequest
+	"""
+
+	user = get_model(auth_user, User)
+
+	sport = models.SportCategory.get_by_name(msg.sport_category_id)
+
+	profile = models.SportProfile(
+		parent=user.key,
+		sport=sport.key,
+		level=msg.level)
+
+	profile.put()
+
+	return sports_profile_to_message(profile)
+
+
+def delete_sport_profile(auth_user, msg):
+	"""
+	Delete a sport profile.
+
+	Param:
+		msg - messages.SportProfileRequest
+	"""
+
+	user = get_model(auth_user, User)
+	profile_key = models.SportProfile.make_key(user.key,
+		msg.sport_category_id)
+
+	profile_key.delete()
+
+
 # Modify a game
-
-# Add sport profile
-
-# Get sport profile(s) of a user
 
 # Get games made by a user

@@ -210,3 +210,79 @@ class TestGetAllCategories(DatastoreTest):
 		assert everything.categories[2].name == 'Football'
 		assert len(everything.categories[2].parent_ids) == 1
 		assert everything.categories[2].parent_ids[0] == cat1.key.id()
+
+
+
+
+class TestSportProfiles(APITest):
+
+	def setup(self):
+		super(TestSportProfiles, self).setup()
+
+		self.adrian = usermodels.User(full_name="Adrian", first_name="Adrian")
+		self.adrian.initialise_new_token()
+		self.adrian.put()
+
+		self.tom = usermodels.User(full_name="Tom", first_name="Tom")
+		self.tom.initialise_new_token()
+		self.tom.put()
+
+		self.cat = models.SportCategory(name='Basketball')
+		self.cat.put()
+
+	def test_get_sport_profiles(self):
+
+		msg = messages.SportProfileRequest(
+			token=self.adrian.get_token(),
+			user_id=self.adrian.key.id(), 
+			sport_category_id="basketball", 
+			level=5)
+
+		profile = self.api.add_sport_profile(msg)
+		profiles = self.api.list_sport_profiles(msg).profiles
+
+		assert profile.sport.name == "Basketball"
+		assert profile.level == 5
+
+		assert profiles[0].sport.name == "Basketball"
+		assert profiles[0].level == 5
+
+
+	def test_modify_sport_profiles(self):
+
+		msg = messages.SportProfileRequest(
+			token=self.tom.get_token(),
+			user_id=self.tom.key.id(), 
+			sport_category_id="basketball", 
+			level=5)
+
+		profile = self.api.add_sport_profile(msg)
+
+		msg.level = 0
+		profile = self.api.add_sport_profile(msg)
+
+		profiles = self.api.list_sport_profiles(msg).profiles
+
+		assert profile.sport.name == "Basketball"
+		assert profile.level == 0
+
+		assert profiles[0].sport.name == "Basketball"
+		assert profiles[0].level == 0
+
+	def test_delete_sport_profiles(self):
+
+		msg = messages.SportProfileRequest(
+			token=self.adrian.get_token(),
+			user_id=self.adrian.key.id(), 
+			sport_category_id="basketball", 
+			level=5)
+
+		profile = self.api.add_sport_profile(msg)
+		self.api.delete_sport_profile(msg)
+
+		profiles = self.api.list_sport_profiles(msg).profiles
+
+		assert profile.sport.name == "Basketball"
+		assert profile.level == 5
+
+		assert len(profiles) == 0

@@ -382,3 +382,54 @@ class TestGetUpcomingOldGames(HRDatastoreTest):
 		games_msg = actions.get_upcoming(self.user)
 
 		assert len(games_msg.games) == 0
+
+
+class TestSportProfiles(DatastoreTest):
+
+	def test_sport_profile_to_message(self):
+
+		cat = models.SportCategory(name='Basketball')
+		cat.put()
+
+		profile = models.SportProfile(sport=cat.key, level=0)
+		msg = actions.sports_profile_to_message(profile)
+
+		assert msg.sport.name == "Basketball"
+
+
+	def test_get_sport_profiles(self):
+
+		user = usermodels.User(full_name="Adrian", first_name="Adrian")
+		user.put()
+
+		cat = models.SportCategory(name='Basketball')
+		cat.put()
+
+		msg = messages.SportProfileRequest(sport_category_id = cat.key.id())
+
+		actions.add_sport_profile(user, msg)
+
+		profiles = actions.get_user_sport_profiles(user).profiles
+
+		assert profiles[0].sport.name == "Basketball"
+		assert profiles[0].level == 0
+
+
+
+	def test_delete_sport_profiles(self):
+
+		user = usermodels.User(full_name="Bob", first_name="Bob")
+		user.put()
+
+		cat = models.SportCategory(name='Football')
+		cat.put()
+
+		msg = messages.SportProfileRequest(sport_category_id = cat.key.id())
+
+		actions.add_sport_profile(user, msg)
+		actions.delete_sport_profile(user, msg)
+
+		profiles = actions.get_user_sport_profiles(user).profiles
+
+		assert len(profiles) == 0
+		

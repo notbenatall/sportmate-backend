@@ -18,6 +18,7 @@ from modules.users.messages import AuthUser
 from modules.users.actions import verify_and_get_user
 import modules.sports.actions as actions
 import modules.sports.messages as messages
+from modules.misc.messages import VoidMessage
 
 import modules.api
 
@@ -25,6 +26,9 @@ import modules.api
 class Sports(remote.Service):
 	"""
 	Access and Modify information about sports.
+
+	The decorator parameter "resource_name='sports'" does not go into the REST
+	path!
 	"""
 
 	@endpoints.method(messages.NewGame, messages.Game, path='create',
@@ -84,3 +88,37 @@ class Sports(remote.Service):
 		"""Returns a list of all the user's upcoming games."""
 		verify_and_get_user(token=request.token)
 		return actions.get_all_categories()
+
+
+	@endpoints.method(messages.SportProfileRequest, messages.SportProfileList, path='sport/profile',
+		http_method='POST', name='listprofiles')
+	def list_sport_profiles(self, request):
+		"""Returns a list of all the user's sports profiles."""
+
+		user_id = request.user_id
+		profiles = actions.get_user_sport_profiles(user_id)
+		return profiles
+
+
+	@endpoints.method(messages.SportProfileRequest, messages.SportProfile, path='sport/profile',
+		http_method='PUT', name='addprofile')
+	def add_sport_profile(self, request):
+		"""Adds a sport profile to the authenticating user."""
+
+		auth_user = verify_and_get_user(token=request.token)
+
+		profile = actions.add_sport_profile(auth_user, request)
+
+		return profile
+
+
+	@endpoints.method(messages.SportProfileRequest, VoidMessage, path='sport/profile',
+		http_method='DELETE', name='removeprofile')
+	def delete_sport_profile(self, request):
+		"""Delets a sport profile from the authenticating user."""
+
+		auth_user = verify_and_get_user(token=request.token)
+
+		actions.delete_sport_profile(auth_user, request)
+
+		return VoidMessage()

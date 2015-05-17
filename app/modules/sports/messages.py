@@ -69,9 +69,34 @@ class GamesRequest(messages.Message):
 	"""Message containing a request for a list of games."""
 	pass
 
-
 class GameIdentifier(messages.Message):
 	"""Message containing a request to join a game."""
 	token = messages.StringField(1, required=True)
 	# The game's key
 	key = messages.StringField(2, required=True)
+
+class SportProfile(messages.Message):
+	"""
+	Message for a sports profile.
+	"""
+	sport = messages.MessageField(SportCategory, 1, required=True)
+	level = messages.IntegerField(2, required=True)
+
+
+class SportProfileList(messages.Message):
+	"""
+	List of sport profiles.
+	"""
+	profiles = messages.MessageField(SportProfile, 1, repeated=True)
+
+
+
+class SportProfileRequest(messages.Message):
+	"""
+	Message for an action on a sport profile
+	"""
+	token = messages.StringField(1, required=False)
+	user_id = messages.IntegerField(2, required=False)
+	
+	sport_category_id = messages.StringField(3, required=False)
+	level = messages.IntegerField(4, required=False, default=0)
