@@ -68,6 +68,22 @@
 			}
 		},
 		{
+			"file": "README.md",
+			"settings":
+			{
+				"buffer_size": 72,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/adrian/Dropbox/My Products/Sportmate/backend/README.md",
+			"settings":
+			{
+				"buffer_size": 119,
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "modules/dummydata/actions.py",
 			"settings":
 			{
@@ -307,7 +323,7 @@
 	"groups":
 	[
 		{
-			"selected": 4,
+			"selected": 6,
 			"sheets":
 			[
 				{
@@ -446,6 +462,58 @@
 				},
 				{
 					"buffer": 5,
+					"file": "README.md",
+					"settings":
+					{
+						"buffer_size": 72,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "/home/adrian/Dropbox/My Products/Sportmate/backend/README.md",
+					"settings":
+					{
+						"buffer_size": 119,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								119,
+								119
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
 					"file": "modules/dummydata/actions.py",
 					"settings":
 					{
@@ -472,7 +540,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 8,
 					"settings":
 					{
 						"buffer_size": 58,
@@ -498,7 +566,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 9,
 					"file": "/home/adrian/Dropbox/My Products/Sportmate/thign/sportmate-ios/contributors.md",
 					"settings":
 					{
@@ -524,7 +592,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 8,
+					"buffer": 10,
 					"file": "modules/misc/messages.py",
 					"settings":
 					{
@@ -550,7 +618,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 9,
+					"buffer": 11,
 					"file": "modules/sports/tests/test_actions.py",
 					"settings":
 					{
@@ -577,7 +645,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 10,
+					"buffer": 12,
 					"file": "modules/sports/tests/test_api.py",
 					"settings":
 					{
@@ -604,7 +672,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 11,
+					"buffer": 13,
 					"file": "/home/adrian/Dropbox/My Products/Sportmate/iOS App/contributors.md",
 					"settings":
 					{
