@@ -88,6 +88,15 @@ def dummy_data_create_users():
 	return entities
 
 
+def dummy_data_create_sport_profiles(categories, user_list):
+	"""Creates some dummy sport profiles for building the front end."""
+
+	for user in user_list:
+		msg = sports.messages.SportProfileRequest(
+			sport_category_id=categories[0].key.id(),
+			level=0)
+		sports.actions.add_sport_profile(user, msg)
+
 def dummy_data_create_games(categories, user_list):
 	"""Creates some dummy games for building the front end."""
 

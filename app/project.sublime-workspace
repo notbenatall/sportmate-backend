@@ -39,7 +39,7 @@
 			"file": "modules/sports/messages.py",
 			"settings":
 			{
-				"buffer_size": 3317,
+				"buffer_size": 3319,
 				"line_ending": "Unix"
 			}
 		},
@@ -55,7 +55,43 @@
 			"file": "modules/sports/api.py",
 			"settings":
 			{
-				"buffer_size": 3755,
+				"buffer_size": 3756,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/adrian/Dropbox/Chanuki and Adrian/Google trends celebrity battle/CGI-Executables/Cheltenham/test.py",
+			"settings":
+			{
+				"buffer_size": 148,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "modules/dummydata/actions.py",
+			"settings":
+			{
+				"buffer_size": 3804,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "git clone git@bitbucket.org:thesportmate/sportmate-ios.git",
+			"settings":
+			{
+				"buffer_size": 58,
+				"line_ending": "Unix",
+				"name": "git clone git@bitbucket.org:thesportmate/sportmate"
+			}
+		},
+		{
+			"contents": "",
+			"file": "/home/adrian/Dropbox/My Products/Sportmate/thign/sportmate-ios/contributors.md",
+			"file_size": -1,
+			"file_write_time": -1,
+			"settings":
+			{
+				"buffer_size": 0,
 				"line_ending": "Unix"
 			}
 		},
@@ -271,7 +307,7 @@
 	"groups":
 	[
 		{
-			"selected": 7,
+			"selected": 4,
 			"sheets":
 			[
 				{
@@ -306,15 +342,15 @@
 					"file": "modules/sports/messages.py",
 					"settings":
 					{
-						"buffer_size": 3317,
+						"buffer_size": 3319,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3194,
-								3194
+								3197,
+								3197
 							]
 						],
 						"settings":
@@ -340,8 +376,8 @@
 						"selection":
 						[
 							[
-								5728,
-								5728
+								5362,
+								5362
 							]
 						],
 						"settings":
@@ -350,7 +386,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 3570.0,
+						"translation.y": 3060.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -360,15 +396,15 @@
 					"file": "modules/sports/api.py",
 					"settings":
 					{
-						"buffer_size": 3755,
+						"buffer_size": 3756,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3440,
-								3440
+								3024,
+								3024
 							]
 						],
 						"settings":
@@ -377,13 +413,118 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1479.0,
+						"translation.y": 1173.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 4,
+					"file": "/home/adrian/Dropbox/Chanuki and Adrian/Google trends celebrity battle/CGI-Executables/Cheltenham/test.py",
+					"settings":
+					{
+						"buffer_size": 148,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "modules/dummydata/actions.py",
+					"settings":
+					{
+						"buffer_size": 3804,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2018,
+								2018
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1173.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"settings":
+					{
+						"buffer_size": 58,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"auto_name": "git clone git@bitbucket.org:thesportmate/sportmate",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "/home/adrian/Dropbox/My Products/Sportmate/thign/sportmate-ios/contributors.md",
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
 					"file": "modules/misc/messages.py",
 					"settings":
 					{
@@ -409,7 +550,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 9,
 					"file": "modules/sports/tests/test_actions.py",
 					"settings":
 					{
@@ -436,7 +577,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 10,
 					"file": "modules/sports/tests/test_api.py",
 					"settings":
 					{
@@ -463,7 +604,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 11,
 					"file": "/home/adrian/Dropbox/My Products/Sportmate/iOS App/contributors.md",
 					"settings":
 					{
