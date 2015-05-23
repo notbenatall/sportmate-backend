@@ -1,4 +1,4 @@
-python make_client_core.py \
+python client_library/endpointscfg_wrapper.py \
 	get_discovery_doc \
 	--output ./client_library \
 	modules.facebook.api.FacebookLogin \
