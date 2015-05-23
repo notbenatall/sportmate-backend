@@ -39,7 +39,106 @@
 			"file": "/home/adrian/Dropbox/My Products/Sportmate/backend/.gitignore",
 			"settings":
 			{
-				"buffer_size": 704,
+				"buffer_size": 710,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "modules/facebook/actions.py",
+			"settings":
+			{
+				"buffer_size": 1573,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "modules/facebook/api.py",
+			"settings":
+			{
+				"buffer_size": 1829,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "modules/users/api.py",
+			"settings":
+			{
+				"buffer_size": 3816,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "modules/sports/api.py",
+			"settings":
+			{
+				"buffer_size": 3756,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "modules/sports/actions.py",
+			"settings":
+			{
+				"buffer_size": 6010,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "#!/bin/bash\n# Builds Android client libraries to access the backend.\n\n#python ~/Development/google_appengine/endpointscfg.py get_client_lib java --application ./app -bs default app.Post\n\n\npython make_client_core.py get_client_lib java \\\n	--application ./app \\\n	--output ./client_library \\\n	-bs gradle \\.\n	 modules.facebook.api.FacebookLogin \\\n	 modules.users.api.Users \\\n	 modules.sports.api.Sports \\\n	 modules.chat.api.Chat\n\necho \"Extracting\"\n\ncd ./client_library\n\nrm -rf sportmate\nunzip sportmate-v1.0.zip\n\ncd ./sportmate\n\necho \"Running gradle\"\n\ngradle install\n",
+			"file": "/home/adrian/Dropbox/My Products/Sportmate/backend/mkclient",
+			"file_size": 562,
+			"file_write_time": 1430916694000000,
+			"settings":
+			{
+				"buffer_size": 563,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/adrian/Dropbox/My Products/Sportmate/backend/make_client_core.py",
+			"settings":
+			{
+				"buffer_size": 2955,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/adrian/Dropbox/My Products/Sportmate/backend/mkiosclient",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/adrian/Dropbox/My Products/Sportmate/backend/mkandroidclient",
+			"settings":
+			{
+				"buffer_size": 570,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/adrian/Dropbox/My Products/Sportmate/backend/mkdiscoverydoc",
+			"settings":
+			{
+				"buffer_size": 204,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/adrian/Dropbox/My Products/Sportmate/backend/sportmate-v1.0.discovery",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "service.py",
+			"settings":
+			{
+				"buffer_size": 331,
 				"line_ending": "Unix"
 			}
 		},
@@ -76,6 +175,7 @@
 	},
 	"file_history":
 	[
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/api.py",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/users/messages.py",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/users/api.py",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/dummydata/actions.py",
@@ -202,8 +302,7 @@
 		"/home/adrian/Dropbox/My Research/My Papers/Submitted Papers/The Advantage of Short Paper Titles/diff/makediff",
 		"/home/adrian/Dropbox/My Research/My Papers/Working Papers/The Advantage of Simple Paper Abstracts/code/data analysis/text output/papers full model.txt",
 		"/home/adrian/Dropbox/My Research/My Papers/Working Papers/Birth Rate and Mortality Rates/paper/paper/lpm2014EPLDS.tex",
-		"/home/adrian/Dropbox/My Research/My Papers/Working Papers/Birth Rate and Mortality Rates/diff/makediff",
-		"/home/adrian/Dropbox/My Research/My Papers/Working Papers/Birth Rate and Mortality Rates/paper/supplementary information/birth_rate_SI.tex"
+		"/home/adrian/Dropbox/My Research/My Papers/Working Papers/Birth Rate and Mortality Rates/diff/makediff"
 	],
 	"find":
 	{
@@ -244,7 +343,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 10,
 			"sheets":
 			[
 				{
@@ -278,15 +377,230 @@
 					"file": "/home/adrian/Dropbox/My Products/Sportmate/backend/.gitignore",
 					"settings":
 					{
-						"buffer_size": 704,
+						"buffer_size": 710,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								168,
-								168
+								670,
+								670
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 544.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "modules/facebook/actions.py",
+					"settings":
+					{
+						"buffer_size": 1573,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 255.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "modules/facebook/api.py",
+					"settings":
+					{
+						"buffer_size": 1829,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1100,
+								1100
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 306.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "modules/users/api.py",
+					"settings":
+					{
+						"buffer_size": 3816,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 612.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "modules/sports/api.py",
+					"settings":
+					{
+						"buffer_size": 3756,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1028,
+								1028
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 357.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "modules/sports/actions.py",
+					"settings":
+					{
+						"buffer_size": 6010,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1173.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "/home/adrian/Dropbox/My Products/Sportmate/backend/mkclient",
+					"settings":
+					{
+						"buffer_size": 563,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								370,
+								370
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/ShellScript/Shell-Unix-Generic.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "/home/adrian/Dropbox/My Products/Sportmate/backend/make_client_core.py",
+					"settings":
+					{
+						"buffer_size": 2955,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1935,
+								1935
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 612.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "/home/adrian/Dropbox/My Products/Sportmate/backend/mkiosclient",
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
 							]
 						],
 						"settings":
@@ -300,7 +614,113 @@
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 10,
+					"file": "/home/adrian/Dropbox/My Products/Sportmate/backend/mkandroidclient",
+					"settings":
+					{
+						"buffer_size": 570,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								514,
+								514
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/ShellScript/Shell-Unix-Generic.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "/home/adrian/Dropbox/My Products/Sportmate/backend/mkdiscoverydoc",
+					"settings":
+					{
+						"buffer_size": 204,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								28,
+								28
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "/home/adrian/Dropbox/My Products/Sportmate/backend/sportmate-v1.0.discovery",
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1581.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 13,
+					"file": "service.py",
+					"settings":
+					{
+						"buffer_size": 331,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 14,
 					"file": "/home/adrian/Development/google_appengine/google/appengine/ext/vendor/__init__.py",
 					"settings":
 					{

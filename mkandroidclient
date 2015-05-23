@@ -6,7 +6,7 @@
 
 python make_client_core.py get_client_lib java \
 	--application ./app \
-	--output ./client_library \
+	--output ./client_library/android \
 	-bs gradle \
 	 modules.facebook.api.FacebookLogin \
 	 modules.users.api.Users \
@@ -15,7 +15,7 @@ python make_client_core.py get_client_lib java \
 
 echo "Extracting"
 
-cd ./client_library
+cd ./client_library/android
 
 rm -rf sportmate
 unzip sportmate-v1.0.zip

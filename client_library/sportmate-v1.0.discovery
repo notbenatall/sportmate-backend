@@ -1,0 +1,1041 @@
+{
+ "kind": "discovery#restDescription",
+ "etag": "\"u_zXkMELIlX4ktyNbM2XKD4vK8E/yXEF44ncxcc03kPq2CQ0FIQ2Lic\"",
+ "discoveryVersion": "v1",
+ "id": "sportmate:v1.0",
+ "name": "sportmate",
+ "version": "v1.0",
+ "description": "This is an API",
+ "icons": {
+  "x16": "http://www.google.com/images/icons/product/search-16.gif",
+  "x32": "http://www.google.com/images/icons/product/search-32.gif"
+ },
+ "protocol": "rest",
+ "baseUrl": "https://None/_ah/api/sportmate/v1.0/",
+ "basePath": "/_ah/api/sportmate/v1.0/",
+ "rootUrl": "https://None/_ah/api/",
+ "servicePath": "sportmate/v1.0/",
+ "batchPath": "batch",
+ "parameters": {
+  "alt": {
+   "type": "string",
+   "description": "Data format for the response.",
+   "default": "json",
+   "enum": [
+    "json"
+   ],
+   "enumDescriptions": [
+    "Responses with Content-Type of application/json"
+   ],
+   "location": "query"
+  },
+  "fields": {
+   "type": "string",
+   "description": "Selector specifying which fields to include in a partial response.",
+   "location": "query"
+  },
+  "key": {
+   "type": "string",
+   "description": "API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.",
+   "location": "query"
+  },
+  "oauth_token": {
+   "type": "string",
+   "description": "OAuth 2.0 token for the current user.",
+   "location": "query"
+  },
+  "prettyPrint": {
+   "type": "boolean",
+   "description": "Returns response with indentations and line breaks.",
+   "default": "true",
+   "location": "query"
+  },
+  "quotaUser": {
+   "type": "string",
+   "description": "Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters. Overrides userIp if both are provided.",
+   "location": "query"
+  },
+  "userIp": {
+   "type": "string",
+   "description": "IP address of the site where the request originates. Use this if you want to enforce per-user limits.",
+   "location": "query"
+  }
+ },
+ "auth": {
+  "oauth2": {
+   "scopes": {
+    "https://www.googleapis.com/auth/userinfo.email": {
+     "description": "View your email address"
+    }
+   }
+  }
+ },
+ "schemas": {
+  "ModulesChatMessagesAuthChatMessage": {
+   "id": "ModulesChatMessagesAuthChatMessage",
+   "type": "object",
+   "description": "A IM chat message.",
+   "properties": {
+    "body": {
+     "type": "string"
+    },
+    "message_id": {
+     "type": "string"
+    },
+    "parent_key": {
+     "type": "string"
+    },
+    "recipients": {
+     "type": "array",
+     "items": {
+      "type": "string",
+      "format": "int64"
+     }
+    },
+    "token": {
+     "type": "string"
+    }
+   }
+  },
+  "ModulesChatMessagesChatMessage": {
+   "id": "ModulesChatMessagesChatMessage",
+   "type": "object",
+   "description": "A IM chat message.",
+   "properties": {
+    "body": {
+     "type": "string"
+    },
+    "message_id": {
+     "type": "string"
+    },
+    "parent_key": {
+     "type": "string"
+    },
+    "recipients": {
+     "type": "array",
+     "items": {
+      "type": "string",
+      "format": "int64"
+     }
+    },
+    "sender_first_name": {
+     "type": "string"
+    },
+    "sender_full_name": {
+     "type": "string"
+    },
+    "sender_id": {
+     "type": "string",
+     "format": "int64"
+    },
+    "sender_profile_image": {
+     "type": "string"
+    },
+    "timestamp": {
+     "type": "string",
+     "format": "date-time"
+    }
+   }
+  },
+  "ModulesChatMessagesChatMessageList": {
+   "id": "ModulesChatMessagesChatMessageList",
+   "type": "object",
+   "description": "A message containg a list of chat messages.",
+   "properties": {
+    "messages": {
+     "type": "array",
+     "description": "A IM chat message.",
+     "items": {
+      "$ref": "ModulesChatMessagesChatMessage"
+     }
+    }
+   }
+  },
+  "ModulesChatMessagesChatMessageRequest": {
+   "id": "ModulesChatMessagesChatMessageRequest",
+   "type": "object",
+   "description": "A request for a list of chat messages.",
+   "properties": {
+    "parent_key": {
+     "type": "string"
+    },
+    "token": {
+     "type": "string"
+    }
+   }
+  },
+  "ModulesChatMessagesThread": {
+   "id": "ModulesChatMessagesThread",
+   "type": "object",
+   "description": "Contains the details for a chat thread.",
+   "properties": {
+    "key": {
+     "type": "string"
+    },
+    "participants": {
+     "type": "array",
+     "description": "Message containing a user.",
+     "items": {
+      "$ref": "ModulesUsersMessagesUser"
+     }
+    }
+   }
+  },
+  "ModulesFacebookMessagesFacebookAccountWithUser": {
+   "id": "ModulesFacebookMessagesFacebookAccountWithUser",
+   "type": "object",
+   "description": "Message containing a Facebook account with the corresponding Sportmate user.",
+   "properties": {
+    "access_token": {
+     "type": "string"
+    },
+    "expires": {
+     "type": "string",
+     "format": "date-time"
+    },
+    "facebook_id": {
+     "type": "string",
+     "format": "int64"
+    },
+    "user": {
+     "$ref": "ModulesUsersMessagesUserMe",
+     "description": "Message containing the authenticated user."
+    }
+   }
+  },
+  "ModulesFacebookMessagesUrl": {
+   "id": "ModulesFacebookMessagesUrl",
+   "type": "object",
+   "description": "Message containing a URL.",
+   "properties": {
+    "url": {
+     "type": "string"
+    }
+   }
+  },
+  "ModulesMiscMessagesVoidMessage": {
+   "id": "ModulesMiscMessagesVoidMessage",
+   "type": "object",
+   "description": "Empty Message"
+  },
+  "ModulesSportsMessagesCategoryList": {
+   "id": "ModulesSportsMessagesCategoryList",
+   "type": "object",
+   "description": "Message containing a list of categories.",
+   "properties": {
+    "categories": {
+     "type": "array",
+     "description": "Message containing a sports category.",
+     "items": {
+      "$ref": "ModulesSportsMessagesSportCategory"
+     }
+    }
+   }
+  },
+  "ModulesSportsMessagesGame": {
+   "id": "ModulesSportsMessagesGame",
+   "type": "object",
+   "description": "Message containing a game.",
+   "properties": {
+    "categories": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "categories_full": {
+     "type": "array",
+     "description": "Message containing a sports category.",
+     "items": {
+      "$ref": "ModulesSportsMessagesSportCategory"
+     }
+    },
+    "creator_id": {
+     "type": "string",
+     "format": "int64"
+    },
+    "end_time": {
+     "type": "string",
+     "format": "date-time"
+    },
+    "key": {
+     "type": "string"
+    },
+    "lat": {
+     "type": "number",
+     "format": "double"
+    },
+    "level": {
+     "type": "string",
+     "format": "int64"
+    },
+    "location_name": {
+     "type": "string"
+    },
+    "lon": {
+     "type": "number",
+     "format": "double"
+    },
+    "name": {
+     "type": "string"
+    },
+    "player_ids": {
+     "type": "array",
+     "items": {
+      "type": "string",
+      "format": "int64"
+     }
+    },
+    "players": {
+     "type": "array",
+     "description": "Message containing a user.",
+     "items": {
+      "$ref": "ModulesUsersMessagesUser"
+     }
+    },
+    "players_full": {
+     "type": "boolean"
+    },
+    "players_joined": {
+     "type": "string",
+     "format": "int64"
+    },
+    "players_needed": {
+     "type": "string",
+     "format": "int64"
+    },
+    "time": {
+     "type": "string",
+     "format": "date-time"
+    }
+   }
+  },
+  "ModulesSportsMessagesGameIdentifier": {
+   "id": "ModulesSportsMessagesGameIdentifier",
+   "type": "object",
+   "description": "Message containing a request to join a game.",
+   "properties": {
+    "key": {
+     "type": "string"
+    },
+    "token": {
+     "type": "string"
+    }
+   }
+  },
+  "ModulesSportsMessagesGameList": {
+   "id": "ModulesSportsMessagesGameList",
+   "type": "object",
+   "description": "Message containing a list of games.",
+   "properties": {
+    "games": {
+     "type": "array",
+     "description": "Message containing a game.",
+     "items": {
+      "$ref": "ModulesSportsMessagesGame"
+     }
+    }
+   }
+  },
+  "ModulesSportsMessagesNewGame": {
+   "id": "ModulesSportsMessagesNewGame",
+   "type": "object",
+   "description": "Message containing a brand new game to add to the system.",
+   "properties": {
+    "categories": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "end_time": {
+     "type": "string",
+     "format": "date-time"
+    },
+    "lat": {
+     "type": "number",
+     "format": "double"
+    },
+    "level": {
+     "type": "string",
+     "format": "int64"
+    },
+    "location_name": {
+     "type": "string"
+    },
+    "lon": {
+     "type": "number",
+     "format": "double"
+    },
+    "name": {
+     "type": "string"
+    },
+    "players_needed": {
+     "type": "string",
+     "format": "int64"
+    },
+    "time": {
+     "type": "string",
+     "format": "date-time"
+    },
+    "token": {
+     "type": "string"
+    }
+   }
+  },
+  "ModulesSportsMessagesSportCategory": {
+   "id": "ModulesSportsMessagesSportCategory",
+   "type": "object",
+   "description": "Message containing a sports category.",
+   "properties": {
+    "id": {
+     "type": "string"
+    },
+    "name": {
+     "type": "string"
+    },
+    "parent_ids": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "paths": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  "ModulesSportsMessagesSportProfile": {
+   "id": "ModulesSportsMessagesSportProfile",
+   "type": "object",
+   "description": "Message for a sports profile.",
+   "properties": {
+    "level": {
+     "type": "string",
+     "format": "int64"
+    },
+    "sport": {
+     "$ref": "ModulesSportsMessagesSportCategory",
+     "description": "Message containing a sports category."
+    }
+   }
+  },
+  "ModulesSportsMessagesSportProfileList": {
+   "id": "ModulesSportsMessagesSportProfileList",
+   "type": "object",
+   "description": "List of sport profiles.",
+   "properties": {
+    "profiles": {
+     "type": "array",
+     "description": "Message for a sports profile.",
+     "items": {
+      "$ref": "ModulesSportsMessagesSportProfile"
+     }
+    }
+   }
+  },
+  "ModulesSportsMessagesSportProfileRequest": {
+   "id": "ModulesSportsMessagesSportProfileRequest",
+   "type": "object",
+   "description": "Message for an action on a sport profile",
+   "properties": {
+    "level": {
+     "type": "string",
+     "format": "int64"
+    },
+    "sport_category_id": {
+     "type": "string"
+    },
+    "token": {
+     "type": "string"
+    },
+    "user_id": {
+     "type": "string",
+     "format": "int64"
+    }
+   }
+  },
+  "ModulesUsersMessagesAuthUser": {
+   "id": "ModulesUsersMessagesAuthUser",
+   "type": "object",
+   "description": "Message identifying the authenticating user.",
+   "properties": {
+    "token": {
+     "type": "string"
+    }
+   }
+  },
+  "ModulesUsersMessagesFriendList": {
+   "id": "ModulesUsersMessagesFriendList",
+   "type": "object",
+   "description": "Message containing a user's list of friends.",
+   "properties": {
+    "friends": {
+     "type": "array",
+     "items": {
+      "type": "string",
+      "format": "int64"
+     }
+    }
+   }
+  },
+  "ModulesUsersMessagesFriendRequestResponse": {
+   "id": "ModulesUsersMessagesFriendRequestResponse",
+   "type": "object",
+   "description": "Message from an authenicated user responding to a friend request.",
+   "properties": {
+    "accept": {
+     "type": "boolean"
+    },
+    "token": {
+     "type": "string"
+    },
+    "user": {
+     "type": "string",
+     "format": "int64"
+    }
+   }
+  },
+  "ModulesUsersMessagesRelationship": {
+   "id": "ModulesUsersMessagesRelationship",
+   "type": "object",
+   "description": "Message about a relationship between two users.",
+   "properties": {
+    "friend_request_rejected": {
+     "type": "boolean"
+    },
+    "friend_request_sender_id": {
+     "type": "string",
+     "format": "int64"
+    },
+    "friend_request_sent": {
+     "type": "boolean"
+    },
+    "friend_unfriender_id": {
+     "type": "string",
+     "format": "int64"
+    },
+    "is_friends": {
+     "type": "boolean"
+    },
+    "users": {
+     "type": "array",
+     "items": {
+      "type": "string",
+      "format": "int64"
+     }
+    }
+   }
+  },
+  "ModulesUsersMessagesUser": {
+   "id": "ModulesUsersMessagesUser",
+   "type": "object",
+   "description": "Message containing a user.",
+   "properties": {
+    "created_date": {
+     "type": "string",
+     "format": "date-time"
+    },
+    "email": {
+     "type": "string"
+    },
+    "facebook_id": {
+     "type": "string",
+     "format": "int64"
+    },
+    "first_name": {
+     "type": "string"
+    },
+    "full_name": {
+     "type": "string"
+    },
+    "id": {
+     "type": "string",
+     "format": "int64"
+    }
+   }
+  },
+  "ModulesUsersMessagesUserId": {
+   "id": "ModulesUsersMessagesUserId",
+   "type": "object",
+   "description": "Message from an authenticated user requesting information about another user.",
+   "properties": {
+    "token": {
+     "type": "string"
+    },
+    "user": {
+     "type": "string",
+     "format": "int64"
+    }
+   }
+  },
+  "ModulesUsersMessagesUserList": {
+   "id": "ModulesUsersMessagesUserList",
+   "type": "object",
+   "description": "Message containing a list of users.",
+   "properties": {
+    "bookmark_user_created": {
+     "type": "string",
+     "format": "date-time"
+    },
+    "users": {
+     "type": "array",
+     "description": "Message containing a user.",
+     "items": {
+      "$ref": "ModulesUsersMessagesUser"
+     }
+    }
+   }
+  },
+  "ModulesUsersMessagesUserMe": {
+   "id": "ModulesUsersMessagesUserMe",
+   "type": "object",
+   "description": "Message containing the authenticated user.",
+   "properties": {
+    "email": {
+     "type": "string"
+    },
+    "facebook_id": {
+     "type": "string",
+     "format": "int64"
+    },
+    "first_name": {
+     "type": "string"
+    },
+    "full_name": {
+     "type": "string"
+    },
+    "id": {
+     "type": "string",
+     "format": "int64"
+    },
+    "token": {
+     "type": "string"
+    }
+   }
+  },
+  "ModulesUsersMessagesUserSearch": {
+   "id": "ModulesUsersMessagesUserSearch",
+   "type": "object",
+   "description": "Request message to search for users.",
+   "properties": {
+    "bookmark_user_created": {
+     "type": "string",
+     "format": "date-time"
+    },
+    "term": {
+     "type": "string"
+    },
+    "token": {
+     "type": "string"
+    }
+   }
+  }
+ },
+ "resources": {
+  "chat": {
+   "methods": {
+    "addmessage": {
+     "id": "sportmate.chat.addmessage",
+     "path": "messages/add",
+     "httpMethod": "POST",
+     "description": "Send a friend request.",
+     "request": {
+      "$ref": "ModulesChatMessagesAuthChatMessage",
+      "parameterName": "resource"
+     },
+     "response": {
+      "$ref": "ModulesChatMessagesChatMessage"
+     },
+     "scopes": [
+      "https://www.googleapis.com/auth/userinfo.email"
+     ]
+    },
+    "getmessages": {
+     "id": "sportmate.chat.getmessages",
+     "path": "messages/get",
+     "httpMethod": "POST",
+     "description": "Send a friend request.",
+     "request": {
+      "$ref": "ModulesChatMessagesChatMessageRequest",
+      "parameterName": "resource"
+     },
+     "response": {
+      "$ref": "ModulesChatMessagesChatMessageList"
+     },
+     "scopes": [
+      "https://www.googleapis.com/auth/userinfo.email"
+     ]
+    },
+    "getuserthreadid": {
+     "id": "sportmate.chat.getuserthreadid",
+     "path": "thread/get_user_thread_id",
+     "httpMethod": "POST",
+     "description": "Returns the key to the thread between the authenticating user and another.",
+     "request": {
+      "$ref": "ModulesUsersMessagesUserId",
+      "parameterName": "resource"
+     },
+     "response": {
+      "$ref": "ModulesChatMessagesThread"
+     },
+     "scopes": [
+      "https://www.googleapis.com/auth/userinfo.email"
+     ]
+    }
+   }
+  },
+  "facebook": {
+   "resources": {
+    "login": {
+     "methods": {
+      "geturl": {
+       "id": "sportmate.facebook.login.geturl",
+       "path": "geturl",
+       "httpMethod": "GET",
+       "description": "Returns the Facebook login URL.",
+       "response": {
+        "$ref": "ModulesFacebookMessagesUrl"
+       },
+       "scopes": [
+        "https://www.googleapis.com/auth/userinfo.email"
+       ]
+      },
+      "recieve_code": {
+       "id": "sportmate.facebook.login.recieve_code",
+       "path": "code",
+       "httpMethod": "GET",
+       "description": "Uses the login code provided by Facebook and logs in the user.",
+       "parameters": {
+        "code": {
+         "type": "string",
+         "location": "query"
+        }
+       },
+       "response": {
+        "$ref": "ModulesFacebookMessagesFacebookAccountWithUser"
+       },
+       "scopes": [
+        "https://www.googleapis.com/auth/userinfo.email"
+       ]
+      }
+     }
+    }
+   }
+  },
+  "sports": {
+   "methods": {
+    "addprofile": {
+     "id": "sportmate.sports.addprofile",
+     "path": "sport/profile",
+     "httpMethod": "PUT",
+     "description": "Adds a sport profile to the authenticating user.",
+     "request": {
+      "$ref": "ModulesSportsMessagesSportProfileRequest",
+      "parameterName": "resource"
+     },
+     "response": {
+      "$ref": "ModulesSportsMessagesSportProfile"
+     },
+     "scopes": [
+      "https://www.googleapis.com/auth/userinfo.email"
+     ]
+    },
+    "allcategories": {
+     "id": "sportmate.sports.allcategories",
+     "path": "categories/all",
+     "httpMethod": "POST",
+     "description": "Returns a list of all the user's upcoming games.",
+     "request": {
+      "$ref": "ModulesUsersMessagesAuthUser",
+      "parameterName": "resource"
+     },
+     "response": {
+      "$ref": "ModulesSportsMessagesCategoryList"
+     },
+     "scopes": [
+      "https://www.googleapis.com/auth/userinfo.email"
+     ]
+    },
+    "creategame": {
+     "id": "sportmate.sports.creategame",
+     "path": "create",
+     "httpMethod": "POST",
+     "description": "Adds a new game to the system.",
+     "request": {
+      "$ref": "ModulesSportsMessagesNewGame",
+      "parameterName": "resource"
+     },
+     "response": {
+      "$ref": "ModulesSportsMessagesGame"
+     },
+     "scopes": [
+      "https://www.googleapis.com/auth/userinfo.email"
+     ]
+    },
+    "gamesupcoming": {
+     "id": "sportmate.sports.gamesupcoming",
+     "path": "games/upcoming",
+     "httpMethod": "POST",
+     "description": "Returns a list of all the user's upcoming games.",
+     "request": {
+      "$ref": "ModulesUsersMessagesAuthUser",
+      "parameterName": "resource"
+     },
+     "response": {
+      "$ref": "ModulesSportsMessagesGameList"
+     },
+     "scopes": [
+      "https://www.googleapis.com/auth/userinfo.email"
+     ]
+    },
+    "joingame": {
+     "id": "sportmate.sports.joingame",
+     "path": "game/join",
+     "httpMethod": "POST",
+     "description": "The authenticating user joins a game.",
+     "request": {
+      "$ref": "ModulesSportsMessagesGameIdentifier",
+      "parameterName": "resource"
+     },
+     "response": {
+      "$ref": "ModulesSportsMessagesGame"
+     },
+     "scopes": [
+      "https://www.googleapis.com/auth/userinfo.email"
+     ]
+    },
+    "leavegame": {
+     "id": "sportmate.sports.leavegame",
+     "path": "game/leave",
+     "httpMethod": "POST",
+     "description": "The authenticating user leaves a game.",
+     "request": {
+      "$ref": "ModulesSportsMessagesGameIdentifier",
+      "parameterName": "resource"
+     },
+     "response": {
+      "$ref": "ModulesSportsMessagesGame"
+     },
+     "scopes": [
+      "https://www.googleapis.com/auth/userinfo.email"
+     ]
+    },
+    "listgames": {
+     "id": "sportmate.sports.listgames",
+     "path": "games",
+     "httpMethod": "GET",
+     "description": "Returns a list of all the games.",
+     "response": {
+      "$ref": "ModulesSportsMessagesGameList"
+     },
+     "scopes": [
+      "https://www.googleapis.com/auth/userinfo.email"
+     ]
+    },
+    "listprofiles": {
+     "id": "sportmate.sports.listprofiles",
+     "path": "sport/profile",
+     "httpMethod": "POST",
+     "description": "Returns a list of all the user's sports profiles.",
+     "request": {
+      "$ref": "ModulesSportsMessagesSportProfileRequest",
+      "parameterName": "resource"
+     },
+     "response": {
+      "$ref": "ModulesSportsMessagesSportProfileList"
+     },
+     "scopes": [
+      "https://www.googleapis.com/auth/userinfo.email"
+     ]
+    },
+    "removeprofile": {
+     "id": "sportmate.sports.removeprofile",
+     "path": "sport/profile",
+     "httpMethod": "DELETE",
+     "description": "Delets a sport profile from the authenticating user.",
+     "parameters": {
+      "level": {
+       "type": "string",
+       "format": "int64",
+       "location": "query"
+      },
+      "sport_category_id": {
+       "type": "string",
+       "location": "query"
+      },
+      "token": {
+       "type": "string",
+       "location": "query"
+      },
+      "user_id": {
+       "type": "string",
+       "format": "int64",
+       "location": "query"
+      }
+     },
+     "response": {
+      "$ref": "ModulesMiscMessagesVoidMessage"
+     },
+     "scopes": [
+      "https://www.googleapis.com/auth/userinfo.email"
+     ]
+    }
+   }
+  },
+  "users": {
+   "methods": {
+    "friendlist": {
+     "id": "sportmate.users.friendlist",
+     "path": "friend/list",
+     "httpMethod": "GET",
+     "description": "Return a list of friends for the specified user.",
+     "parameters": {
+      "token": {
+       "type": "string",
+       "location": "query"
+      },
+      "user": {
+       "type": "string",
+       "format": "int64",
+       "location": "query"
+      }
+     },
+     "response": {
+      "$ref": "ModulesUsersMessagesFriendList"
+     },
+     "scopes": [
+      "https://www.googleapis.com/auth/userinfo.email"
+     ]
+    },
+    "friendrequest": {
+     "id": "sportmate.users.friendrequest",
+     "path": "friend/request",
+     "httpMethod": "POST",
+     "description": "Send a friend request.",
+     "request": {
+      "$ref": "ModulesUsersMessagesUserId",
+      "parameterName": "resource"
+     },
+     "response": {
+      "$ref": "ModulesUsersMessagesRelationship"
+     },
+     "scopes": [
+      "https://www.googleapis.com/auth/userinfo.email"
+     ]
+    },
+    "friendunfriend": {
+     "id": "sportmate.users.friendunfriend",
+     "path": "friend/unfriend",
+     "httpMethod": "POST",
+     "description": "Remove the specified user as a friend of the authenticating user.",
+     "request": {
+      "$ref": "ModulesUsersMessagesUserId",
+      "parameterName": "resource"
+     },
+     "response": {
+      "$ref": "ModulesUsersMessagesRelationship"
+     },
+     "scopes": [
+      "https://www.googleapis.com/auth/userinfo.email"
+     ]
+    },
+    "getuser": {
+     "id": "sportmate.users.getuser",
+     "path": "user",
+     "httpMethod": "POST",
+     "description": "Get information about a user.",
+     "request": {
+      "$ref": "ModulesUsersMessagesUserId",
+      "parameterName": "resource"
+     },
+     "response": {
+      "$ref": "ModulesUsersMessagesUser"
+     },
+     "scopes": [
+      "https://www.googleapis.com/auth/userinfo.email"
+     ]
+    },
+    "requestresponse": {
+     "id": "sportmate.users.requestresponse",
+     "path": "friend/request/response",
+     "httpMethod": "POST",
+     "description": "Answer a friend request from a user to the authenticating user.",
+     "request": {
+      "$ref": "ModulesUsersMessagesFriendRequestResponse",
+      "parameterName": "resource"
+     },
+     "response": {
+      "$ref": "ModulesUsersMessagesRelationship"
+     },
+     "scopes": [
+      "https://www.googleapis.com/auth/userinfo.email"
+     ]
+    },
+    "usernearby": {
+     "id": "sportmate.users.usernearby",
+     "path": "user/nearby",
+     "httpMethod": "POST",
+     "description": "Get nearby users",
+     "request": {
+      "$ref": "ModulesUsersMessagesUserSearch",
+      "parameterName": "resource"
+     },
+     "response": {
+      "$ref": "ModulesUsersMessagesUserList"
+     },
+     "scopes": [
+      "https://www.googleapis.com/auth/userinfo.email"
+     ]
+    },
+    "userrelationship": {
+     "id": "sportmate.users.userrelationship",
+     "path": "user/relationship",
+     "httpMethod": "GET",
+     "description": "Returns the relationship between two users.",
+     "parameters": {
+      "token": {
+       "type": "string",
+       "location": "query"
+      },
+      "userA": {
+       "type": "string",
+       "format": "int64",
+       "location": "query"
+      },
+      "userB": {
+       "type": "string",
+       "format": "int64",
+       "location": "query"
+      }
+     },
+     "response": {
+      "$ref": "ModulesUsersMessagesRelationship"
+     },
+     "scopes": [
+      "https://www.googleapis.com/auth/userinfo.email"
+     ]
+    },
+    "usersearch": {
+     "id": "sportmate.users.usersearch",
+     "path": "user/search",
+     "httpMethod": "POST",
+     "description": "Searchers for users",
+     "request": {
+      "$ref": "ModulesUsersMessagesUserSearch",
+      "parameterName": "resource"
+     },
+     "response": {
+      "$ref": "ModulesUsersMessagesUserList"
+     },
+     "scopes": [
+      "https://www.googleapis.com/auth/userinfo.email"
+     ]
+    }
+   }
+  }
+ }
+}

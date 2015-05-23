@@ -1,0 +1,7 @@
+python make_client_core.py \
+	get_discovery_doc \
+	--output ./client_library \
+	modules.facebook.api.FacebookLogin \
+    modules.users.api.Users \
+    modules.sports.api.Sports \
+    modules.chat.api.Chat

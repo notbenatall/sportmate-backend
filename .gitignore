@@ -52,6 +52,5 @@ docs/_build/
 # PyBuilder
 target/
 
-
 # Client library
-client_library/
+client_library/android
