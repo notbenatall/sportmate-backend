@@ -26,13 +26,13 @@ import modules.api
 REDIRECT_URL_PATH = "/_ah/api/sportmate/v1.0/code"
 
 if misc.is_development_testing() or misc.is_development():
-	REDIRECT_DOMAIN = "http://137.205.185.60:8080"
+	REDIRECT_DOMAIN = "http://127.0.0.1:8080"
 else:
 	try:
 		REDIRECT_DOMAIN = "https://"+get_application_id()+".appspot.com"
 	except AttributeError:
 		# The make client libraries throws this error for some reason.
-		REDIRECT_DOMAIN = "http://137.205.185.60:8080"
+		REDIRECT_DOMAIN = "http://127.0.0.1:8080"
 
 REDIRECT_URL = REDIRECT_DOMAIN + REDIRECT_URL_PATH
 
