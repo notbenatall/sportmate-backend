@@ -15,6 +15,12 @@ app_path = ''
 if 'MAKE_CLIENT_API' in os.environ and os.environ['MAKE_CLIENT_API'] == 'ACTIVE':
 	app_path = 'app/'
 
+import logging
+logging.info(os.getcwd())
+logging.info(os.path.isdir('lib'))
+logging.info(os.path.isdir('./lib'))
+logging.info(os.path.isdir(os.getcwd() + '/lib'))
+
 # Third-party libraries are stored in "lib", vendoring will make
 # sure that they are importable by the application.
 vendor.add(app_path + 'lib')

@@ -52,13 +52,13 @@ def user_key_id_to_user(uinput):
 			raise NotFoundException()
 		return user
 
-	if type(uinput) is long or type(uinput) is str:
+	if type(uinput) is long or type(uinput) is int or type(uinput) is str:
 		user = models.User.get_by_id(uinput)
 		if user is None:
 			raise NotFoundException()
 		return user
 
-	raise TypeError("Unknown type.")
+	raise TypeError("Unknown type: " + str(type(uinput)))
 
 
 def user_to_message(user):
@@ -250,4 +250,33 @@ def user_search(term):
 
 	msg = messages.UserList()
 	msg.users = [user_to_message(u) for u in users]
+	return msg
+
+
+def get_nearby_users(request, PAGE_SIZE=50):
+	"""Returns a list of nearby users."""
+
+	bookmark_user_created = request.bookmark_user_created
+
+	next_result = None
+
+	query = models.User.query().order(models.User.created_date)
+
+	if bookmark_user_created:
+		query = query.filter(models.User.created_date >= bookmark_user_created)
+
+	users = query.fetch(PAGE_SIZE + 1)
+
+	if len(users) == PAGE_SIZE + 1:
+		next_result = users[-1]
+		users = users[:PAGE_SIZE]
+
+
+	msg = messages.UserList()
+	msg.users = [user_to_message(u) for u in users]
+
+	if next_result:
+		msg.bookmark_user_created = next_result.created_date
+
+
 	return msg

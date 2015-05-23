@@ -26,6 +26,8 @@ class User(ndb.Model):
 
 	facebook_id = ndb.IntegerProperty(indexed=False, required=False)
 
+	created_date = ndb.DateTimeProperty(auto_now_add=True, indexed=True)
+
 	@staticmethod
 	def generate_token(salt):
 		"""Generates a random token."""

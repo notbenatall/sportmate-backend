@@ -11,6 +11,7 @@ Author URL: http:www.DrAdrian.com
 # pylint: disable= invalid-name
 
 from protorpc import messages
+from protorpc import message_types
 
 class User(messages.Message):
 	"""Message containing a user."""
@@ -19,20 +20,23 @@ class User(messages.Message):
 	id = messages.IntegerField(3)
 	facebook_id = messages.IntegerField(4, required=False)
 	first_name = messages.StringField(5)
+	created_date = message_types.DateTimeField(6, required=False)
 
 class UserMe(messages.Message):
 	"""Message containing the authenticated user."""
 	full_name = messages.StringField(1)
 	email = messages.StringField(2)
 	id = messages.IntegerField(3)
-	token = messages.StringField(4)
-	facebook_id = messages.IntegerField(5, required=False)
-	first_name = messages.StringField(6)
+	facebook_id = messages.IntegerField(4, required=False)
+	first_name = messages.StringField(5)
+
+	token = messages.StringField(6)
 
 
 class UserList(messages.Message):
 	"""Message containing a list of users."""
 	users = messages.MessageField(User, 1, repeated=True)
+	bookmark_user_created = message_types.DateTimeField(2, required=False)
 
 class AuthUser(messages.Message):
 	"""
@@ -65,8 +69,6 @@ class FriendRequestResponse(messages.Message):
 	user = messages.IntegerField(2)
 	accept = messages.BooleanField(3)
 
-
-
 class Relationship(messages.Message):
 	"""
 	Message about a relationship between two users.
@@ -89,7 +91,13 @@ class FriendList(messages.Message):
 
 class UserSearch(messages.Message):
 	"""
-	Request message to search for users by name.
+	Request message to search for users.
 	"""
 	token = messages.StringField(1)
+
+	# Used to search for users by name
 	term = messages.StringField(2)
+
+	# Used to search for users by proximity
+	bookmark_user_created = message_types.DateTimeField(3)
+

@@ -14,6 +14,7 @@ from endpoints import UnauthorizedException, NotFoundException
 
 import modules.users.models as models
 import modules.users.actions as actions
+import modules.users.messages as messages
 
 def test_nothing():
     assert True == True
@@ -225,3 +226,37 @@ class TestUserSearch(testtools.DatastoreTest):
 
         assert len(users) == 1
         assert users[0].full_name == "Adrian Letchford"
+
+
+
+class TestGetNearbyUsers(testtools.DatastoreTest):
+
+    def setup(self):
+        super(TestGetNearbyUsers, self).setup()
+
+        self.adrian = models.User(full_name='Adrian Letchford', first_name="Adrian")
+        self.adrian.put()
+
+        self.tom = models.User(full_name='Tom Haleminh', first_name="Tom")
+        self.tom.put()
+
+        self.barney = models.User(full_name='Barney', first_name="Barney")
+        self.barney.put()
+
+
+    def test(self):
+
+        request = messages.UserSearch(token=self.adrian.get_token())
+
+        userList = actions.get_nearby_users(request, PAGE_SIZE=2)
+
+        assert userList.users[0].first_name == "Adrian"
+        assert userList.users[1].first_name == "Tom"
+
+        request.bookmark_user_created = userList.bookmark_user_created
+
+        userList = actions.get_nearby_users(request, PAGE_SIZE=2)
+
+        assert userList.users[0].first_name == "Barney"
+        
+        
