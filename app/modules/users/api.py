@@ -136,5 +136,4 @@ class Users(remote.Service):
 		actions.verify_and_get_user(token=request.token)
 
 		msg = actions.get_nearby_users(request)
-		print msg
 		return msg

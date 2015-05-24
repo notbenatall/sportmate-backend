@@ -38,3 +38,11 @@ class testGeneral(DatastoreTest):
         p.put()
         m = BlankModel(parent=p.key)
         misc.validate_parent(m, BlankParentModel)
+
+
+
+def test_get_ip():
+
+    ip = misc.get_ip()
+
+    assert len(ip.split(".")) == 4
