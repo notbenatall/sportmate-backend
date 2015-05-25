@@ -22,14 +22,15 @@ def verify_and_get_user(**kwargs):
 	Params:
 		token - the token that represents the validated user.
 	"""
+	UNORTHORISED = "User is not authorised to access Sportmate backend."
 
 	try:
 		user = models.User.get_from_token(kwargs['token'])
 	except:
-		raise UnauthorizedException("User is invalid.")
+		raise UnauthorizedException(UNORTHORISED)
 
 	if user is None:
-		raise UnauthorizedException("User is invalid.")
+		raise UnauthorizedException(UNORTHORISED)
 
 	return user
 
