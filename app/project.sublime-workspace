@@ -32,6 +32,33 @@
 			"settings":
 			{
 				"buffer_size": 605,
+<<<<<<< HEAD
+=======
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "modules/misc/__init__.py",
+			"settings":
+			{
+				"buffer_size": 1627,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "modules/facebook/api.py",
+			"settings":
+			{
+				"buffer_size": 1851,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/adrian/Dropbox/My Products/Sportmate/landing page/Landing Page 2/website/public/index.html",
+			"settings":
+			{
+				"buffer_size": 6528,
+>>>>>>> parent of 82e062d... Revert "update client library scripts"
 				"line_ending": "Unix"
 			}
 		},
@@ -39,7 +66,11 @@
 			"file": "/home/adrian/Dropbox/My Products/Sportmate/backend/mkdiscoverydoc",
 			"settings":
 			{
+<<<<<<< HEAD
 				"buffer_size": 223,
+=======
+				"buffer_size": 239,
+>>>>>>> parent of 82e062d... Revert "update client library scripts"
 				"line_ending": "Unix"
 			}
 		}
@@ -68,6 +99,15 @@
 	},
 	"file_history":
 	[
+<<<<<<< HEAD
+=======
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/client_library/sportmate-v1.0.discovery",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/misc/tests/tests.py",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/users/tests/test_actions.py",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/users/tests/test_api.py",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/users/actions.py",
+		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/users/api.py",
+>>>>>>> parent of 82e062d... Revert "update client library scripts"
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/appengine_config.py",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/.gitignore",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/facebook/actions.py",
@@ -193,9 +233,13 @@
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/report",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/client_library/make_client_core.py",
 		"/home/adrian/Development/google_appengine/lib/fancy_urllib/__init__.py",
+<<<<<<< HEAD
 		"/home/adrian/Development/google_appengine/lib/fancy_urllib/fancy_urllib/__init__.py",
 		"/home/adrian/Dropbox/My Research/My Papers/Submitted Papers/The Advantage of Short Paper Titles/Submission (3) to Royal Society Open Science/diff/makediff",
 		"/home/adrian/Dropbox/My Research/My Papers/Working Papers/Birth Rate and Mortality Rates/paper/paper/lpm2014EPJDS.tex"
+=======
+		"/home/adrian/Development/google_appengine/lib/fancy_urllib/fancy_urllib/__init__.py"
+>>>>>>> parent of 82e062d... Revert "update client library scripts"
 	],
 	"find":
 	{
@@ -236,7 +280,11 @@
 	"groups":
 	[
 		{
+<<<<<<< HEAD
 			"selected": 0,
+=======
+			"selected": 4,
+>>>>>>> parent of 82e062d... Revert "update client library scripts"
 			"sheets":
 			[
 				{
@@ -270,15 +318,24 @@
 					"file": "/home/adrian/Dropbox/My Products/Sportmate/backend/mkdiscoverydoc",
 					"settings":
 					{
+<<<<<<< HEAD
 						"buffer_size": 223,
+=======
+						"buffer_size": 239,
+>>>>>>> parent of 82e062d... Revert "update client library scripts"
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
+<<<<<<< HEAD
 								7,
 								7
+=======
+								239,
+								239
+>>>>>>> parent of 82e062d... Revert "update client library scripts"
 							]
 						],
 						"settings":
