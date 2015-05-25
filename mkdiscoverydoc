@@ -1,6 +1,7 @@
-python client_library/endpointscfg_wrapper.py \
+python make_client_core.py \
 	get_discovery_doc \
 	--output ./client_library \
+	--format rpc \
 	modules.facebook.api.FacebookLogin \
     modules.users.api.Users \
     modules.sports.api.Sports \

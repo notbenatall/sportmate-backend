@@ -4,9 +4,7 @@
 #python ~/Development/google_appengine/endpointscfg.py get_client_lib java --application ./app -bs default app.Post
 
 
-python client_library/endpointscfg_wrapper.py \
-	 get_client_lib \
-	 java \
+python make_client_core.py get_client_lib java \
 	--application ./app \
 	--output ./client_library/android \
 	-bs gradle \

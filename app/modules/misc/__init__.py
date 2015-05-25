@@ -13,6 +13,7 @@ from google.appengine.ext.db import BadValueError
 from google.appengine.api.app_identity import get_application_id
 import string
 import random
+from socket import socket, SOCK_DGRAM, AF_INET 
 
 def random_string(size=6, chars=string.ascii_uppercase + string.digits):
 	"""Generates a random string of characters."""
@@ -56,3 +57,13 @@ def is_test():
 		return True
 
 	return False
+
+
+
+def get_ip():
+	"""Return the ip of the running computer."""
+	s = socket(AF_INET, SOCK_DGRAM) 
+	s.connect(('google.com', 0)) 
+
+	IP = s.getsockname()[0]
+	return IP
