@@ -38,6 +38,7 @@
 			}
 		},
 		{
+<<<<<<< HEAD
 			"file": "modules/misc/__init__.py",
 			"settings":
 			{
@@ -63,6 +64,8 @@
 			}
 		},
 		{
+=======
+>>>>>>> parent of d86be1b... added testing servers API for facebook redirect
 			"file": "/home/adrian/Dropbox/My Products/Sportmate/backend/mkdiscoverydoc",
 			"settings":
 			{
@@ -100,6 +103,7 @@
 	"file_history":
 	[
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/client_library/sportmate-v1.0.discovery",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/misc/tests/tests.py",
@@ -108,6 +112,8 @@
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/users/actions.py",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/users/api.py",
 >>>>>>> parent of 82e062d... Revert "update client library scripts"
+=======
+>>>>>>> parent of d86be1b... added testing servers API for facebook redirect
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/appengine_config.py",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/.gitignore",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/facebook/actions.py",
@@ -237,9 +243,12 @@
 		"/home/adrian/Development/google_appengine/lib/fancy_urllib/fancy_urllib/__init__.py",
 		"/home/adrian/Dropbox/My Research/My Papers/Submitted Papers/The Advantage of Short Paper Titles/Submission (3) to Royal Society Open Science/diff/makediff",
 		"/home/adrian/Dropbox/My Research/My Papers/Working Papers/Birth Rate and Mortality Rates/paper/paper/lpm2014EPJDS.tex"
+<<<<<<< HEAD
 =======
 		"/home/adrian/Development/google_appengine/lib/fancy_urllib/fancy_urllib/__init__.py"
 >>>>>>> parent of 82e062d... Revert "update client library scripts"
+=======
+>>>>>>> parent of d86be1b... added testing servers API for facebook redirect
 	],
 	"find":
 	{
@@ -281,10 +290,14 @@
 	[
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"selected": 0,
 =======
 			"selected": 4,
 >>>>>>> parent of 82e062d... Revert "update client library scripts"
+=======
+			"selected": 0,
+>>>>>>> parent of d86be1b... added testing servers API for facebook redirect
 			"sheets":
 			[
 				{
