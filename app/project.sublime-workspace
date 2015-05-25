@@ -32,17 +32,14 @@
 			"settings":
 			{
 				"buffer_size": 605,
-<<<<<<< HEAD
-=======
 				"line_ending": "Unix"
 			}
 		},
 		{
-<<<<<<< HEAD
 			"file": "modules/misc/__init__.py",
 			"settings":
 			{
-				"buffer_size": 1627,
+				"buffer_size": 1414,
 				"line_ending": "Unix"
 			}
 		},
@@ -50,7 +47,7 @@
 			"file": "modules/facebook/api.py",
 			"settings":
 			{
-				"buffer_size": 1851,
+				"buffer_size": 1829,
 				"line_ending": "Unix"
 			}
 		},
@@ -58,22 +55,23 @@
 			"file": "/home/adrian/Dropbox/My Products/Sportmate/landing page/Landing Page 2/website/public/index.html",
 			"settings":
 			{
-				"buffer_size": 6528,
->>>>>>> parent of 82e062d... Revert "update client library scripts"
+				"buffer_size": 6360,
 				"line_ending": "Unix"
 			}
 		},
 		{
-=======
->>>>>>> parent of d86be1b... added testing servers API for facebook redirect
 			"file": "/home/adrian/Dropbox/My Products/Sportmate/backend/mkdiscoverydoc",
 			"settings":
 			{
-<<<<<<< HEAD
 				"buffer_size": 223,
-=======
-				"buffer_size": 239,
->>>>>>> parent of 82e062d... Revert "update client library scripts"
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "modules/sports/models.py",
+			"settings":
+			{
+				"buffer_size": 5945,
 				"line_ending": "Unix"
 			}
 		}
@@ -102,23 +100,16 @@
 	},
 	"file_history":
 	[
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/client_library/sportmate-v1.0.discovery",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/misc/tests/tests.py",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/users/tests/test_actions.py",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/users/tests/test_api.py",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/users/actions.py",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/users/api.py",
->>>>>>> parent of 82e062d... Revert "update client library scripts"
-=======
->>>>>>> parent of d86be1b... added testing servers API for facebook redirect
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/appengine_config.py",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/.gitignore",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/facebook/actions.py",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/facebook/api.py",
-		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/users/api.py",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/sports/api.py",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/sports/actions.py",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/mkclient",
@@ -133,10 +124,7 @@
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/users/messages.py",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/dummydata/actions.py",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/index.yaml",
-		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/users/actions.py",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/users/models.py",
-		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/users/tests/test_actions.py",
-		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/users/tests/test_api.py",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/chat/messages.py",
 		"/var/www/html/CapturePicture/style.css",
 		"/var/www/html/CapturePicture/index.html",
@@ -239,16 +227,7 @@
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/app/modules/report",
 		"/home/adrian/Dropbox/My Products/Sportmate/backend/client_library/make_client_core.py",
 		"/home/adrian/Development/google_appengine/lib/fancy_urllib/__init__.py",
-<<<<<<< HEAD
-		"/home/adrian/Development/google_appengine/lib/fancy_urllib/fancy_urllib/__init__.py",
-		"/home/adrian/Dropbox/My Research/My Papers/Submitted Papers/The Advantage of Short Paper Titles/Submission (3) to Royal Society Open Science/diff/makediff",
-		"/home/adrian/Dropbox/My Research/My Papers/Working Papers/Birth Rate and Mortality Rates/paper/paper/lpm2014EPJDS.tex"
-<<<<<<< HEAD
-=======
 		"/home/adrian/Development/google_appengine/lib/fancy_urllib/fancy_urllib/__init__.py"
->>>>>>> parent of 82e062d... Revert "update client library scripts"
-=======
->>>>>>> parent of d86be1b... added testing servers API for facebook redirect
 	],
 	"find":
 	{
@@ -289,15 +268,7 @@
 	"groups":
 	[
 		{
-<<<<<<< HEAD
-<<<<<<< HEAD
-			"selected": 0,
-=======
-			"selected": 4,
->>>>>>> parent of 82e062d... Revert "update client library scripts"
-=======
-			"selected": 0,
->>>>>>> parent of d86be1b... added testing servers API for facebook redirect
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -328,27 +299,99 @@
 				},
 				{
 					"buffer": 1,
-					"file": "/home/adrian/Dropbox/My Products/Sportmate/backend/mkdiscoverydoc",
+					"file": "modules/misc/__init__.py",
 					"settings":
 					{
-<<<<<<< HEAD
-						"buffer_size": 223,
-=======
-						"buffer_size": 239,
->>>>>>> parent of 82e062d... Revert "update client library scripts"
+						"buffer_size": 1414,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-<<<<<<< HEAD
-								7,
-								7
-=======
-								239,
-								239
->>>>>>> parent of 82e062d... Revert "update client library scripts"
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 901.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "modules/facebook/api.py",
+					"settings":
+					{
+						"buffer_size": 1829,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 102.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/home/adrian/Dropbox/My Products/Sportmate/landing page/Landing Page 2/website/public/index.html",
+					"settings":
+					{
+						"buffer_size": 6360,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/home/adrian/Dropbox/My Products/Sportmate/backend/mkdiscoverydoc",
+					"settings":
+					{
+						"buffer_size": 223,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
 							]
 						],
 						"settings":
@@ -357,6 +400,33 @@
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "modules/sports/models.py",
+					"settings":
+					{
+						"buffer_size": 5945,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5945,
+								5945
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1785.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -397,7 +467,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 551.0
+		"height": 353.0
 	},
 	"replace":
 	{
