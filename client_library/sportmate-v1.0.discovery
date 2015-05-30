@@ -1,6 +1,6 @@
 {
  "kind": "discovery#rpcDescription",
- "etag": "\"u_zXkMELIlX4ktyNbM2XKD4vK8E/yXEF44ncxcc03kPq2CQ0FIQ2Lic\"",
+ "etag": "\"u_zXkMELIlX4ktyNbM2XKD4vK8E/p7_hOhTlI6El0mGR_r3S-Xj0cgI\"",
  "discoveryVersion": "v1",
  "id": "sportmate:v1.0",
  "name": "sportmate",
@@ -216,6 +216,22 @@
    "type": "object",
    "description": "Empty Message"
   },
+  "ModulesSportsMessagesAddGameComment": {
+   "id": "ModulesSportsMessagesAddGameComment",
+   "type": "object",
+   "description": "Message for an authenticating user to add a game comment.",
+   "properties": {
+    "game_key": {
+     "type": "string"
+    },
+    "text": {
+     "type": "string"
+    },
+    "token": {
+     "type": "string"
+    }
+   }
+  },
   "ModulesSportsMessagesCategoryList": {
    "id": "ModulesSportsMessagesCategoryList",
    "type": "object",
@@ -305,6 +321,38 @@
     "time": {
      "type": "string",
      "format": "date-time"
+    }
+   }
+  },
+  "ModulesSportsMessagesGameComment": {
+   "id": "ModulesSportsMessagesGameComment",
+   "type": "object",
+   "description": "Message containing a game comment",
+   "properties": {
+    "body": {
+     "type": "string"
+    },
+    "created": {
+     "type": "string",
+     "format": "date-time"
+    },
+    "user": {
+     "$ref": "ModulesUsersMessagesUser",
+     "description": "Message containing a user."
+    }
+   }
+  },
+  "ModulesSportsMessagesGameCommentThread": {
+   "id": "ModulesSportsMessagesGameCommentThread",
+   "type": "object",
+   "description": "A page of comments on a game.",
+   "properties": {
+    "comments": {
+     "type": "array",
+     "description": "Message containing a game comment",
+     "items": {
+      "$ref": "ModulesSportsMessagesGameComment"
+     }
     }
    }
   },
@@ -715,6 +763,24 @@
     "https://www.googleapis.com/auth/userinfo.email"
    ]
   },
+  "sportmate.sports.addcomment": {
+   "id": "sportmate.sports.addcomment",
+   "description": "Adds a comment to a game.",
+   "parameters": {
+    "resource": {
+     "$ref": "ModulesSportsMessagesAddGameComment"
+    }
+   },
+   "parameterOrder": [
+    "resource"
+   ],
+   "returns": {
+    "$ref": "ModulesSportsMessagesGameComment"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
   "sportmate.sports.addprofile": {
    "id": "sportmate.sports.addprofile",
    "description": "Adds a sport profile to the authenticating user.",
@@ -782,6 +848,26 @@
    ],
    "returns": {
     "$ref": "ModulesSportsMessagesGameList"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "sportmate.sports.getgamecomments": {
+   "id": "sportmate.sports.getgamecomments",
+   "description": "Gets the latest comments on a game.",
+   "allowGet": true,
+   "parameters": {
+    "game_key": {
+     "type": "string",
+     "required": true
+    }
+   },
+   "parameterOrder": [
+    "game_key"
+   ],
+   "returns": {
+    "$ref": "ModulesSportsMessagesGameCommentThread"
    },
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"
