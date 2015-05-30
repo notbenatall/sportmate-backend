@@ -44,6 +44,7 @@ class TestGeneral(APITest):
 			categories = ["American Football"],
 			level = 1,
 			time = datetime.now(),
+			end_time=datetime.now() + timedelta(days=1),
 			name = "Adrian's big play off",
 			players_needed = 2,
 			lat = 34.0,
