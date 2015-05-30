@@ -287,3 +287,51 @@ class TestSportProfiles(APITest):
 		assert profile.level == 5
 
 		assert len(profiles) == 0
+
+
+class TestGameComments(APITest):
+
+	def setup(self):
+		super(TestGameComments, self).setup()
+
+		self.user = usermodels.User(full_name="Adrian", first_name="Adrian")
+		self.user.initialise_new_token()
+		self.user.put()
+
+		self.cat = models.SportCategory(name='Basketball')
+		self.cat.put()
+
+		msg = messages.NewGame(
+			categories = ["Basketball"],
+			level = 1,
+			time = datetime.now() - timedelta(days=2),
+			name = "Adrian's big play off",
+			players_needed = 2,
+			lat = 34.0,
+			lon = 89.0)
+
+		self.game = actions.create_new_game(self.user, msg)
+
+	def test_add_comment(self):
+
+		request = messages.AddGameComment(
+				token=self.user.get_token(),
+				game_key = self.game.key.urlsafe(),
+				text="hello"
+			)
+
+		comment = self.api.add_game_comment(request)
+
+		assert comment.user.first_name == "Adrian"
+		assert comment.body == "hello"
+
+
+	def test_get_latest_comments(self):
+
+		comment = actions.add_comment_to_game(self.user, self.game.key.urlsafe(), "Hello.")
+
+		request = messages.GameRequest(game_key=self.game.key.urlsafe())
+		comments = self.api.get_game_comments(request).comments
+
+		assert comments[0].body == "Hello."
+		assert type(comments[0].created) is datetime

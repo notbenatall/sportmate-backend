@@ -63,6 +63,16 @@ def sports_profile_to_message(profile):
 	msg.sport = sport_category_to_message(profile.sport.get())
 	return msg
 
+
+def game_comment_to_message(comment):
+	"""Convert a game comment to a message."""
+	msg = messages.GameComment()
+	msg.body = comment.body
+	msg.user = user_to_message(comment.user.get())
+	msg.created = comment.created
+	return msg
+
+
 def get_all_categories():
 	"""Returns a list of all sports categories."""
 
@@ -242,6 +252,56 @@ def delete_sport_profile(auth_user, msg):
 		msg.sport_category_id)
 
 	profile_key.delete()
+
+
+def add_comment_to_game(user, game_key, text):
+	"""
+	Adds a comment to a game written.
+	"""
+
+	user = get_model(user, User)
+	game = ndb.Key(urlsafe=game_key).get()
+
+	comment = models.GameComment(user=user.key, body=text)
+
+	
+	number = models.GameCommentThread.get_thread_number(game.key)
+
+	if number is None:
+		new_key = models.GameCommentThread.make_key(game.key, 1)
+		thread = models.GameCommentThread(key=new_key)
+	else:
+		thread = models.GameCommentThread.get_by_key(game.key, number)
+
+	# If this thread is full, create another one
+	if thread.is_full():
+		new_key = models.GameCommentThread.make_key(game.key, thread.key.id()+1) #pylint: disable=maybe-no-member
+		thread = Thread(key=new_key)
+
+	thread.comments.append(comment)
+	thread.put()  #pylint: disable=maybe-no-member
+
+	return game_comment_to_message(comment)
+
+
+def get_latest_game_comments(game_key):
+	"""
+	Returns a list of the latest comments on a game.
+	"""
+	game = ndb.Key(urlsafe=game_key).get()
+
+	number = models.GameCommentThread.get_thread_number(game.key)
+
+	if number is None:
+		return messages.GameCommentThread()
+
+	thread = models.GameCommentThread.get_by_key(game.key, number)
+
+	msg = messages.GameCommentThread()
+	msg.comments = [game_comment_to_message(comment) for comment in thread.comments]
+
+	return msg
+
 
 
 # Modify a game

@@ -236,3 +236,65 @@ class UserGameList(ndb.Model):
 			game_list = UserGameList(parent=user.key)
 
 		return game_list
+
+
+class GameComment(ndb.Model):
+	"""
+	Comment on a game.
+
+	This model should not be in the datastore as a seperate entity. This is
+	designed to be a nested model inside GameCommentThread.
+	"""
+
+	body = ndb.StringProperty(indexed=False)
+	user = ndb.KeyProperty(kind=User, indexed=False, required=True)
+	created = ndb.DateTimeProperty(indexed=False, required=True, auto_now_add=True)
+
+
+class GameCommentThread(ndb.Model):
+	"""
+	A thread of comments on a game.
+
+	Parent: Game
+	Key: [Game Key, (GameCommentThread, number)]
+	"""
+	comments = ndb.StructuredProperty(GameComment, repeated=True)
+
+
+	def is_full(self):
+		"""Determines if the thread is full."""
+		return len(self.comments) >= 5000
+
+	@staticmethod
+	def get_thread_number(game_key):
+		"""
+		Returns the latest thread page of a game.
+		"""
+
+		thread_keys = GameCommentThread.query(ancestor=game_key).fetch(keys_only=True)
+		if len(thread_keys) == 0:
+			return None
+
+		thread_ids = [key.id() for key in thread_keys]
+		thread_ids.sort()
+
+		return thread_ids[-1]
+
+
+	@staticmethod
+	def make_key(game_key, number):
+		"""
+		Makes a key.
+		"""
+		pairs = list(game_key.pairs())
+		pairs.append((GameCommentThread, number))
+		return ndb.Key(pairs=pairs)
+
+
+	@staticmethod
+	def get_by_key(game_key, number):
+		"""Returns the thread for the given parent and number."""
+		pairs = list(game_key.pairs()) + [(GameCommentThread, number)]
+		key = ndb.Key(pairs=pairs)
+		thread = key.get()
+		return thread

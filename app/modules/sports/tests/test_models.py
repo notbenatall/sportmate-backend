@@ -11,6 +11,7 @@ from google.appengine.ext.db import BadValueError
 
 from testtools import DatastoreTest
 
+from users.models import User
 import users.models as usermodels
 import sports.models as models
 
@@ -110,3 +111,38 @@ class TestGameModel(DatastoreTest):
 			parent = self.user.key
 			)
 		game.put()
+
+
+class TestGameComments(DatastoreTest):
+
+	def setup(self):
+		super(TestGameComments, self).setup()
+
+		self.user = User(first_name="Adrian", full_name="Adrian Letchford")
+		self.user.put()
+
+		self.cat = models.SportCategory(name='Basketball')
+		self.cat.put()
+
+	def testAddComment(self):
+
+		game = models.Game(
+			category = [self.cat.key],
+			players_needed=5,
+			geo=ndb.GeoPt(37, -122),
+			time = datetime.now(),
+			parent = self.user.key
+			)
+		game.put()
+		
+		comment = models.GameComment(user=self.user.key, body="hello!")
+
+		thread_key = models.GameCommentThread.make_key(game.key, 1)
+		thread = models.GameCommentThread(key=thread_key)
+		thread.comments.append(comment)
+		thread.put()
+
+		thread = thread_key.get()
+
+		assert thread.comments[0].user == self.user.key
+		assert thread.comments[0].body == "hello!"

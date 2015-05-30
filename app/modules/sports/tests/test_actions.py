@@ -415,7 +415,6 @@ class TestSportProfiles(DatastoreTest):
 		assert profiles[0].level == 0
 
 
-
 	def test_delete_sport_profiles(self):
 
 		user = usermodels.User(full_name="Bob", first_name="Bob")
@@ -433,3 +432,42 @@ class TestSportProfiles(DatastoreTest):
 
 		assert len(profiles) == 0
 		
+
+class TestGameComments(HRDatastoreTest):
+
+	def setup(self):
+		super(TestGameComments, self).setup()
+
+		self.user = usermodels.User(full_name="Adrian", first_name="Adrian")
+		self.user.put()
+
+		self.cat = models.SportCategory(name='Basketball')
+		self.cat.put()
+
+		msg = messages.NewGame(
+			categories = ["Basketball"],
+			level = 1,
+			time = datetime.now() - timedelta(days=2),
+			name = "Adrian's big play off",
+			players_needed = 2,
+			lat = 34.0,
+			lon = 89.0)
+
+		self.game = actions.create_new_game(self.user, msg)
+
+	def test_add_comment(self):
+
+		comment = actions.add_comment_to_game(self.user, self.game.key.urlsafe(), "hai!")
+
+		assert comment.user.first_name == "Adrian"
+		assert comment.body == "hai!"
+
+
+	def test_get_latest_comments(self):
+
+		comment = actions.add_comment_to_game(self.user, self.game.key.urlsafe(), "Hello.")
+
+		comments = actions.get_latest_game_comments(self.game.key.urlsafe()).comments
+
+		assert comments[0].body == "Hello."
+		assert type(comments[0].created) is datetime

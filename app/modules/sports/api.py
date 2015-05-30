@@ -122,3 +122,25 @@ class Sports(remote.Service):
 		actions.delete_sport_profile(auth_user, request)
 
 		return VoidMessage()
+
+
+	@endpoints.method(messages.AddGameComment, messages.GameComment, path='game/comment',
+		http_method='PUT', name='addcomment')
+	def add_game_comment(self, request):
+		"""Adds a comment to a game."""
+
+		auth_user = verify_and_get_user(token=request.token)
+
+		comment = actions.add_comment_to_game(auth_user, request.game_key, request.text)
+
+		return comment
+
+
+	@endpoints.method(messages.GameRequest, messages.GameCommentThread, path='game/comment',
+		http_method='GET', name='getgamecomments')
+	def get_game_comments(self, request):
+		"""Gets the latest comments on a game."""
+
+		comments = actions.get_latest_game_comments(request.game_key)
+
+		return comments

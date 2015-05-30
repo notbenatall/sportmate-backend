@@ -64,6 +64,9 @@ class GameList(messages.Message):
 	"""Message containing a list of games."""
 	games = messages.MessageField(Game, 1, repeated=True)
 
+class GameRequest(messages.Message):
+	"""A request for information about a specific game."""
+	game_key = messages.StringField(1, required=True)
 
 class GamesRequest(messages.Message):
 	"""Message containing a request for a list of games."""
@@ -100,3 +103,28 @@ class SportProfileRequest(messages.Message):
 	
 	sport_category_id = messages.StringField(3, required=False)
 	level = messages.IntegerField(4, required=False, default=0)
+
+
+class AddGameComment(messages.Message):
+	"""
+	Message for an authenticating user to add a game comment.
+	"""
+	token = messages.StringField(1, required=True)
+	game_key = messages.StringField(2, required=True)
+	text = messages.StringField(3, required=True)
+
+class GameComment(messages.Message):
+	"""
+	Message containing a game comment
+	"""
+
+	body = messages.StringField(1, required=True)
+	user = messages.MessageField(User, 2, required=True)
+	created = message_types.DateTimeField(3, required=True)
+
+
+class GameCommentThread(messages.Message):
+	"""
+	A page of comments on a game.
+	"""
+	comments = messages.MessageField(GameComment, 1, repeated=True)
