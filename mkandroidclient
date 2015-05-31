@@ -11,7 +11,8 @@ python make_client_core.py get_client_lib java \
 	 modules.facebook.api.FacebookLogin \
 	 modules.users.api.Users \
 	 modules.sports.api.Sports \
-	 modules.chat.api.Chat
+	 modules.chat.api.Chat \
+	 modules.geo.api.Geo
 
 echo "Extracting"
 
