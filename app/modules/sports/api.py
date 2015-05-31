@@ -133,6 +133,8 @@ class Sports(remote.Service):
 
 		comment = actions.add_comment_to_game(auth_user, request.game_key, request.text)
 
+		print comment
+		
 		return comment
 
 

@@ -280,7 +280,7 @@ def add_comment_to_game(user, game_key, text):
 
 	thread.comments.append(comment)
 	thread.put()  #pylint: disable=maybe-no-member
-
+	
 	return game_comment_to_message(comment)
 
 
