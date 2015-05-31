@@ -16,9 +16,8 @@ def get_default_locations():
 	"""
 
 	venues = {
-		"w_spts_cntre": {"venue": "Warwick Sports Centre", "lat": 89.0, "lon": 856.98},
+		"w_spts_cntre": {"venue": "Warwick Sports Centre", "lat": 52.381647, "lon": -1.558873},
 	}
-
 	data = [
 		{"venue_id": "w_spts_cntre", "subvenue": "Squash court 1"},
 		{"venue_id": "w_spts_cntre", "subvenue": "Squash court 2"},

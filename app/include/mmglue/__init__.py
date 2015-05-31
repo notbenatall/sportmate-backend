@@ -112,17 +112,19 @@ def message_from_model(modeli, messageType):
             if field in message_fields:
                 setattr(new_message, field, value.id())
             else:
-                s = ("Couldn't match the model's key to a message field %s (%s) :" % (attr, str(type(value)))), value
-                logging.debug(s)
+            	pass
+                # s = ("Couldn't match the model's key to a message field %s (%s) :" % (attr, str(type(value)))), value
+                # logging.debug(s)
                 
         elif value is None:
             # We don't want to do anything, just pass
             pass
         else:
-            m = ("Unknown attribute type for %s (%s) :" % (attr, str(type(value)))), value
-            logging.debug('-'*80)
-            logging.debug(m)
-            logging.debug('-'*80)
+        	pass
+            # m = ("Unknown attribute type for %s (%s) :" % (attr, str(type(value)))), value
+            # logging.debug('-'*80)
+            # logging.debug(m)
+            # logging.debug('-'*80)
             #raise Exception(m)
             
     # Add the model's ID
