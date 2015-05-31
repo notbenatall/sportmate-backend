@@ -62,8 +62,13 @@ def is_test():
 
 def get_ip():
 	"""Return the ip of the running computer."""
-	s = socket(AF_INET, SOCK_DGRAM) 
-	s.connect(('google.com', 0)) 
+	try:
+		
+		s = socket(AF_INET, SOCK_DGRAM) 
+		s.connect(('google.com', 0)) 
 
-	IP = s.getsockname()[0]
-	return IP
+		IP = s.getsockname()[0]
+		return IP
+
+	except:
+		return "127.0.0.1"
