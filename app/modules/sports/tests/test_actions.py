@@ -60,7 +60,8 @@ class TestGeneral(HRDatastoreTest):
 			players_needed = 2,
 			location_name = "Some place",
 			lat = 34.0,
-			lon = 89.0)
+			lon = 89.0,
+			description="Please bring shoes.")
 
 		game = actions.create_new_game(user, msg)
 
@@ -75,6 +76,7 @@ class TestGeneral(HRDatastoreTest):
 		assert game.creator == user.key
 		assert len(game.players) == 1
 		assert game.players[0] == user.key
+		assert game.description == "Please bring shoes."
 
 	def test_create_new_game_minimum(self):
 

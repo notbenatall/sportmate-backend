@@ -48,12 +48,14 @@ class TestGeneral(APITest):
 			name = "Adrian's big play off",
 			players_needed = 2,
 			lat = 34.0,
-			lon = 89.0)
+			lon = 89.0,
+			description="please bring shoes.")
 
 		game = self.api.create_new_game(send_msg)
 
 		assert game.players_needed == 2
 		assert game.lat == 34
+		assert game.description == "please bring shoes."
 
 
 

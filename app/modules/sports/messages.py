@@ -43,6 +43,7 @@ class Game(messages.Message):
 	players = messages.MessageField(User, 14, repeated=True)
 	key = messages.StringField(15)
 	player_ids = messages.IntegerField(16, repeated=True)
+	description = messages.StringField(17)
 
 class NewGame(messages.Message):
 	"""Message containing a brand new game to add to the system."""
@@ -58,6 +59,8 @@ class NewGame(messages.Message):
 
 	end_time = message_types.DateTimeField(9, required=False)
 	location_name = messages.StringField(10, required=False)
+
+	description = messages.StringField(11)
 
 
 class GameList(messages.Message):

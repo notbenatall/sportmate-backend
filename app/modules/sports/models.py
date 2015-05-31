@@ -103,6 +103,7 @@ class Game(ndb.Model):
 	players = ndb.KeyProperty(kind=User, indexed=False, repeated=True)
 	creator = ndb.KeyProperty(kind=User, required=True)
 	show_in_search = ndb.BooleanProperty(indexed=True, default=True)
+	description = ndb.StringProperty(indexed=False, required=False)
 
 
 	def update_geohash(self):
