@@ -281,7 +281,6 @@ class GameCommentThread(ndb.Model):
 
 		return thread_ids[-1]
 
-
 	@staticmethod
 	def make_key(game_key, number):
 		"""

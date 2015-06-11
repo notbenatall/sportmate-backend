@@ -56,11 +56,28 @@ def list_of_games_to_message(games):
 	return msg
 
 
-def sports_profile_to_message(profile):
+def sports_profile_to_message(profile, add_user=False):
 	"""Convert a sport profile to a message."""
 	msg = messages.SportProfile()
 	msg.level = profile.level
 	msg.sport = sport_category_to_message(profile.sport.get())
+
+	level_names = {
+		0: "Beginner",
+		1: "Intermediate",
+		2: "Advanced",
+		3: "Expert",
+		4: "Pro",
+		}
+
+	if msg.level in level_names:
+		msg.level_name = level_names[msg.level]
+	else:
+		msg.level_name = str(msg.level)
+
+	if add_user:
+		msg.user = user_to_message(profile.key.parent().get())
+
 	return msg
 
 
@@ -302,6 +319,29 @@ def get_latest_game_comments(game_key):
 
 	return msg
 
+
+def search_for_sportmates(request):
+	"""
+	Param
+		request (message.SportmateSearchRequest)
+	"""
+
+	category_id = request.sport_category_id
+
+	if category_id is None:
+		return messages.SportProfileList()
+
+	category = models.SportCategory.get_by_id(category_id)
+
+	if category is None:
+		return messages.SportProfileList()
+
+	query = models.SportProfile.query(models.SportProfile.sport==category.key)
+	profiles = query.fetch()
+
+	msg = messages.SportProfileList()
+	msg.profiles = [sports_profile_to_message(p, add_user=True) for p in profiles]
+	return msg
 
 
 # Modify a game

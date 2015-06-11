@@ -75,6 +75,12 @@ def dummy_data_create_users():
 			'id': 679300985,
 			'email': 'someone@someplace.com',
 		},
+		{
+			'name': "Catalin Craciun",
+			'first_name': "Catalin",
+			'id': 915399228520705,
+			'email': 'catalincraciun7@yahoo.com',
+		},
 	]
 
 	entities = []
@@ -132,7 +138,7 @@ def dummy_data_create_games(categories, user_list):
 			level=random.choice(range(1, 5)),
 			time=time,
 			end_time=end_time,
-			name='Random name',
+			name= category.name + ' at Warwick',
 			players_needed=random.choice(range(3, 6)),
 			lat=random.uniform(south, north),
 			lon=random.uniform(east, west))

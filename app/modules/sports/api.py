@@ -132,8 +132,6 @@ class Sports(remote.Service):
 		auth_user = verify_and_get_user(token=request.token)
 
 		comment = actions.add_comment_to_game(auth_user, request.game_key, request.text)
-
-		print comment
 		
 		return comment
 
@@ -146,3 +144,15 @@ class Sports(remote.Service):
 		comments = actions.get_latest_game_comments(request.game_key)
 
 		return comments
+
+
+	@endpoints.method(messages.SportmateSearchRequest, messages.SportProfileList, path='spormates/search',
+		http_method='POST', name='searchforsportmates')
+	def search_for_sportmates(self, request):
+		"""Search for nearby sportmates."""
+
+		auth_user = verify_and_get_user(token=request.token)
+
+		profiles = actions.search_for_sportmates(request)
+
+		return profiles

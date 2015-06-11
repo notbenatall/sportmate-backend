@@ -337,3 +337,37 @@ class TestGameComments(APITest):
 
 		assert comments[0].body == "Hello."
 		assert type(comments[0].created) is datetime
+
+
+
+
+class TestSportmateSearch(DatastoreTest):
+
+	def setup(self):
+		super(TestSportmateSearch, self).setup()
+
+		# Expose the api
+		self.api = modules.sports.api.Sports()
+
+	def test(self):
+
+		user = usermodels.User(full_name="Adrian", first_name="Adrian")
+		user.initialise_new_token()
+		user.put()
+
+		cat = models.SportCategory(name='Basketball')
+		cat.put()
+
+		msg = messages.SportProfileRequest(sport_category_id=cat.key.id())
+
+		actions.add_sport_profile(user, msg)
+
+
+		request = messages.SportmateSearchRequest()
+		request.sport_category_id = 'basketball'
+		request.token=user.get_token()
+
+		result = self.api.search_for_sportmates(request).profiles
+
+		assert result[0].sport.name == "Basketball"
+		assert result[0].user.full_name == "Adrian"

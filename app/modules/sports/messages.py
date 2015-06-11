@@ -87,6 +87,8 @@ class SportProfile(messages.Message):
 	"""
 	sport = messages.MessageField(SportCategory, 1, required=True)
 	level = messages.IntegerField(2, required=True)
+	user = messages.MessageField(User, 3, required=False)
+	level_name = messages.StringField(4, required=False)
 
 
 class SportProfileList(messages.Message):
@@ -131,3 +133,11 @@ class GameCommentThread(messages.Message):
 	A page of comments on a game.
 	"""
 	comments = messages.MessageField(GameComment, 1, repeated=True)
+
+
+class SportmateSearchRequest(messages.Message):
+	"""
+	A request to search for nearby sportmates.
+	"""
+	token = messages.StringField(1, required=True)
+	sport_category_id = messages.StringField(2)

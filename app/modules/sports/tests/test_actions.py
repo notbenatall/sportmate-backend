@@ -473,3 +473,30 @@ class TestGameComments(HRDatastoreTest):
 
 		assert comments[0].body == "Hello."
 		assert type(comments[0].created) is datetime
+
+
+
+
+
+class TestSportmateSearch(DatastoreTest):
+
+	def test(self):
+
+		user = usermodels.User(full_name="Adrian", first_name="Adrian")
+		user.put()
+
+		cat = models.SportCategory(name='Basketball')
+		cat.put()
+
+		msg = messages.SportProfileRequest(sport_category_id = cat.key.id())
+
+		actions.add_sport_profile(user, msg)
+
+
+		request = messages.SportmateSearchRequest()
+		request.sport_category_id = 'basketball'
+
+		result = actions.search_for_sportmates(request).profiles
+
+		assert result[0].sport.name == "Basketball"
+		assert result[0].user.full_name == "Adrian"

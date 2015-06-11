@@ -43,4 +43,4 @@ class TestDummyData2(HRDatastoreTest):
 		for _ in range(10):
 			games = sports.models.Game.query().fetch(keys_only=True)
 
-		assert len(games) == 20
+		assert len(games) >= 15
