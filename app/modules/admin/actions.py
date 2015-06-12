@@ -33,7 +33,10 @@ def create_sport_categories():
 		'Squash', 
 		'Water Sports', 
 		'Other', 
-		'Yoga']
+		'Yoga',
+		"Rock Climbing",
+		"Running",
+		"Frisbee"]
 
 
 	for name in names:
