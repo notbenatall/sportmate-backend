@@ -280,3 +280,11 @@ def get_nearby_users(request, PAGE_SIZE=50):
 
 
 	return msg
+
+
+
+def get_user(user):
+	"""
+	"""
+	user = user_key_id_to_user(user)
+	return user_to_message(user)

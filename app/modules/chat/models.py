@@ -44,6 +44,7 @@ class Thread(ndb.Model):
 	[(?, group_id), (Thread, number)]
 	"""
 	messages = ndb.StructuredProperty(ChatMessage, repeated=True)
+	participants = ndb.KeyProperty(kind=User, repeated=True)
 
 	def is_full(self):
 		"""Determines if the thread is full."""

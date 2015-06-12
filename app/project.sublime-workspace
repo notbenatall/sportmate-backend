@@ -64,6 +64,38 @@
 			}
 		},
 		{
+			"file": "modules/facebook/actions.py",
+			"settings":
+			{
+				"buffer_size": 1573,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/adrian/Desktop/BBC.txt",
+			"settings":
+			{
+				"buffer_size": 22647839,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/adrian/Dropbox/My Research/My Papers/Working Papers/Choosing the Gaussian Kernel Parameter/code/data/raw data/higgs/README.md",
+			"settings":
+			{
+				"buffer_size": 74,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/adrian/Dropbox/My Research/My Papers/Working Papers/Choosing the Gaussian Kernel Parameter/code/data/raw data/susy/README.md",
+			"settings":
+			{
+				"buffer_size": 136,
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "modules/sports/tests/test_actions.py",
 			"settings":
 			{
@@ -83,7 +115,7 @@
 			"file": "app.yaml",
 			"settings":
 			{
-				"buffer_size": 441,
+				"buffer_size": 469,
 				"line_ending": "Unix"
 			}
 		}
@@ -282,7 +314,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 6,
 			"sheets":
 			[
 				{
@@ -368,6 +400,111 @@
 				},
 				{
 					"buffer": 3,
+					"file": "modules/facebook/actions.py",
+					"settings":
+					{
+						"buffer_size": 1573,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								648,
+								648
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 255.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/home/adrian/Desktop/BBC.txt",
+					"settings":
+					{
+						"buffer_size": 22647839,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								21507412,
+								21507412
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/home/adrian/Dropbox/My Research/My Papers/Working Papers/Choosing the Gaussian Kernel Parameter/code/data/raw data/higgs/README.md",
+					"settings":
+					{
+						"buffer_size": 74,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								74,
+								74
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "/home/adrian/Dropbox/My Research/My Papers/Working Papers/Choosing the Gaussian Kernel Parameter/code/data/raw data/susy/README.md",
+					"settings":
+					{
+						"buffer_size": 136,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								136,
+								136
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
 					"file": "modules/sports/tests/test_actions.py",
 					"settings":
 					{
@@ -394,7 +531,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 8,
 					"file": "modules/sports/tests/test_api.py",
 					"settings":
 					{
@@ -421,19 +558,19 @@
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 9,
 					"file": "app.yaml",
 					"settings":
 					{
-						"buffer_size": 441,
+						"buffer_size": 469,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								215,
-								215
+								0,
+								0
 							]
 						],
 						"settings":

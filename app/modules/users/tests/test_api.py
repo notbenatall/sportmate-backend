@@ -199,6 +199,13 @@ class TestGetUser(TestAPI):
 		#assert myself.token == self.me.get_token()
 		assert myself.facebook_id == 1234
 
+	def test_get_other(self):
+
+		send = messages.UserId(token=self.me.get_token(), user=self.other_user.key.id())
+		user = self.api.get_user(send)
+
+		assert user.first_name == "Buck"
+
 
 class TestUserSearch(DatastoreTest):
 

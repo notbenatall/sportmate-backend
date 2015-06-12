@@ -1,4 +1,5 @@
-application: testsportmateapi
+#application: testsportmateapi
+application: sportmateapi1
 #application: test2sportmateapi-968
 
 # Also need to update the version number in app.py

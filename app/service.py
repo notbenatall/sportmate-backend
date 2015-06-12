@@ -11,7 +11,7 @@ import modules.geo.api
 
 import modules.misc as misc
 
-if misc.is_development() or misc.is_test():
-	import modules.dummydata.api
+# if misc.is_development() or misc.is_test():
+import modules.dummydata.api
 
 APPLICATION = endpoints.api_server([modules.api.API])

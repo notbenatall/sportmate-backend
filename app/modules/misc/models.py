@@ -24,7 +24,7 @@ def get_model(obj, model_type):
 	else:
 		raise TypeError("Unknown type.")
 	if value is None:
-		raise NotFoundException()
+		raise NotFoundException("This %s does not exist in the datastore." % (str(model_type)))
 	if type(value) is not model_type:
 		raise BadValueError()
 

@@ -1,4 +1,4 @@
 #!/bin/bash
 
 cd app
-~/Development/google_appengine/remote_api_shell.py -s sportmateapi.appspot.com
+~/Development/google_appengine/remote_api_shell.py -s sportmateapi1.appspot.com

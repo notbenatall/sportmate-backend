@@ -107,7 +107,10 @@ class Users(remote.Service):
 		"""
 		auth_user = actions.verify_and_get_user(token=request.token)
 
-		msg = actions.user_to_message(auth_user)
+		if request.user is None:
+			msg = actions.user_to_message(auth_user)
+		else:
+			msg = actions.get_user(request.user)
 
 		return msg
 
