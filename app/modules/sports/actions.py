@@ -344,6 +344,13 @@ def search_for_sportmates(request):
 	return msg
 
 
+def create_sport_category(name):
+
+	cat = models.SportCategory(name=name)
+	cat.put()
+	
+	return cat
+
 # Modify a game
 
 # Get games made by a user
