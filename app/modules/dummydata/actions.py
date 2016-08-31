@@ -9,6 +9,7 @@ Dummy data functions
 # pylint: disable=protected-access, too-many-locals, invalid-name
 import random
 from datetime import datetime, timedelta
+from endpoints import NotFoundException
 
 from google.appengine.ext import ndb
 
@@ -24,29 +25,44 @@ import modules.facebook.actions as fbactions
 def dummy_data_create_categories():
 	"""Creates some dummy cateogories for building the front end."""
 
-	categories = [
-		('Basketball', []),
-		('Tennis', []),
-		('Football', []),
-		('Badminton', []),
-		('Unicyling', []),
-	]
+	names = [
+		'Football',
+		'Cricket', 
+		'Basketball', 
+		'Baseball', 
+		'Volleyball', 
+		'Tennis', 
+		'Field Hockey', 
+		'American Football', 
+		'Table Tennis',
+		'Golf', 
+		'Rugby',
+		'Badminton', 
+		'Fitness', 
+		'Combat Sports', 
+		'Rowing', 
+		'Handball', 
+		'Bowling', 
+		'Swimming', 
+		'Board Sports', 
+		'Lacrosse', 
+		'Squash', 
+		'Water Sports', 
+		'Other', 
+		"Rock Climbing",
+		"Running",
+		"Frisbee"]
 
 	entities = []
 
-	for category, parents in categories:
-
+	for category in names:
 		cat = sports.models.SportCategory(name=category)
-		for parent in parents:
-			cat.add_parent(sports.models.SportCategory.get_by_name(parent))
-
 		cat.put()
-
 		entities.append(cat)
 
 	return entities
 
-
+@ndb.transactional(xg=True)
 def dummy_data_create_users():
 	"""Creates some dummy users for building the front end."""
 
@@ -93,7 +109,7 @@ def dummy_data_create_users():
 
 	return entities
 
-
+@ndb.transactional(xg=True)
 def dummy_data_create_sport_profiles(categories, user_list):
 	"""Creates some dummy sport profiles for building the front end."""
 
@@ -103,10 +119,11 @@ def dummy_data_create_sport_profiles(categories, user_list):
 			level=0)
 		sports.actions.add_sport_profile(user, msg)
 
+@ndb.transactional(xg=True)
 def dummy_data_create_games(categories, user_list):
 	"""Creates some dummy games for building the front end."""
 
-	for _ in range(20):
+	for _ in range(40):
 
 		# Get a random cateogory
 		#category = random.choice([cat for cat in categories if len(cat.paths) > 0])
@@ -120,6 +137,10 @@ def dummy_data_create_games(categories, user_list):
 
 		# Get a random user
 		user = random.choice(user_list)
+		user = user.key.get()
+
+		if user is None:
+			raise NotFoundException("Tried to create a game with a user that doesn't exist!")
 
 		# Get a random player
 		#available_players = [u for u in user_list if u != user]
@@ -153,7 +174,6 @@ def dummy_data_create_games(categories, user_list):
 def clear_database():
 	"""Clears the entire datastore."""
 	ndb.delete_multi(ndb.Query().fetch(keys_only=True))
-
 
 def dummy_data_create():
 	"""Run all the create dummy data functions."""

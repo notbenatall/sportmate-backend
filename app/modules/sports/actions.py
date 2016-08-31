@@ -17,6 +17,7 @@ from modules.users.models import User
 from modules.users.actions import user_to_message
 import mmglue
 from datetime import datetime
+import modules.misc as misc
 
 TIME_FORMAT = "%Y-%m-%d %H:%M:%S"
 
@@ -41,11 +42,22 @@ def game_model_to_message(game):
 	msg.categories_full = [sport_category_to_message(category)
 			for category in categories]
 
-	list_of_players = ndb.get_multi(game.players[:5])
+	list_of_player_keys = game.players[-5:]
+	list_of_players = ndb.get_multi(list_of_player_keys)
+
+	# Sanity Check
+	if None in list_of_players:
+		none_index = list_of_players.index(None)
+		user_key = list_of_player_keys[none_index]
+		user_id = user_key.id()
+		raise NotFoundException("A user (key: %s id: %d) in this game (key: %s id: %d) could not be found in the database!" % (user_key, user_id, game.key, game.key.id()))
+
 	msg.players = [user_to_message(player) for player in list_of_players]
 
 	msg.player_ids = [player.id() for player in game.players]
 
+	msg.time_as_UTC_timestamp = int(misc.datetime_to_timestamp(game.time))
+	
 	return msg
 
 

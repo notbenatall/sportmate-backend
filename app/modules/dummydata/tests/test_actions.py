@@ -15,6 +15,8 @@ import modules.sports as sports
 import modules.sports.actions
 import modules.sports.models
 
+from modules.sports.actions import list_games
+
 
 class TestDummyData(HRDatastoreTest):
 
@@ -43,4 +45,8 @@ class TestDummyData2(HRDatastoreTest):
 		for _ in range(10):
 			games = sports.models.Game.query().fetch(keys_only=True)
 
-		assert len(games) >= 15
+		assert len(games) >= 9
+
+
+	def test_list_games_works(self):
+		games = list_games()

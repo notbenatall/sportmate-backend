@@ -1,5 +1,6 @@
-#application: testsportmateapi
-application: sportmateapi1
+#application: testsportmateapi # This is the name used for making the client library
+application: demotestsportmateapi
+#application: sportmateapi1
 #application: test2sportmateapi-968
 
 # Also need to update the version number in app.py

@@ -43,6 +43,7 @@ class Game(messages.Message):
 	key = messages.StringField(14)
 	player_ids = messages.IntegerField(15, repeated=True)
 	description = messages.StringField(16)
+	time_as_UTC_timestamp = messages.IntegerField(17)
 
 class NewGame(messages.Message):
 	"""Message containing a brand new game to add to the system."""

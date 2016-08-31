@@ -14,6 +14,7 @@ from google.appengine.api.app_identity import get_application_id
 import string
 import random
 from socket import socket, SOCK_DGRAM, AF_INET 
+import time
 
 def random_string(size=6, chars=string.ascii_uppercase + string.digits):
 	"""Generates a random string of characters."""
@@ -72,3 +73,9 @@ def get_ip():
 
 	except:
 		return "127.0.0.1"
+
+
+
+def datetime_to_timestamp(then):
+	"""Converts a datetime object to a timestamp."""
+	return time.mktime(then.timetuple())*1e3 + then.microsecond/1e3
